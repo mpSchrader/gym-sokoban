@@ -1,7 +1,8 @@
 import numpy as np
 import random
 
-def generate_room(dim=(13,13), p_change_directions=0.35, num_steps=10, num_boxes=3):
+
+def generate_room(dim=(13,13), p_change_directions=0.35, num_steps=25, num_boxes=3):
     """
     Generates a Sokoban room, represented by an integer matrix. The elements are encoded as follows:
     wall = 0
@@ -17,6 +18,8 @@ def generate_room(dim=(13,13), p_change_directions=0.35, num_steps=10, num_boxes
     """
     room = room_topology_generation(dim, p_change_directions, num_steps)
     room = place_boxes_and_player(room, num_boxes=num_boxes)
+    room[room == 3] = 4
+    return room
 
 
 def room_topology_generation(dim=(10, 10), p_change_directions=0.35, num_steps=15):
@@ -86,14 +89,34 @@ def room_topology_generation(dim=(10, 10), p_change_directions=0.35, num_steps=1
 def place_boxes_and_player(room, num_boxes=3):
     # Position Player
     possible_positions = np.where(room == 1)
-    ind = np.random.randint(possible_positions[0].shape[0])
+    num_possible_positions = possible_positions[0].shape[0]
+
+    if num_possible_positions <= num_boxes+1:
+        raise RuntimeError('Not enough free spots (#{}) to place 1 player and {} boxes.'.format(
+                                num_possible_positions,
+                                num_boxes)
+        )
+
+    ind = np.random.randint(num_possible_positions)
     player_position = possible_positions[0][ind], possible_positions[1][ind]
     room[player_position] = 5
 
     for n in range(num_boxes):
         possible_positions = np.where(room == 1)
-        ind = np.random.randint(possible_positions[0].shape[0])
+        num_possible_positions = possible_positions[0].shape[0]
+        print(num_possible_positions)
+        ind = np.random.randint(num_possible_positions)
         box_position = possible_positions[0][ind], possible_positions[1][ind]
-        room[box_position] = 4
+        room[box_position] = 3
 
     return room
+
+
+TYPE_LOOKUP = {
+    0: 'wall',
+    1: 'empty space',
+    2: 'box target',
+    3: 'box on target',
+    4: 'box not on target',
+    5: 'player'
+}

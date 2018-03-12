@@ -1,15 +1,21 @@
 import gym
 from gym.utils import seeding
-import random
+from gym.spaces.discrete import Discrete
+from gym.spaces.box import Box
+from .room_utils import generate_room
 import numpy as np
+
 
 class SokobanEnv(gym.Env):
     metadata = {
-        'render.modes' : ['human', 'rgb_array'],
-        'video.frames_per_second' : 30
+        'render.modes': ['human', 'rgb_array'],
+        'video.frames_per_second': 1
     }
 
-    def __init__(self):
+    def __init__(self, dim_room=(10, 10), max_steps=120):
+        # General Configuration
+        self.dim_room = dim_room
+        self.num_gen_steps = int(1.5 * (dim_room[0] + dim_room[1]))
 
         # Penalties and Rewards
         self.penalty_for_step = -0.1
@@ -18,23 +24,73 @@ class SokobanEnv(gym.Env):
         self.reward_finished = 10
 
         # Other Settings
-        self.max_steps = 120
+        self.max_steps = max_steps
+        self.action_space = Discrete(len(ACTION_LOOKUP))
+        self.observation_space = Box(low=0,
+                                     high=6,
+                                     shape=dim_room)
+
+        # Initialize Room
+        self.reset()
 
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def step(self,u):
-        pass
+    def step(self, action):
+        # TODO
+        self.reward_last = 0
+        self.num_env_steps += 1
+        if action < 4:
+            self._pull(action)
+        else:
+            self._move(action % 4)
+
+        done = False
+        if np.where(self.room == 4)[0].shape[0] == 0 or self.max_steps == self.num_env_steps:
+            done = True
+            self.reward_last += self.reward_finished
+
+        return self.room, self.reward_last, done, {}
+
+    def _pull(self, action):
+        # TODO
+        return action
+
+    def _move(self, action):
+        # TODO
+        return action
 
     def reset(self):
-        pass
+        self.room = generate_room(dim=self.dim_room, num_steps=self.num_gen_steps)
+        self.player_position = np.argwhere(self.room == 5)[0]
+        self.num_env_steps = 0
+        self.reward_last = 0
 
-    def _get_obs(self):
-        pass
 
-    def render(self, mode='human'):
-        pass
+    def render(self, mode='human', close=None):
+        if mode == 'rgb_array':
+            # TODO
+            return np.zeros((self.dim_room[0], self.dim_room[1], 3))  # return RGB frame suitable for video
+        elif mode is 'human':
+            pass
+            return [0]
+            # TODO
+        else:
+            super(SokobanEnv, self).render(mode=mode)  # just raise an exception
 
     def close(self):
+        # Nothing to clean up during close
         pass
+
+
+ACTION_LOOKUP = {
+    0: 'pull up',
+    1: 'pull down',
+    2: 'pull left',
+    3: 'pull right',
+    4: 'move up',
+    5: 'move down',
+    6: 'move left',
+    7: 'move right',
+}
