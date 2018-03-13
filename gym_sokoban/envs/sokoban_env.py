@@ -30,6 +30,7 @@ class SokobanEnv(gym.Env):
         self.observation_space = Box(low=0,
                                      high=6,
                                      shape=dim_room)
+        self.viewer = None
 
         # Initialize Room
         self.reset()
@@ -119,22 +120,22 @@ class SokobanEnv(gym.Env):
         self.reward_last = 0
         self.boxes_on_target = 0
 
-
     def render(self, mode='human', close=None):
+        img = room_to_rgb(self.room_state)
         if mode == 'rgb_array':
-            # TODO
-            return np.zeros((self.dim_room[0], self.dim_room[1], 3))  # return RGB frame suitable for video
+            return img # return RGB frame suitable for video
         elif mode is 'human':
-            pass
-            return [0]
-            # TODO
+            from gym.envs.classic_control import rendering
+            if self.viewer is None:
+                self.viewer = rendering.SimpleImageViewer()
+            self.viewer.imshow(img)
+            return self.viewer.isopen
         else:
             super(SokobanEnv, self).render(mode=mode)  # just raise an exception
 
     def close(self):
         # Nothing to clean up during close
         pass
-
 
 ACTION_LOOKUP = {
     0: 'pull up',

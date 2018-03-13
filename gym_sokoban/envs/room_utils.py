@@ -284,7 +284,6 @@ def room_to_rgb(room, room_structure=None):
             #print(surfaces_id)
             room_rgb[x_i:(x_i + 16), y_j:(y_j + 16), :] = surfaces[surfaces_id]
 
-    toimage(room_rgb).show(title='Before play')
     return room_rgb
 
 
@@ -298,10 +297,10 @@ TYPE_LOOKUP = {
 }
 
 ACTION_LOOKUP = {
-    0: 'pull up',
-    1: 'pull down',
-    2: 'pull left',
-    3: 'pull right',
+    0: 'push up',
+    1: 'push down',
+    2: 'push left',
+    3: 'push right',
     4: 'move up',
     5: 'move down',
     6: 'move left',
