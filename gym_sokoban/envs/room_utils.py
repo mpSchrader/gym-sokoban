@@ -41,8 +41,8 @@ def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxe
         if score > 0:
             break
 
-    toimage(room_to_rgb(room, room_structure)).show(title='Before play')
-    toimage(room_to_rgb(room_state, room_structure)).show(title='After play')
+    #toimage(room_to_rgb(room, room_structure)).show(title='Before play')
+    #toimage(room_to_rgb(room_state, room_structure)).show(title='After play')
 
     return room_structure, room_state
 
@@ -247,7 +247,8 @@ def room_to_rgb(room, room_structure=None):
 
     room = np.array(room)
     if room_structure is None:
-      print("ROOM IS NONE")
+        # print("ROOM IS NONE")
+        pass
 
     room_rgb = np.zeros(shape=(room.shape[0] * 16, room.shape[1] * 16, 3), dtype=np.uint8)
 
@@ -280,8 +281,10 @@ def room_to_rgb(room, room_structure=None):
         for j in range(room.shape[1]):
             y_j = j * 16
             surfaces_id = room[i, j]
+            #print(surfaces_id)
             room_rgb[x_i:(x_i + 16), y_j:(y_j + 16), :] = surfaces[surfaces_id]
 
+    toimage(room_rgb).show(title='Before play')
     return room_rgb
 
 
