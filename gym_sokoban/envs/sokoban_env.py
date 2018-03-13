@@ -2,7 +2,7 @@ import gym
 from gym.utils import seeding
 from gym.spaces.discrete import Discrete
 from gym.spaces.box import Box
-from .room_utils import generate_room
+from .room_utils import generate_room, room_to_rgb
 import numpy as np
 
 
@@ -33,6 +33,8 @@ class SokobanEnv(gym.Env):
         # Initialize Room
         self.reset()
 
+        room_to_rgb(self.room_state)
+
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
@@ -41,19 +43,20 @@ class SokobanEnv(gym.Env):
         # TODO
         self.reward_last = 0
         self.num_env_steps += 1
+
         if action < 4:
-            self._pull(action)
+            self._push(action)
         else:
             self._move(action % 4)
 
         done = False
-        if np.where(self.room == 4)[0].shape[0] == 0 or self.max_steps == self.num_env_steps:
+        if np.where(self.room_state == 4)[0].shape[0] == 0 or self.max_steps == self.num_env_steps:
             done = True
             self.reward_last += self.reward_finished
 
-        return self.room, self.reward_last, done, {}
+        return self.room_state, self.reward_last, done, {}
 
-    def _pull(self, action):
+    def _push(self, action):
         # TODO
         return action
 
@@ -62,8 +65,8 @@ class SokobanEnv(gym.Env):
         return action
 
     def reset(self):
-        self.room = generate_room(dim=self.dim_room, num_steps=self.num_gen_steps)
-        self.player_position = np.argwhere(self.room == 5)[0]
+        self.room_fixed, self.room_state = generate_room(dim=self.dim_room, num_steps=self.num_gen_steps)
+        self.player_position = np.argwhere(self.room_state == 5)[0]
         self.num_env_steps = 0
         self.reward_last = 0
 
@@ -93,4 +96,16 @@ ACTION_LOOKUP = {
     5: 'move down',
     6: 'move left',
     7: 'move right',
+}
+
+# Moves are mapped to coordinate changes as follows
+# 0: Move up
+# 1: Move down
+# 2: Move left
+# 3: Move right
+CHANGE_COORDINATES = {
+    0: (0, 1),
+    1: (0, -1),
+    2: (-1, 0),
+    3: (1, 0)
 }
