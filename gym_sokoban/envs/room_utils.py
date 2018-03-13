@@ -32,16 +32,17 @@ def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxe
         room_structure[room_structure == 5] = 1
 
         # Room structure represents the current state of the room including movable parts
-        room_state = room
+        room_state = room.copy()
         room_state[room_state == 2] = 4
 
         room_state, score = reverse_playing(room_state, room_structure)
+        room_state[room_state == 3] = 4
 
         if score > 0:
             break
 
-    #toimage(room_to_rgb(room)).show(title='Before play')
-    #toimage(room_to_rgb(room_state)).show(title='After play')
+    toimage(room_to_rgb(room, room_structure)).show(title='Before play')
+    toimage(room_to_rgb(room_state, room_structure)).show(title='After play')
 
     return room_structure, room_state
 
@@ -144,7 +145,6 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     global explored_states, num_boxes
 
     actions = list(ACTION_LOOKUP.keys())
-    # random.shuffle(actions)
 
     box_mapping = {}
     box_locations = np.where(room_structure == 2)
@@ -165,7 +165,6 @@ def reverse_playing(room_state, room_structure, search_depth=100):
         if score > max_score:
             max_score = score
             room_state = np.fromstring(state, dtype=int).reshape(room_structure.shape)
-
 
     return room_state, max_score
 
@@ -193,9 +192,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
             box_swaps_next = box_swaps
             if last_pull_next != last_pull:
                 box_swaps_next += 1
-            if False:
-                toimage(room_to_rgb(room_state)).show(title='After play')
-                pass
+
             depth_first_search(room_state_next, room_structure, box_mapping_next, box_swaps_next, last_pull, ttl)
 
     pass
@@ -245,15 +242,21 @@ def box_displacement_score(box_mapping):
     return score
 
 
-def room_to_rgb(room):
+def room_to_rgb(room, room_structure=None):
     resource_package = __name__
 
     room = np.array(room)
+    if room_structure is None:
+      print("ROOM IS NONE")
+
     room_rgb = np.zeros(shape=(room.shape[0] * 16, room.shape[1] * 16, 3), dtype=np.uint8)
 
     # Load images
     box_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'box.png')))
     box = misc.imread(box_filename)
+
+    box_on_target_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'box_on_target.png')))
+    box_on_target = misc.imread(box_on_target_filename)
 
     box_target_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'box_target.png')))
     box_target = misc.imread(box_target_filename)
@@ -264,10 +267,13 @@ def room_to_rgb(room):
     player_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'player.png')))
     player = misc.imread(player_filename)
 
+    player_on_target_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'player_on_target.png')))
+    player_on_target = misc.imread(player_on_target_filename)
+
     wall_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'wall.png')))
     wall = misc.imread(wall_filename)
 
-    surfaces = [wall, floor, box_target, box, box, player]
+    surfaces = [wall, floor, box_target, box_on_target, box, player, player_on_target]
 
     for i in range(room.shape[0]):
         x_i = i * 16
