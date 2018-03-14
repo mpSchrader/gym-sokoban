@@ -5,13 +5,13 @@ logger = logging.getLogger(__name__)
 
 register(
     id='Sokoban-v0',
-    entry_point='gym_sokoban.envs:SokobanEnv',
+    entry_point='gym_sokoban.envs:SokobanEnv1',
     max_episode_steps=200
 )
 
 register(
     id='Sokoban-v1',
-    entry_point='gym_sokoban.envs:SokobanEnv1',
+    entry_point='gym_sokoban.envs:SokobanEnv',
     max_episode_steps=250
 )
 
