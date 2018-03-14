@@ -12,11 +12,11 @@ class SokobanEnv(gym.Env):
         'video.frames_per_second': 1
     }
 
-    def __init__(self, dim_room=(10, 10), max_steps=120):
+    def __init__(self, dim_room=(10, 10), max_steps=120, num_boxes=4):
         # General Configuration
         self.dim_room = dim_room
-        self.num_gen_steps = int(1.5 * (dim_room[0] + dim_room[1]))
-        self.num_boxes = 3
+        self.num_gen_steps = int(1.7 * (dim_room[0] + dim_room[1]))
+        self.num_boxes = 4
 
         # Penalties and Rewards
         self.penalty_for_step = -0.1
@@ -47,18 +47,23 @@ class SokobanEnv(gym.Env):
             self._push(action)
 
             # Calculate reward for push off or on the target
-            current_boxes_on_target = self.num_boxes - np.where(self.room_state == 2)[0].shape[0]
+            empty_targets = self.room_state == 2
+            player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
+            current_boxes_on_target = self.num_boxes - \
+                                      np.where(empty_targets | player_on_target)[0].shape[0]
             if current_boxes_on_target > self.boxes_on_target:
                 self.reward_last += self.reward_box_on_target
             elif current_boxes_on_target < self.boxes_on_target:
-                self.reward_last += self.reward_box_on_target
+                self.reward_last += self.penalty_box_off_target
             self.boxes_on_target = current_boxes_on_target
 
         else:
             self._move(action)
 
         done = (self.max_steps == self.num_env_steps)
-        if np.where(self.room_state == 2)[0].shape[0] == 0:
+        empty_targets = self.room_state == 2
+        player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
+        if np.where(empty_targets | player_on_target)[0].shape[0] == 0:
             done = True
             self.reward_last += self.reward_finished
 
