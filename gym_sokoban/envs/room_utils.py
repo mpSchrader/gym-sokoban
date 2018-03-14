@@ -1,5 +1,4 @@
 import random
-
 import numpy as np
 import pkg_resources
 from scipy import misc
@@ -173,7 +172,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
     global explored_states, num_boxes
 
     ttl -= 1
-    if ttl <= 0:
+    if ttl <= 0 or len(explored_states) >= 1000000:
         return
 
     state_string = room_state.tostring()
@@ -246,9 +245,9 @@ def room_to_rgb(room, room_structure=None):
     resource_package = __name__
 
     room = np.array(room)
-    if room_structure is None:
+    if not room_structure is None:
         # print("ROOM IS NONE")
-        pass
+        room[(room == 5) & (room_structure == 2)] = 6
 
     room_rgb = np.zeros(shape=(room.shape[0] * 16, room.shape[1] * 16, 3), dtype=np.uint8)
 
@@ -281,7 +280,7 @@ def room_to_rgb(room, room_structure=None):
         for j in range(room.shape[1]):
             y_j = j * 16
             surfaces_id = room[i, j]
-            #print(surfaces_id)
+
             room_rgb[x_i:(x_i + 16), y_j:(y_j + 16), :] = surfaces[surfaces_id]
 
     return room_rgb

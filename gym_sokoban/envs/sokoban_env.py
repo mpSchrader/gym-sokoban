@@ -42,7 +42,7 @@ class SokobanEnv(gym.Env):
         return [seed]
 
     def step(self, action):
-        # TODO
+
         self.reward_last = self.penalty_for_step
         self.num_env_steps += 1
         room_to_rgb(self.room_state)
@@ -121,9 +121,10 @@ class SokobanEnv(gym.Env):
         self.boxes_on_target = 0
 
     def render(self, mode='human', close=None):
-        img = room_to_rgb(self.room_state)
+        img = room_to_rgb(self.room_state, self.room_fixed)
+
         if mode == 'rgb_array':
-            return img # return RGB frame suitable for video
+            return img
         elif mode is 'human':
             from gym.envs.classic_control import rendering
             if self.viewer is None:
