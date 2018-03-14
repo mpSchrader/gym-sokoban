@@ -61,8 +61,9 @@ class SokobanEnv(gym.Env):
         if np.where(self.room_state == 2)[0].shape[0] == 0:
             done = True
             self.reward_last += self.reward_finished
-        room_to_rgb(self.room_state)
-        return self.room_state, self.reward_last, done, {}
+
+        observation = room_to_rgb(self.room_state)
+        return observation, self.reward_last, done, {}
 
     def _push(self, action):
         change = CHANGE_COORDINATES[action % 4]
