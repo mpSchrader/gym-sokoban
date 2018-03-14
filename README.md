@@ -11,9 +11,16 @@ The room generation is random and therefor will allow to train Deep Neural Netwo
   </p>
 </div>
 
-## 1 Game Environment
+## 1 Installation
 
-### 1.1 Room Elements
+```bash
+cd gym-sokoban
+pip install -e .
+```
+
+## 2 Game Environment
+
+### 2.1 Room Elements
 Every room consists of five main elements: walls, floor, boxes, box targets, and a player.They might have different states whether they overlap or not.
 
 | Type       | State      | Graphic |
@@ -26,7 +33,7 @@ Every room consists of five main elements: walls, floor, boxes, box targets, and
 | Player     | Off Target | ![PlayerOffTarget](/gym_sokoban/envs/surface/player.png "Player") |
 | Player     | On Target  | ![PlayerOnTarget](/gym_sokoban/envs/surface/player_on_target.png "Player") |
 
-### 1.2 Actions
+### 2.2 Actions
 The game provides 8 actions to interact with the environment. 
 Push and Move actions into the directions Up, Down, Left and Right.
 The mapping of the action numbers to the actual actions looks as follows
@@ -46,7 +53,7 @@ The mapping of the action numbers to the actual actions looks as follows
 **Push** push tries to move an adjacent box, if the next field behind the box is free.
 This means no chain pushing of boxes is possible.
 
-### 1.3 Rewards
+### 2.3 Rewards
 Finishing the game by pushing all on the targets gives a reward of 10 in the last step. 
 Also pushing a box on or off a target gives a reward of 1 respectively of -1. 
 In addition a reward of -0.1 is given for every step, this penalizes solutions with many steps.
@@ -58,10 +65,10 @@ In addition a reward of -0.1 is given for every step, this penalizes solutions w
 | Push Box off Target       | -1.0   |
 | Push all boxes on targets | 10.0   |
 
-### 1.4 Level Generation
+### 2.4 Level Generation
 Every time a Sokoban environment is loaded or reset a new room is randomly generated.
 The generation consists of 3 phases: Topology Generation, Placement of Targets and Players, and Reverse Playing.
-#### 1.4.1 Topology Generation
+#### 2.4.1 Topology Generation
 To generate the basic topology of the room, consisting of walls and empty floor, is based on a random walk, which changes its direction at probability 0.35.
 At every step centered at the current position a pattern of fields is set to empty spaces.
 The patterns used can be found in [Figure 2](#topologyMask).
@@ -75,10 +82,10 @@ The patterns used can be found in [Figure 2](#topologyMask).
 </div>
 
 
-#### 1.4.2 Placement of Targets
+#### 2.4.2 Placement of Targets
 During this phase the player including all n box targets are placed on randomly chosen empty spaces.
 
-#### 1.4.3 Reverse Playing
+#### 2.4.3 Reverse Playing
 This is the crucial phase to  ensure a solvable room.
 Now Sokoban is played in a reverse fashion, where a player can move and pull boxes.
 The goal of this phase is to find the room state, with the highest room score, with a [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search).
@@ -92,10 +99,10 @@ BoxDisplacement is the [Manhattan Distance](https://en.wikipedia.org/wiki/Manhat
   </p>
 </div>
 
-### Room Configuration
+### 2.5 Room Configuration
 The following room configurations are available:
 
-| Room Id | Width | Height | #Boxes | Example |
+| Room Id | With | Height | #Boxes | Example |
 | --- | :---: | :---: | :---: | :---: |
 | Sokoban-v0 | 10 | 10 | 3 | ![Sokoban-v0](/docs/rooms/Sokoban-v0.png)  |
 | Sokoban-v1 | 10 | 10 | 4 | ![Sokoban-v1](/docs/rooms/Sokoban-v1.png) |
@@ -109,12 +116,7 @@ The following room configurations are available:
 
 Please note that the larger rooms might take some time to be created, especially on a laptop.
 
-## Installation
 
-```bash
-cd gym-sokoban
-pip install -e .
-```
-## Connect
+## 3 Connect
 Feel free to get in touch with me to talk about this or other projects. 
 Either by creating an [issue](https://github.com/mpSchrader/gym-sokoban/issues) or mail me on [LinkedIn](https://www.linkedin.com/in/max-philipp-schrader/).
