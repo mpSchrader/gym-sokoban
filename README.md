@@ -84,7 +84,7 @@ Now Sokoban is played in a reverse fashion, where a player can move and pull box
 The goal of this phase is to find the room state, with the highest room score, with a [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search).
 For every room explored during the search is a room score is calculated with the equation shown below.
 The equation is a heuristic approach to evaluate the difficulty of the room.
-BoxSwaps counts the number of times a player changes to pull a different box.
+BoxSwaps counts the number of times a player changes the box to pull.
 BoxDisplacement is the [Manhattan Distance](https://en.wikipedia.org/wiki/Manhattan_distance) between a specific box and it origin box target.  
 <div style="padding:10%">
   <p align="center">
@@ -92,7 +92,22 @@ BoxDisplacement is the [Manhattan Distance](https://en.wikipedia.org/wiki/Manhat
   </p>
 </div>
 
+### Room Configuration
+The following room configurations are available:
 
+| Room Id | Width | Height | #Boxes | Example |
+| --- | :---: | :---: | :---: | :---: |
+| Sokoban-v0 | 10 | 10 | 3 | ![Sokoban-v0](/docs/rooms/Sokoban-v0.png "Sokoban-v0" =40x40) |
+| Sokoban-v1 | 10 | 10 | 4 |
+| Sokoban-v2 | 10 | 10 | 5 |
+| Sokoban-small-v0 | 7 | 7 | 2 |
+| Sokoban-small-v1 | 7 | 7 | 3 |
+| Sokoban-large-v0 | 13 | 11 | 3 |
+| Sokoban-large-v1 | 13 | 11 | 4 |
+| Sokoban-large-v2 | 13 | 11 | 5 |
+| Sokoban-huge-v1 | 13 | 13 | 5 |
+
+Please note that the larger rooms might take some time to be created, especially on a laptop.
 
 ## Installation
 
@@ -100,3 +115,6 @@ BoxDisplacement is the [Manhattan Distance](https://en.wikipedia.org/wiki/Manhat
 cd gym-sokoban
 pip install -e .
 ```
+## Connect
+Feel free to get in touch with me to talk about this or other projects. 
+Either by creating an [issue](https://github.com/mpSchrader/gym-sokoban/issues) or mail me on [LinkedIn](https://www.linkedin.com/in/max-philipp-schrader/).
