@@ -4,8 +4,8 @@ from gym_sokoban.envs.room_utils import ACTION_LOOKUP
 import time
 from scipy.misc import imsave
 ts = time.time()
-env = gym.make('Sokoban-v0')
-#env = gym.make('CartPole-v0')
+env = gym.make('Sokoban-large-v1')
+
 for i_episode in range(1):#20
     observation = env.reset()
     observation = env.render(mode='rgb_array')
