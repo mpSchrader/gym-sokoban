@@ -89,7 +89,8 @@ The goal of this phase is to find the room state, with the highest room score, w
 For every room explored during the search is a room score is calculated with the equation shown below.
 The equation is a heuristic approach to evaluate the difficulty of the room.
 BoxSwaps counts the number of times a player changes the box to pull.
-BoxDisplacement is the [Manhattan Distance](https://en.wikipedia.org/wiki/Manhattan_distance) between a specific box and it origin box target.  
+BoxDisplacement is the [Manhattan Distance](https://en.wikipedia.org/wiki/Manhattan_distance) between a specific box and it origin box target. 
+As long as at least one box is on a target the RoomScore is always 0.
 <div style="padding:10%">
   <p align="center">
    <img src="https://latex.codecogs.com/svg.latex?\Large&space;RoomScore&space;=&space;BoxSwaps&space;\times&space;\sum_{i&space;\in&space;Boxes}_{BoxDisplacement_{i}}" title="Room Score" />
