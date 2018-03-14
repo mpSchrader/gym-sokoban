@@ -2,7 +2,7 @@
 The repository implements the game Sokoban based on the rules presented [DeepMind's]() paper [Imagination Augmented Agents for Deep Reinforcement Learning](https://papers.nips.cc/paper/7152-imagination-augmented-agents-for-deep-reinforcement-learning). 
 The room generation is random and therefor will allow to train Deep Neural Networks without overfitting on a set of predefined rooms.
 
-| Game 1 | Game 2 | Game 3 |
+| Example Game 1 | Example Game 2 | Example Game 3 |
 | :---: | :---: | :---: 
 | ![Game 1](/docs/Animations/solved_3.gif?raw=true) | ![Game 2](/docs/Animations/solved_4.gif?raw=true) | ![Game 3](/docs/Animations/solved_5.gif?raw=true) |
 
