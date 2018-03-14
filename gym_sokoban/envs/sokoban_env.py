@@ -12,11 +12,19 @@ class SokobanEnv(gym.Env):
         'video.frames_per_second': 1
     }
 
-    def __init__(self, dim_room=(10, 10), max_steps=120, num_boxes=4):
+    def __init__(self,
+                 dim_room=(10, 10),
+                 max_steps=120,
+                 num_boxes=4,
+                 num_gen_steps=None):
         # General Configuration
         self.dim_room = dim_room
-        self.num_gen_steps = int(1.7 * (dim_room[0] + dim_room[1]))
-        self.num_boxes = 4
+        if num_gen_steps == None:
+            self.num_gen_steps = int(1.7 * (dim_room[0] + dim_room[1]))
+        else:
+            self.num_gen_steps = num_gen_steps
+
+        self.num_boxes = num_boxes
 
         # Penalties and Rewards
         self.penalty_for_step = -0.1
