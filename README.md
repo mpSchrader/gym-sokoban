@@ -97,15 +97,15 @@ The following room configurations are available:
 
 | Room Id | Width | Height | #Boxes | Example |
 | --- | :---: | :---: | :---: | :---: |
-| Sokoban-v0 | 10 | 10 | 3 | ![Sokoban-v0](/docs/rooms/Sokoban-v0.png "Sokoban-v0" =40x40) |
-| Sokoban-v1 | 10 | 10 | 4 |
-| Sokoban-v2 | 10 | 10 | 5 |
-| Sokoban-small-v0 | 7 | 7 | 2 |
-| Sokoban-small-v1 | 7 | 7 | 3 |
-| Sokoban-large-v0 | 13 | 11 | 3 |
-| Sokoban-large-v1 | 13 | 11 | 4 |
-| Sokoban-large-v2 | 13 | 11 | 5 |
-| Sokoban-huge-v1 | 13 | 13 | 5 |
+| Sokoban-v0 | 10 | 10 | 3 | ![Sokoban-v0](/docs/rooms/Sokoban-v0.png)  |
+| Sokoban-v1 | 10 | 10 | 4 | ![Sokoban-v1](/docs/rooms/Sokoban-v1.png) |
+| Sokoban-v2 | 10 | 10 | 5 | ![Sokoban-v2](/docs/rooms/Sokoban-v2.png) |
+| Sokoban-small-v0 | 7 | 7 | 2 |  ![Sokoban-small-v0](/docs/rooms/Sokoban-small-v0.png) |
+| Sokoban-small-v1 | 7 | 7 | 3 | ![Sokoban-small-v1](/docs/rooms/Sokoban-small-v1.png) |
+| Sokoban-large-v0 | 13 | 11 | 3 | ![Sokoban-large-v0](/docs/rooms/Sokoban-large-v0.png)
+| Sokoban-large-v1 | 13 | 11 | 4 | ![Sokoban-large-v1](/docs/rooms/Sokoban-large-v1.png) |
+| Sokoban-large-v2 | 13 | 11 | 5 | ![Sokoban-large-v2](/docs/rooms/Sokoban-large-v2.png) | 
+| Sokoban-huge-v0 | 13 | 13 | 5 | ![Sokoban-huge-v0](/docs/rooms/Sokoban-huge-v0.png)
 
 Please note that the larger rooms might take some time to be created, especially on a laptop.
 
