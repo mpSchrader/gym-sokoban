@@ -35,14 +35,11 @@ class SokobanEnv(gym.Env):
         # Initialize Room
         self.reset()
 
-        #room_to_rgb(self.room_state)
-
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
     def step(self, action):
-
         self.reward_last = self.penalty_for_step
         self.num_env_steps += 1
         room_to_rgb(self.room_state)
@@ -137,6 +134,7 @@ class SokobanEnv(gym.Env):
     def close(self):
         # Nothing to clean up during close
         pass
+
 
 ACTION_LOOKUP = {
     0: 'pull up',

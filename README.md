@@ -1,8 +1,31 @@
-# gym-sokoban
-The repository implements the game Sokoban based on the rules presented [DeepMind's]() paper [Imagination Augmented Agents for Deep Reinforcement Learning](https://papers.nips.cc/paper/7152-imagination-augmented-agents-for-deep-reinforcement-learning). The room generation is random and therefor will allow to train Deep Neural Networks without overfitting on a set of predefined rooms.
-WORK IN PROGRESS
+# gym-sokoban 
+**(WORK IN PROGRESS)**<br>
+The repository implements the game Sokoban based on the rules presented [DeepMind's]() paper [Imagination Augmented Agents for Deep Reinforcement Learning](https://papers.nips.cc/paper/7152-imagination-augmented-agents-for-deep-reinforcement-learning). 
+The room generation is random and therefor will allow to train Deep Neural Networks without overfitting on a set of predefined rooms.
 
-# Installation
+## Actions
+The game provides 8 actions to interact with the environment. 
+Push and Move actions into the directions Up, Down, Left and Right.
+The mapping of the action numbers to the actual actions looks as follows
+
+ | Action     | ID    |   
+ | --------   | :---: |
+ | Push Up    | 0     |
+ | Push Down  | 1     |
+ | Push Left  | 2     |
+ | Push Right | 3     |
+ | Move Up    | 4     |
+ | Move Down  | 5     |
+ | Move Left  | 6     |
+ | Move Right | 7     
+ 
+**Move** simply moves if there is a free field in the direction, which means no block or wall.
+**Push** push tries to move an adjacent box, if the next field behind the box is free.
+This means no chain pushing of boxes is possible.  
+
+## Rewards
+
+## Installation
 
 ```bash
 cd gym-sokoban
