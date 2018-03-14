@@ -125,6 +125,8 @@ class SokobanEnv(gym.Env):
         self.reward_last = 0
         self.boxes_on_target = 0
 
+        return room_to_rgb(self.room_state, self.room_fixed)
+
     def render(self, mode='human', close=None):
         img = room_to_rgb(self.room_state, self.room_fixed)
 
