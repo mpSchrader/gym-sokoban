@@ -21,7 +21,7 @@ Every room consists of five main elements: walls, floor, boxes, box targets, and
 
 | Type       | State      | Graphic |
 | ---        | -----      | :---: |
-| Wall       |            | ![Wall](/gym_sokoban/envs/surface/wall.png "Wall") |
+| Wall       | Static     | ![Wall](/gym_sokoban/envs/surface/wall.png "Wall") |
 | Floor      | Empty      | ![Floor](/gym_sokoban/envs/surface/floor.png "Floor") |
 | Box Target | Empty      | ![BoxTarget](/gym_sokoban/envs/surface/box_target.png "Box Target") |
 | Box        | Off Target | ![BoxOffTarget](/gym_sokoban/envs/surface/box.png "Box") |
