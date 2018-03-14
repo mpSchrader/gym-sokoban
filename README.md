@@ -56,6 +56,12 @@ The generation consists of 3 phases: Topology Generation, Placement of Targets a
 To generate the basic topology of the room, consisting of walls and empty floor, is based on a random walk, which changes its direction at probability 0.35.
 At every step centered at the current position a pattern of fields is set to empty spaces.
 The patterns used can be found in [Figure 1]().
+<div style="padding:20%">
+  <p align="center">
+    <img src="/docs/masks.png?raw=true">
+  </p>
+</div>
+
 
 #### 1.4.2 Placement of Targets
 During this phase the player including all n box targets are placed on randomly chosen empty spaces.
