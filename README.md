@@ -43,11 +43,11 @@ Also pushing a box on or off a target gives a reward of 1 respectively of -1.
 In addition a reward of -0.1 is given for every step, this penalizes solutions with many steps.
 
 | Reason                    | Reward |
-| ------------------------- | ----   |
+| ------------------------- | ----:  |
 | Performe Step             | -0.1   |
-| Push Box on Target        |    1   |
-| Push Box off Target       |   -1   |
-| Push all boxes on targets |   10   |
+| Push Box on Target        |  1.0   |
+| Push Box off Target       | -1.0   |
+| Push all boxes on targets | 10.0   |
 
 ### 1.4 Level Generation
 Every time a Sokoban environment is loaded or reset a new room is randomly generated.
