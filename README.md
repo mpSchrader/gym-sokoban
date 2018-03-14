@@ -72,7 +72,16 @@ During this phase the player including all n box targets are placed on randomly 
 #### 1.4.3 Reverse Playing
 This is the crucial phase to  ensure a solvable room.
 Now Sokoban is played in a reverse fashion, where a player can move and pull boxes.
-The goal of this phase is to find the room state, with the highest room score, with a Depth First Search.
+The goal of this phase is to find the room state, with the highest room score, with a [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search).
+For every room explored during the search is a room score is calculated with the equation shown below.
+The equation is a heuristic approach to evaluate the difficulty of the room.
+BoxSwaps counts the number of times a player changes to pull a different box.
+BoxDisplacement is the [Manhattan Distance](https://en.wikipedia.org/wiki/Manhattan_distance) between a specific box and it origin box target.  
+<div style="padding:10%">
+  <p align="center">
+   <img src="https://latex.codecogs.com/svg.latex?\Large&space;RoomScore&space;=&space;BoxSwaps&space;\times&space;\sum_{i&space;\in&space;Boxes}_{BoxDisplacement_{i}}" title="Room Score" />
+  </p>
+</div>
 
 
 
