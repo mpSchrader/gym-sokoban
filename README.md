@@ -102,7 +102,7 @@ As long as at least one box is on a target the RoomScore is always 0.
 </div>
 
 ### 2.5 Room Configuration
-The available room configurations are shown in the table below. Beside the regular Sokoban configuration, each configuration is available as TinyWorld, which has a pixel size equal to the grid size. The IDs of the TinyWorld environments are just append the string TinyWorld, e.g. instead of Sokoban-v0 the ID would be TinyWorld-Sokoban-v0
+The available room configurations are shown in the table below. Beside the regular Sokoban configuration, each configuration is available as TinyWorld, which has a pixel size equal to the grid size. The IDs of the TinyWorld environments are just append the string TinyWorld, e.g. instead of Sokoban-v0 the ID would be TinyWorld-Sokoban-v0.
 
 | Room Id | Grid-Size | Pixels | #Boxes | Example | TinyWorld |
 | --- | :---: | :---: | :---: | :---: | :---: |
