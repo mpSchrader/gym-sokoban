@@ -83,7 +83,7 @@ The patterns used can be found in [Figure 2](#topologyMask).
 </div>
 
 
-#### 2.4.2 Placement of Targets
+#### 2.4.2 Placement of Elements
 During this phase the player including all n box targets are placed on randomly chosen empty spaces.
 
 #### 2.4.3 Reverse Playing
