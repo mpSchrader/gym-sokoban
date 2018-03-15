@@ -83,9 +83,13 @@ class SokobanEnv(gym.Env):
         new_position = self.player_position + change
         current_position = self.player_position.copy()
 
+        did_move = self._move(action)
+
         new_box_position = new_position + change
-        if new_box_position[0] >= self.room_state.shape[0] or new_box_position[1] >= self.room_state.shape[1]:
-            return
+        if new_box_position[0] >= self.room_state.shape[0] \
+                or new_box_position[1] >= self.room_state.shape[1] \
+                or did_move:
+            return False
 
         can_push_box = self.room_state[new_position[0], new_position[1]] in [3, 4]
         can_push_box &= self.room_state[new_box_position[0], new_box_position[1]] in [1, 2]
@@ -101,7 +105,9 @@ class SokobanEnv(gym.Env):
             if self.room_fixed[new_box_position[0], new_box_position[1]] == 2:
                 box_type = 3
             self.room_state[new_box_position[0], new_box_position[1]] = box_type
-            return
+            return True
+
+        return False
 
     def _move(self, action):
         change = CHANGE_COORDINATES[action % 4]
@@ -113,6 +119,9 @@ class SokobanEnv(gym.Env):
             self.room_state[(new_position[0], new_position[1])] = 5
             self.room_state[current_position[0], current_position[1]] = \
                 self.room_fixed[current_position[0], current_position[1]]
+            return True
+
+        return False
 
     def reset(self):
         self.room_fixed, self.room_state = generate_room(
