@@ -157,9 +157,9 @@ class SokobanEnv(gym.Env):
 
     def reset(self):
         self.room_fixed, self.room_state = generate_room(
-                                                dim=self.dim_room,
-                                                num_steps=self.num_gen_steps,
-                                                num_boxes=self.num_boxes
+            dim=self.dim_room,
+            num_steps=self.num_gen_steps,
+            num_boxes=self.num_boxes
         )
         self.player_position = np.argwhere(self.room_state == 5)[0]
         self.num_env_steps = 0
