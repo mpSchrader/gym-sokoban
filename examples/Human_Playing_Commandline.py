@@ -7,6 +7,10 @@ ts = time.time()
 env = gym.make('Sokoban-small-v1')
 
 def print_avilable_actions():
+    """
+    Prints all available actions nicely formatted..
+    :return:
+    """
     available_actions_list = []
     for i in range(len(ACTION_LOOKUP)):
         available_actions_list.append(
@@ -19,9 +23,9 @@ def print_avilable_actions():
     print()
 
 
-for i_episode in range(1):
+for i_episode in range(4):
+    print('Starting new game!')
     observation = env.reset()
-    observation = env.render(mode='rgb_array')
 
     for t in range(300):
         env.render()
@@ -29,6 +33,7 @@ for i_episode in range(1):
         action = input('Select action: ')
         try:
             action = int(action)
+
             if not action in range(len(ACTION_LOOKUP)):
                 raise ValueError
 
@@ -42,6 +47,7 @@ for i_episode in range(1):
         if done:
             print("Episode finished after {} timesteps".format(t+1))
             env.render()
-            time.sleep(10)
             break
 
+
+time.sleep(10)
