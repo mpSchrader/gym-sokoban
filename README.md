@@ -1,6 +1,11 @@
 # gym-sokoban 
+[Sokoban](https://en.wikipedia.org/wiki/Sokoban) is Japanese for warehouse keeper and a traditional video game.
+The game is a transportation puzzle, where the player has to push all boxes in the room on the storage locations/ targets. [Sokoban](https://en.wikipedia.org/wiki/Sokoban) is Japanese for warehouse keeper and a traditional video game.
+The game is a transportation puzzle, where the player has to push all boxes in the room on the storage locations/ targets.
+The possibility of making irreversible mistakes makes these puzzles so challenging especially for [Reinforcement Learning](https://en.wikipedia.org/wiki/Reinforcement_learning) algorithms, which mostly lack the ability to think ahead.
 The repository implements the game Sokoban based on the rules presented [DeepMind's]() paper [Imagination Augmented Agents for Deep Reinforcement Learning](https://papers.nips.cc/paper/7152-imagination-augmented-agents-for-deep-reinforcement-learning). 
 The room generation is random and therefor will allow to train Deep Neural Networks without overfitting on a set of predefined rooms.
+
 
 | Example Game 1 | Example Game 2 | Example Game 3 |
 | :---: | :---: | :---: 
