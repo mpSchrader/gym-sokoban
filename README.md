@@ -17,7 +17,7 @@ The room generation is random and therefor will allow to train Deep Neural Netwo
 cd gym-sokoban
 pip install -e .
 ```
-
+Checkout the [examples](/examples) on how to use an external gym environment.
 ## 2 Game Environment
 
 ### 2.1 Room Elements
@@ -49,7 +49,7 @@ The mapping of the action numbers to the actual actions looks as follows
  | Move Left  | 6     |
  | Move Right | 7     |
  
-**Move** simply moves if there is a free field in the direction, which means no block or wall.
+**Move** simply moves if there is a free field in the direction, which means no blocking box or wall.
 **Push** push tries to move an adjacent box, if the next field behind the box is free.
 This means no chain pushing of boxes is possible.
 In case there is no box at adjacent field, the push action is handled the same way as move action into the same direction.
@@ -104,17 +104,17 @@ As long as at least one box is on a target the RoomScore is always 0.
 ### 2.5 Room Configuration
 The following room configurations are available:
 
-| Room Id | With | Height | #Boxes | Example |
+| Room Id | Grid-Size | Pixels | #Boxes | Example |
 | --- | :---: | :---: | :---: | :---: |
-| Sokoban-v0 | 10 | 10 | 3 | ![Sokoban-v0](/docs/rooms/Sokoban-v0.png)  |
-| Sokoban-v1 | 10 | 10 | 4 | ![Sokoban-v1](/docs/rooms/Sokoban-v1.png) |
-| Sokoban-v2 | 10 | 10 | 5 | ![Sokoban-v2](/docs/rooms/Sokoban-v2.png) |
-| Sokoban-small-v0 | 7 | 7 | 2 |  ![Sokoban-small-v0](/docs/rooms/Sokoban-small-v0.png) |
-| Sokoban-small-v1 | 7 | 7 | 3 | ![Sokoban-small-v1](/docs/rooms/Sokoban-small-v1.png) |
-| Sokoban-large-v0 | 13 | 11 | 3 | ![Sokoban-large-v0](/docs/rooms/Sokoban-large-v0.png)
-| Sokoban-large-v1 | 13 | 11 | 4 | ![Sokoban-large-v1](/docs/rooms/Sokoban-large-v1.png) |
-| Sokoban-large-v2 | 13 | 11 | 5 | ![Sokoban-large-v2](/docs/rooms/Sokoban-large-v2.png) | 
-| Sokoban-huge-v0 | 13 | 13 | 5 | ![Sokoban-huge-v0](/docs/rooms/Sokoban-huge-v0.png)
+| Sokoban-v0 | 10x10 | 160x160 | 3 | ![Sokoban-v0](/docs/rooms/Sokoban-v0.png)  |
+| Sokoban-v1 | 10x10 | 160x160 | 4 | ![Sokoban-v1](/docs/rooms/Sokoban-v1.png) |
+| Sokoban-v2 | 10x10 | 160x160 | 5 | ![Sokoban-v2](/docs/rooms/Sokoban-v2.png) |
+| Sokoban-small-v0 | 7x7 | 112x112 | 2 |  ![Sokoban-small-v0](/docs/rooms/Sokoban-small-v0.png) |
+| Sokoban-small-v1 | 7x7 | 112x112 | 3 | ![Sokoban-small-v1](/docs/rooms/Sokoban-small-v1.png) |
+| Sokoban-large-v0 | 13x11 | 208x176 | 3 | ![Sokoban-large-v0](/docs/rooms/Sokoban-large-v0.png)
+| Sokoban-large-v1 | 13x11 | 208x176 | 4 | ![Sokoban-large-v1](/docs/rooms/Sokoban-large-v1.png) |
+| Sokoban-large-v2 | 13x11 | 208x176 | 5 | ![Sokoban-large-v2](/docs/rooms/Sokoban-large-v2.png) | 
+| Sokoban-huge-v0 | 13x13 | 208x208 | 5 | ![Sokoban-huge-v0](/docs/rooms/Sokoban-huge-v0.png)
 
 Please note that the larger rooms might take some time to be created, especially on a laptop.
 
