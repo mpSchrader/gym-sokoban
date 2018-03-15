@@ -5,6 +5,8 @@ import time
 
 ts = time.time()
 env = gym.make('Sokoban-small-v1')
+#env = gym.make('TinyWorld-Sokoban-small-v0')
+
 
 def print_avilable_actions():
     """

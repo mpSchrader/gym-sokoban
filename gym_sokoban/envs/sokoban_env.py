@@ -1,7 +1,7 @@
 import gym
 from gym.utils import seeding
 from gym.spaces.discrete import Discrete
-from gym.spaces.box import Box
+from gym.spaces import Box
 from .room_utils import generate_room, room_to_rgb
 import numpy as np
 
@@ -38,9 +38,8 @@ class SokobanEnv(gym.Env):
         self.viewer = None
         self.max_steps = max_steps
         self.action_space = Discrete(len(ACTION_LOOKUP))
-        self.observation_space = Box(low=0,
-                                     high=6,
-                                     shape=dim_room)
+        screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
+        self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3))
 
         # Initialize Room
         self.reset()

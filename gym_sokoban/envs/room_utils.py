@@ -371,7 +371,7 @@ def room_to_rgb(room, room_structure=None):
     return room_rgb
 
 
-def room_to_small_rgb(room, room_structure=None):
+def room_to_tiny_world_rgb(room, room_structure=None, scale=1):
 
     room = np.array(room)
     if not room_structure is None:
@@ -389,12 +389,13 @@ def room_to_small_rgb(room, room_structure=None):
     surfaces = [wall, floor, box_target, box_on_target, box, player, player_on_target]
 
     # Assemble the new rgb_room, with all loaded images
-    room_small_rgb = np.zeros(shape=(room.shape[0], room.shape[1], 3), dtype=np.uint8)
+    room_small_rgb = np.zeros(shape=(room.shape[0]*scale, room.shape[1]*scale, 3), dtype=np.uint8)
     for i in range(room.shape[0]):
-
+        x_i = i * scale
         for j in range(room.shape[1]):
+            y_j = j * scale
             surfaces_id = int(room[i, j])
-            room_small_rgb[i][j] = np.array(surfaces[surfaces_id])
+            room_small_rgb[x_i:(x_i+scale), y_j:(y_j+scale), :] = np.array(surfaces[surfaces_id])
 
     return room_small_rgb
 
