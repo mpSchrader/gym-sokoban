@@ -21,17 +21,17 @@ Checkout the [examples](/examples) on how to use an external gym environment.
 ## 2 Game Environment
 
 ### 2.1 Room Elements
-Every room consists of five main elements: walls, floor, boxes, box targets, and a player.They might have different states whether they overlap or not.
+Every room consists of five main elements: walls, floor, boxes, box targets, and a player.They might have different states whether they overlap with a box target or not. 
 
-| Type       | State      | Graphic |
-| ---        | -----      | :---: |
-| Wall       | Static     | ![Wall](/gym_sokoban/envs/surface/wall.png "Wall") |
-| Floor      | Empty      | ![Floor](/gym_sokoban/envs/surface/floor.png "Floor") |
-| Box Target | Empty      | ![BoxTarget](/gym_sokoban/envs/surface/box_target.png "Box Target") |
-| Box        | Off Target | ![BoxOffTarget](/gym_sokoban/envs/surface/box.png "Box") |
-| Box        | On Target  | ![BoxOnTarget](/gym_sokoban/envs/surface/box_on_target.png "Box") |
-| Player     | Off Target | ![PlayerOffTarget](/gym_sokoban/envs/surface/player.png "Player") |
-| Player     | On Target  | ![PlayerOnTarget](/gym_sokoban/envs/surface/player_on_target.png "Player") |
+| Type       | State      | Graphic | TinyWorld |
+| ---        | -----      | :---: | :---: |
+| Wall       | Static     | ![Wall](/gym_sokoban/envs/surface/wall.png "Wall") | ![Wall](/gym_sokoban/envs/surface/tiny_world/wall.png "Wall") |
+| Floor      | Empty      | ![Floor](/gym_sokoban/envs/surface/floor.png "Floor") | ![Floor](/gym_sokoban/envs/surface/tiny_world/floor.png "Floor") |
+| Box Target | Empty      | ![BoxTarget](/gym_sokoban/envs/surface/box_target.png "Box Target") | ![BoxTarget](/gym_sokoban/envs/surface/tiny_world/box_target.png "Box Target") |
+| Box        | Off Target | ![BoxOffTarget](/gym_sokoban/envs/surface/box.png "Box") | ![BoxOffTarget](/gym_sokoban/envs/surface/tiny_world/box.png "Box") |
+| Box        | On Target  | ![BoxOnTarget](/gym_sokoban/envs/surface/box_on_target.png "Box") | ![BoxOnTarget](/gym_sokoban/envs/surface/tiny_world/box_on_target.png "Box") |
+| Player     | Off Target | ![PlayerOffTarget](/gym_sokoban/envs/surface/player.png "Player") | ![PlayerOffTarget](/gym_sokoban/envs/surface/tiny_world/player.png "Player") |
+| Player     | On Target  | ![PlayerOnTarget](/gym_sokoban/envs/surface/player_on_target.png "Player") | ![PlayerOnTarget](/gym_sokoban/envs/surface/tiny_world/player_on_target.png "Player") |
 
 ### 2.2 Actions
 The game provides 8 actions to interact with the environment. 
