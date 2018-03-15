@@ -53,7 +53,7 @@ The mapping of the action numbers to the actual actions looks as follows
 **Move** simply moves if there is a free field in the direction, which means no block or wall.
 **Push** push tries to move an adjacent box, if the next field behind the box is free.
 This means no chain pushing of boxes is possible.
-In case there is no box at adjacent field, the player stays where he is.
+In case there is no box at adjacent field, the push action is handled the same way as move action into the same direction.
 
 ### 2.3 Rewards
 Finishing the game by pushing all on the targets gives a reward of 10 in the last step. 
