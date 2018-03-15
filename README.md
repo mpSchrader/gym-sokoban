@@ -17,7 +17,7 @@ The room generation is random and therefor will allow to train Deep Neural Netwo
 cd gym-sokoban
 pip install -e .
 ```
-
+Checkout the [examples](/examples) on how to use an external gym environment.
 ## 2 Game Environment
 
 ### 2.1 Room Elements
