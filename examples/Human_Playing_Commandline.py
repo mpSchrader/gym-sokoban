@@ -4,7 +4,7 @@ from gym_sokoban.envs.room_utils import ACTION_LOOKUP
 import time
 
 ts = time.time()
-env = gym.make('Sokoban-small-v1')
+env = gym.make('Sokoban-v1')
 #env = gym.make('TinyWorld-Sokoban-small-v0')
 
 
