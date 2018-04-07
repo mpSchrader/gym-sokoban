@@ -163,6 +163,8 @@ def place_boxes_and_player(room, num_boxes=3):
 # Global variables used for reverse playing.
 explored_states = {}
 num_boxes = 0
+best_room_score = -1
+best_room = {}
 
 
 def reverse_playing(room_state, room_structure, search_depth=100):
@@ -175,7 +177,7 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     :param search_depth:
     :return: 2d array
     """
-    global explored_states, num_boxes
+    global explored_states, num_boxes, best_room_score, best_room
 
     actions = list(ACTION_LOOKUP.keys())
 
@@ -191,19 +193,10 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     # key: matrix as string
     # values: room_score
     explored_states = {}
-
+    best_room_score = -1
     depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=200)
 
-    # Set the room state to the state of the room with the highest score
-    max_score = 0
-    for state in explored_states:
-
-        score = explored_states[state]
-        if score > max_score:
-            max_score = score
-            room_state = np.fromstring(state, dtype=int).reshape(room_structure.shape)
-
-    return room_state, max_score
+    return best_room, best_room_score
 
 
 def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=300):
@@ -219,7 +212,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
     :param ttl:
     :return:
     """
-    global explored_states, num_boxes
+    global explored_states, num_boxes, best_room_score, best_room
 
     ttl -= 1
     if ttl <= 0 or len(explored_states) >= 1000000:
@@ -234,6 +227,10 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
         room_score = box_swaps * box_displacement_score(box_mapping)
         if np.where(room_state == 2)[0].shape[0] != num_boxes:
             room_score = 0
+
+        if room_score > best_room_score:
+            best_room = room_state
+            best_room_score = room_score
 
         explored_states[state_string] = room_score
 
