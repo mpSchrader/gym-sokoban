@@ -1,6 +1,9 @@
 import random
 import numpy as np
 import pkg_resources
+import marshal
+import hashlib
+import array
 from scipy import misc
 
 
@@ -218,10 +221,10 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
     if ttl <= 0 or len(explored_states) >= 1000000:
         return
 
-    state_string = room_state.tostring()
+    state_tohash = marshal.dumps(room_state)
 
     # Only search this state, if it not yet has been explored
-    if not (state_string in explored_states):
+    if not (state_tohash in explored_states):
 
         # Add current state and its score to explored states
         room_score = box_swaps * box_displacement_score(box_mapping)
@@ -232,7 +235,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
             best_room = room_state
             best_room_score = room_score
 
-        explored_states[state_string] = room_score
+        explored_states[state_tohash] = room_score
 
         for action in ACTION_LOOKUP.keys():
             # The state and box mapping  need to be copied to ensure
