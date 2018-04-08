@@ -197,7 +197,7 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     # values: room_score
     explored_states = {}
     best_room_score = -1
-    depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=200)
+    depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=300)
 
     return best_room, best_room_score
 
@@ -218,7 +218,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
     global explored_states, num_boxes, best_room_score, best_room
 
     ttl -= 1
-    if ttl <= 0 or len(explored_states) >= 1000000:
+    if ttl <= 0 or len(explored_states) >= 300000:
         return
 
     state_tohash = marshal.dumps(room_state)
