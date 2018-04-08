@@ -164,10 +164,10 @@ def place_boxes_and_player(room, num_boxes=3):
 
 
 # Global variables used for reverse playing.
-explored_states = {}
+explored_states = set()
 num_boxes = 0
 best_room_score = -1
-best_room = {}
+best_room = None
 
 
 def reverse_playing(room_state, room_structure, search_depth=100):
@@ -192,10 +192,8 @@ def reverse_playing(room_state, room_structure, search_depth=100):
         box = (box_locations[0][l], box_locations[1][l])
         box_mapping[box] = box
 
-    # explored_states globally stores all room states found during search
-    # key: matrix as string
-    # values: room_score
-    explored_states = {}
+    # explored_states globally stores the best room state and score found during search
+    explored_states = set()
     best_room_score = -1
     depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=300)
 
@@ -235,7 +233,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
             best_room = room_state
             best_room_score = room_score
 
-        explored_states[state_tohash] = room_score
+        explored_states.add(state_tohash)
 
         for action in ACTION_LOOKUP.keys():
             # The state and box mapping  need to be copied to ensure
