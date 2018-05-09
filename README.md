@@ -122,3 +122,5 @@ Please note that the larger rooms might take some time to be created, especially
 ## 3 Connect
 Feel free to get in touch with me to talk about this or other projects. 
 Either by creating an [issue](https://github.com/mpSchrader/gym-sokoban/issues) or mail me on [LinkedIn](https://www.linkedin.com/in/max-philipp-schrader/).
+
+If you reaced the end and liked the project, please **show your appreciation by starting this project**
