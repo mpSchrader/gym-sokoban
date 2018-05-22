@@ -1,7 +1,7 @@
 ## Examples
 
 This readme walks you through all steps to run an external gym environment. 
-The example will use this repository [gym-sokoban](https://github.com/mpSchrader/gym-sokoban/).
+The example will use this repository [gym-sokoban](https://github.com/mpSchrader/gym-sokoban/) as this is part of this repository, but never the less this works similar with other external gym environments.
 
 ### 1 Install the additional package
 You need to clone the repository and install the package as follows:
