@@ -65,18 +65,13 @@ class SokobanEnv(gym.Env):
         else:
             self._move(action)
 
-        # Check if the game is over either through reaching the maximum number
-        # of available steps or by pushing all boxes on the targets.
-        done = (self.max_steps == self.num_env_steps)
-        empty_targets = self.room_state == 2
-        player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
+        done = self._check_if_done()
 
-        if np.where(empty_targets | player_on_target)[0].shape[0] == 0:
-            done = True
+        if done:
             self.reward_last += self.reward_finished
 
         # Convert the observation to RGB frame
-        observation = room_to_rgb(self.room_state)
+        observation = self.render(mode='rgb_array')
 
         return observation, self.reward_last, done, {}
 
@@ -153,7 +148,7 @@ class SokobanEnv(gym.Env):
         # that short solutions have a higher reward.
         self.reward_last = self.penalty_for_step
 
-        # Calculate reward for push off or on the target
+        # count boxes off or on the target
         empty_targets = self.room_state == 2
         player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
         total_targets = empty_targets | player_on_target
@@ -161,7 +156,7 @@ class SokobanEnv(gym.Env):
         current_boxes_on_target = self.num_boxes - \
                                   np.where(total_targets)[0].shape[0]
 
-        # Add a reward if a box is pushed on the target and give a
+        # Add the reward if a box is pushed on the target and give a
         # penalty if a box is pushed off the target.
         if current_boxes_on_target > self.boxes_on_target:
             self.reward_last += self.reward_box_on_target
@@ -169,6 +164,15 @@ class SokobanEnv(gym.Env):
             self.reward_last += self.penalty_box_off_target
 
         self.boxes_on_target = current_boxes_on_target
+
+    def _check_if_done(self):
+        # Check if the game is over either through reaching the maximum number
+        # of available steps or by pushing all boxes on the targets.
+        done = (self.max_steps == self.num_env_steps)
+        empty_targets = self.room_state == 2
+        player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
+
+        return np.where(empty_targets | player_on_target)[0].shape[0] == 0
 
     def reset(self):
         self.room_fixed, self.room_state, self.box_mapping = generate_room(

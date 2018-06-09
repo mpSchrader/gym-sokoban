@@ -36,15 +36,43 @@ class FixedTargetsSokobanEnv(SokobanEnv):
 
         observation, self.reward_last, done, _ = super(FixedTargetsSokobanEnv, self).step(action)
 
-        self._update_box_mapping()
-
         return observation, self.reward_last, done, {}
 
     def _calc_reward(self):
-        pass
+        self._update_box_mapping()
+
+        # Every step a small penalty is given, This ensures
+        # that short solutions have a higher reward.
+        self.reward_last = self.penalty_for_step
+
+        for b in range(len(self.boxes_are_on_target)):
+
+            previous_state = self.boxes_are_on_target[b]
+
+            # Calculate new state
+            box_id = list(self.box_mapping.keys())[b]
+            new_state = self.box_mapping[box_id] == box_id
+
+            if previous_state and not new_state:
+                # Box was pushed of its target
+                self.reward_last += self.penalty_box_off_target
+            elif not previous_state and new_state:
+                # box was pushed on its target
+                self.reward_last += self.reward_box_on_target
+
+            self.boxes_are_on_target[b] = new_state
+
 
     def _update_box_mapping(self):
         if self.new_box_position is not None:
             box_index = list(self.box_mapping.values()).index(self.old_box_position)
             box_id = list(self.box_mapping.keys())[box_index]
             self.box_mapping[box_id] = self.new_box_position
+
+    def _check_if_done(self):
+
+        for key in self.box_mapping.keys():
+            if not key == self.box_mapping[key]:
+                return False
+
+        return True
