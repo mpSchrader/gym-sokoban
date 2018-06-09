@@ -136,7 +136,10 @@ class SokobanEnv(gym.Env):
         return False
 
     def _calc_reward(self):
-
+        """
+        Calculate Reward Based on
+        :return:
+        """
         # Every step a small penalty is given, This ensures
         # that short solutions have a higher reward.
         self.reward_last = self.penalty_for_step
