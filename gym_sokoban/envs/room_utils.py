@@ -37,7 +37,7 @@ def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxe
         room_state = room.copy()
         room_state[room_state == 2] = 4
 
-        room_state, score = reverse_playing(room_state, room_structure)
+        room_state, score, box_mapping = reverse_playing(room_state, room_structure)
         room_state[room_state == 3] = 4
 
         if score > 0:
@@ -46,7 +46,7 @@ def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxe
     if score == 0:
         raise RuntimeWarning('Generated Model with score == 0')
 
-    return room_structure, room_state
+    return room_structure, room_state, box_mapping
 
 
 def room_topology_generation(dim=(10, 10), p_change_directions=0.35, num_steps=15):
@@ -166,6 +166,7 @@ explored_states = set()
 num_boxes = 0
 best_room_score = -1
 best_room = None
+best_box_mapping = None
 
 
 def reverse_playing(room_state, room_structure, search_depth=100):
@@ -178,7 +179,7 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     :param search_depth:
     :return: 2d array
     """
-    global explored_states, num_boxes, best_room_score, best_room
+    global explored_states, num_boxes, best_room_score, best_room, best_box_mapping
 
     actions = list(ACTION_LOOKUP.keys())
 
@@ -193,9 +194,10 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     # explored_states globally stores the best room state and score found during search
     explored_states = set()
     best_room_score = -1
+    best_box_mapping = box_mapping
     depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=300)
 
-    return best_room, best_room_score
+    return best_room, best_room_score, best_box_mapping
 
 
 def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=300):
@@ -211,7 +213,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
     :param ttl:
     :return:
     """
-    global explored_states, num_boxes, best_room_score, best_room
+    global explored_states, num_boxes, best_room_score, best_room, best_box_mapping
 
     ttl -= 1
     if ttl <= 0 or len(explored_states) >= 300000:
@@ -230,6 +232,7 @@ def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, las
         if room_score > best_room_score:
             best_room = room_state
             best_room_score = room_score
+            best_box_mapping = box_mapping
 
         explored_states.add(state_tohash)
 
@@ -311,89 +314,6 @@ def box_displacement_score(box_mapping):
         score += dist
 
     return score
-
-
-def room_to_rgb(room, room_structure=None):
-    """
-    Creates an RGB image of the room.
-    :param room:
-    :param room_structure:
-    :return:
-    """
-    resource_package = __name__
-
-    room = np.array(room)
-    if not room_structure is None:
-        # Change the ID of a player on a target
-        room[(room == 5) & (room_structure == 2)] = 6
-
-    # Load images, representing the corresponding situation
-    box_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'box.png')))
-    box = misc.imread(box_filename)
-
-    box_on_target_filename = pkg_resources.resource_filename(resource_package,
-                                                             '/'.join(('surface', 'box_on_target.png')))
-    box_on_target = misc.imread(box_on_target_filename)
-
-    box_target_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'box_target.png')))
-    box_target = misc.imread(box_target_filename)
-
-    floor_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'floor.png')))
-    floor = misc.imread(floor_filename)
-
-    player_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'player.png')))
-    player = misc.imread(player_filename)
-
-    player_on_target_filename = pkg_resources.resource_filename(resource_package,
-                                                                '/'.join(('surface', 'player_on_target.png')))
-    player_on_target = misc.imread(player_on_target_filename)
-
-    wall_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'wall.png')))
-    wall = misc.imread(wall_filename)
-
-    surfaces = [wall, floor, box_target, box_on_target, box, player, player_on_target]
-
-    # Assemble the new rgb_room, with all loaded images
-    room_rgb = np.zeros(shape=(room.shape[0] * 16, room.shape[1] * 16, 3), dtype=np.uint8)
-    for i in range(room.shape[0]):
-        x_i = i * 16
-
-        for j in range(room.shape[1]):
-            y_j = j * 16
-            surfaces_id = room[i, j]
-
-            room_rgb[x_i:(x_i + 16), y_j:(y_j + 16), :] = surfaces[surfaces_id]
-
-    return room_rgb
-
-
-def room_to_tiny_world_rgb(room, room_structure=None, scale=1):
-
-    room = np.array(room)
-    if not room_structure is None:
-        # Change the ID of a player on a target
-        room[(room == 5) & (room_structure == 2)] = 6
-
-    wall = [0, 0, 0]
-    floor = [243, 248, 238]
-    box_target = [254, 126, 125]
-    box_on_target = [254, 95, 56]
-    box = [142, 121, 56]
-    player = [160, 212, 56]
-    player_on_target = [219, 212, 56]
-
-    surfaces = [wall, floor, box_target, box_on_target, box, player, player_on_target]
-
-    # Assemble the new rgb_room, with all loaded images
-    room_small_rgb = np.zeros(shape=(room.shape[0]*scale, room.shape[1]*scale, 3), dtype=np.uint8)
-    for i in range(room.shape[0]):
-        x_i = i * scale
-        for j in range(room.shape[1]):
-            y_j = j * scale
-            surfaces_id = int(room[i, j])
-            room_small_rgb[x_i:(x_i+scale), y_j:(y_j+scale), :] = np.array(surfaces[surfaces_id])
-
-    return room_small_rgb
 
 
 TYPE_LOOKUP = {

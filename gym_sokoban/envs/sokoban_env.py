@@ -2,7 +2,8 @@ import gym
 from gym.utils import seeding
 from gym.spaces.discrete import Discrete
 from gym.spaces import Box
-from .room_utils import generate_room, room_to_rgb
+from .room_utils import generate_room
+from .render_utils import room_to_rgb
 import numpy as np
 
 
@@ -162,7 +163,7 @@ class SokobanEnv(gym.Env):
         self.boxes_on_target = current_boxes_on_target
 
     def reset(self):
-        self.room_fixed, self.room_state = generate_room(
+        self.room_fixed, self.room_state, self.box_mapping = generate_room(
             dim=self.dim_room,
             num_steps=self.num_gen_steps,
             num_boxes=self.num_boxes
