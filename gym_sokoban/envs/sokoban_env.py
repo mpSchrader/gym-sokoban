@@ -54,6 +54,9 @@ class SokobanEnv(gym.Env):
 
         self.num_env_steps += 1
 
+        self.new_box_position = None
+        self.old_box_position = None
+
         # All push actions are in the range of [0, 3]
         if action < 4:
             self._push(action)
@@ -94,9 +97,14 @@ class SokobanEnv(gym.Env):
                 or new_box_position[1] >= self.room_state.shape[1]:
             return False
 
+
         can_push_box = self.room_state[new_position[0], new_position[1]] in [3, 4]
         can_push_box &= self.room_state[new_box_position[0], new_box_position[1]] in [1, 2]
         if can_push_box:
+
+            self.new_box_position = tuple(new_box_position)
+            self.old_box_position = tuple(new_position)
+
             # Move Player
             self.player_position = new_position
             self.room_state[(new_position[0], new_position[1])] = 5

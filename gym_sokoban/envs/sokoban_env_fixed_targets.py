@@ -30,4 +30,21 @@ class FixedTargetsSokobanEnv(SokobanEnv):
             self.viewer.imshow(img)
             return self.viewer.isopen
         else:
-            super(SokobanEnv, self).render(mode=mode)
+            super(FixedTargetsSokobanEnv, self).render(mode=mode)
+
+    def step(self, action):
+
+        observation, self.reward_last, done, _ = super(FixedTargetsSokobanEnv, self).step(action)
+
+        self._update_box_mapping()
+
+        return observation, self.reward_last, done, {}
+
+    def _calc_reward(self):
+        pass
+
+    def _update_box_mapping(self):
+        if self.new_box_position is not None:
+            box_index = list(self.box_mapping.values()).index(self.old_box_position)
+            box_id = list(self.box_mapping.keys())[box_index]
+            self.box_mapping[box_id] = self.new_box_position

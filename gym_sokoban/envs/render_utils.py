@@ -159,10 +159,12 @@ def get_proper_box_surface(surfaces_id, box_mapping, i, j):
         box_id = list(box_mapping.keys()).index((i, j))
     elif surfaces_id == 3:
         box_id = list(box_mapping.values()).index((i, j))
-        if box_mapping[box_id] == (i, j):
+        box_key = list(box_mapping.keys())[box_id]
+        if box_key == (i, j):
             situation = '_on_target'
         else:
             situation = '_on_wrong_target'
+        pass
     elif surfaces_id == 4:
         box_id = list(box_mapping.values()).index((i, j))
 
