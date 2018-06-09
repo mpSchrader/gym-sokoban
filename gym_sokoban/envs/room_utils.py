@@ -2,8 +2,6 @@ import random
 import numpy as np
 import pkg_resources
 import marshal
-import hashlib
-import array
 from scipy import misc
 
 
@@ -305,7 +303,7 @@ def box_displacement_score(box_mapping):
     :return:
     """
     score = 0
-
+    
     for box_target in box_mapping.keys():
         box_location = np.array(box_mapping[box_target])
         box_target = np.array(box_target)

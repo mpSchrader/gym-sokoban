@@ -51,31 +51,12 @@ class SokobanEnv(gym.Env):
     def step(self, action):
         assert action in ACTION_LOOKUP
 
-        # Every step a small penalty is given, This ensures
-        # that short solutions have a higher reward.
-        self.reward_last = self.penalty_for_step
         self.num_env_steps += 1
 
         # All push actions are in the range of [0, 3]
         if action < 4:
             self._push(action)
-
-            # Calculate reward for push off or on the target
-            empty_targets = self.room_state == 2
-            player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
-            total_targets = empty_targets | player_on_target
-
-            current_boxes_on_target = self.num_boxes - \
-                                      np.where(total_targets)[0].shape[0]
-
-            # Add a reward if a box is pushed on the target and give a
-            # penalty if a box is pushed off the target.
-            if current_boxes_on_target > self.boxes_on_target:
-                self.reward_last += self.reward_box_on_target
-            elif current_boxes_on_target < self.boxes_on_target:
-                self.reward_last += self.penalty_box_off_target
-
-            self.boxes_on_target = current_boxes_on_target
+            self._calc_reward()
 
         else:
             self._move(action)
@@ -153,6 +134,32 @@ class SokobanEnv(gym.Env):
             return True
 
         return False
+
+    def _calc_reward(self):
+        """
+        Calculate Reward Based on
+        :return:
+        """
+        # Every step a small penalty is given, This ensures
+        # that short solutions have a higher reward.
+        self.reward_last = self.penalty_for_step
+
+        # Calculate reward for push off or on the target
+        empty_targets = self.room_state == 2
+        player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
+        total_targets = empty_targets | player_on_target
+
+        current_boxes_on_target = self.num_boxes - \
+                                  np.where(total_targets)[0].shape[0]
+
+        # Add a reward if a box is pushed on the target and give a
+        # penalty if a box is pushed off the target.
+        if current_boxes_on_target > self.boxes_on_target:
+            self.reward_last += self.reward_box_on_target
+        elif current_boxes_on_target < self.boxes_on_target:
+            self.reward_last += self.penalty_box_off_target
+
+        self.boxes_on_target = current_boxes_on_target
 
     def reset(self):
         self.room_fixed, self.room_state = generate_room(
