@@ -1,7 +1,6 @@
 from .sokoban_env import SokobanEnv
 from .render_utils import room_to_rgb_FT
 from gym.spaces import Box
-import numpy as np
 
 
 class FixedTargetsSokobanEnv(SokobanEnv):
@@ -61,7 +60,6 @@ class FixedTargetsSokobanEnv(SokobanEnv):
                 self.reward_last += self.reward_box_on_target
 
             self.boxes_are_on_target[b] = new_state
-
 
     def _update_box_mapping(self):
         if self.new_box_position is not None:
