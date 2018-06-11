@@ -208,3 +208,38 @@ class FixedTargets_Env_v0(FixedTargetsSokobanEnv):
             dim_room=(10, 10), max_steps=150, num_boxes=3,
             num_gen_steps=50
         )
+
+
+class FixedTargets_Env_v1(FixedTargetsSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(FixedTargets_Env_v1, self).__init__(
+            dim_room=(10, 10), max_steps=150, num_boxes=4,
+            num_gen_steps=50
+        )
+
+
+class FixedTargets_Env_v2(FixedTargetsSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(FixedTargets_Env_v2, self).__init__(
+            dim_room=(7, 7), max_steps=150, num_boxes=2,
+            num_gen_steps=50
+        )
+
+class FixedTargets_Env_v3(FixedTargetsSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(FixedTargets_Env_v3, self).__init__(
+            dim_room=(7, 7), max_steps=150, num_boxes=3,
+            num_gen_steps=50
+        )
