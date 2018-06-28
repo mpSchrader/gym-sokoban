@@ -14,6 +14,7 @@ The room generation is random and therefor will allow to train Deep Neural Netwo
 ## 1 Installation
 
 ```bash
+git clone git@github.com:mpSchrader/gym-sokoban.git
 cd gym-sokoban
 pip install -e .
 ```
