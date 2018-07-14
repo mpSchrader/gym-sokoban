@@ -2,6 +2,7 @@ import gym
 import gym_sokoban
 from gym_sokoban.envs.room_utils import ACTION_LOOKUP
 import time
+import cv2
 
 ts = time.time()
 env = gym.make('FixedTarget-Sokoban-v0')
@@ -45,6 +46,7 @@ for i_episode in range(4):
 
         observation, reward, done, info = env.step(action)
         print(ACTION_LOOKUP[action], reward, done, info)
+        cv2.imwrite('messigray.png', observation)
 
         if done:
             print("Episode finished after {} timesteps".format(t+1))
