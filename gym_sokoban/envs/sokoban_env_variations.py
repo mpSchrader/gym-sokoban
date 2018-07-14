@@ -1,5 +1,7 @@
 from .sokoban_env import SokobanEnv
 from .sokoban_tiny_world_env import TinyWorldSokobanEnv
+from .sokoban_env_fixed_targets import FixedTargetsSokobanEnv
+
 
 class SokobanEnv1(SokobanEnv):
     metadata = {
@@ -21,6 +23,7 @@ class SokobanEnv2(SokobanEnv):
         super(SokobanEnv2, self).__init__(
             num_boxes=5, num_gen_steps=40
         )
+
 
 class SokobanEnv_Small0(SokobanEnv):
     metadata = {
@@ -55,6 +58,7 @@ class SokobanEnv_Large0(SokobanEnv):
             num_gen_steps=43
         )
 
+
 class SokobanEnv_Large1(SokobanEnv):
     metadata = {
         'render.modes': ['human', 'rgb_array'],
@@ -65,6 +69,7 @@ class SokobanEnv_Large1(SokobanEnv):
             dim_room=(13, 11), max_steps=300, num_boxes=4,
             num_gen_steps=43
         )
+
 
 class SokobanEnv_Large1(SokobanEnv):
     metadata = {
@@ -77,6 +82,7 @@ class SokobanEnv_Large1(SokobanEnv):
             num_gen_steps=43
         )
 
+
 class SokobanEnv_Huge0(SokobanEnv):
     metadata = {
         'render.modes': ['human', 'rgb_array'],
@@ -88,6 +94,7 @@ class SokobanEnv_Huge0(SokobanEnv):
             num_gen_steps=50
         )
 
+
 class TW_SokobanEnv0(TinyWorldSokobanEnv):
     metadata = {
         'render.modes': ['human', 'rgb_array'],
@@ -97,6 +104,7 @@ class TW_SokobanEnv0(TinyWorldSokobanEnv):
         super(TW_SokobanEnv0, self).__init__(
             num_boxes=3
         )
+
 
 class TW_SokobanEnv1(TinyWorldSokobanEnv):
     metadata = {
@@ -118,6 +126,7 @@ class TW_SokobanEnv2(TinyWorldSokobanEnv):
         super(TW_SokobanEnv2, self).__init__(
             num_boxes=5, num_gen_steps=40
         )
+
 
 class TW_SokobanEnv_Small0(TinyWorldSokobanEnv):
     metadata = {
@@ -152,6 +161,7 @@ class TW_SokobanEnv_Large0(TinyWorldSokobanEnv):
             num_gen_steps=43
         )
 
+
 class TW_SokobanEnv_Large1(TinyWorldSokobanEnv):
     metadata = {
         'render.modes': ['human', 'rgb_array'],
@@ -162,6 +172,7 @@ class TW_SokobanEnv_Large1(TinyWorldSokobanEnv):
             dim_room=(13, 11), max_steps=300, num_boxes=4,
             num_gen_steps=43
         )
+
 
 class TW_SokobanEnv_Large1(TinyWorldSokobanEnv):
     metadata = {
@@ -174,6 +185,7 @@ class TW_SokobanEnv_Large1(TinyWorldSokobanEnv):
             num_gen_steps=43
         )
 
+
 class TW_SokobanEnv_Huge0(TinyWorldSokobanEnv):
     metadata = {
         'render.modes': ['human', 'rgb_array'],
@@ -182,5 +194,52 @@ class TW_SokobanEnv_Huge0(TinyWorldSokobanEnv):
     def __init__(self):
         super(TW_SokobanEnv_Huge0, self).__init__(
             dim_room=(13, 13), max_steps=300, num_boxes=5,
+            num_gen_steps=50
+        )
+
+
+class FixedTargets_Env_v0(FixedTargetsSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(FixedTargets_Env_v0, self).__init__(
+            dim_room=(10, 10), max_steps=150, num_boxes=3,
+            num_gen_steps=50
+        )
+
+
+class FixedTargets_Env_v1(FixedTargetsSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(FixedTargets_Env_v1, self).__init__(
+            dim_room=(10, 10), max_steps=150, num_boxes=4,
+            num_gen_steps=50
+        )
+
+
+class FixedTargets_Env_v2(FixedTargetsSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(FixedTargets_Env_v2, self).__init__(
+            dim_room=(7, 7), max_steps=150, num_boxes=2,
+            num_gen_steps=50
+        )
+
+class FixedTargets_Env_v3(FixedTargetsSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(FixedTargets_Env_v3, self).__init__(
+            dim_room=(7, 7), max_steps=150, num_boxes=3,
             num_gen_steps=50
         )

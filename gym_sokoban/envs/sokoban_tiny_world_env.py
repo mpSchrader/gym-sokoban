@@ -1,5 +1,5 @@
 from .sokoban_env import SokobanEnv
-from .room_utils import room_to_tiny_world_rgb
+from .render_utils import room_to_tiny_world_rgb
 from gym.spaces import Box
 import numpy as np
 

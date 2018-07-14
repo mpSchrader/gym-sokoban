@@ -2,7 +2,8 @@ import gym
 from gym.utils import seeding
 from gym.spaces.discrete import Discrete
 from gym.spaces import Box
-from .room_utils import generate_room, room_to_rgb
+from .room_utils import generate_room
+from .render_utils import room_to_rgb
 import numpy as np
 
 
@@ -53,6 +54,9 @@ class SokobanEnv(gym.Env):
 
         self.num_env_steps += 1
 
+        self.new_box_position = None
+        self.old_box_position = None
+
         # All push actions are in the range of [0, 3]
         if action < 4:
             self._push(action)
@@ -61,18 +65,13 @@ class SokobanEnv(gym.Env):
         else:
             self._move(action)
 
-        # Check if the game is over either through reaching the maximum number
-        # of available steps or by pushing all boxes on the targets.
-        done = (self.max_steps == self.num_env_steps)
-        empty_targets = self.room_state == 2
-        player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
+        done = self._check_if_done()
 
-        if np.where(empty_targets | player_on_target)[0].shape[0] == 0:
-            done = True
+        if done:
             self.reward_last += self.reward_finished
 
         # Convert the observation to RGB frame
-        observation = room_to_rgb(self.room_state)
+        observation = self.render(mode='rgb_array')
 
         return observation, self.reward_last, done, {}
 
@@ -93,9 +92,14 @@ class SokobanEnv(gym.Env):
                 or new_box_position[1] >= self.room_state.shape[1]:
             return False
 
+
         can_push_box = self.room_state[new_position[0], new_position[1]] in [3, 4]
         can_push_box &= self.room_state[new_box_position[0], new_box_position[1]] in [1, 2]
         if can_push_box:
+
+            self.new_box_position = tuple(new_box_position)
+            self.old_box_position = tuple(new_position)
+
             # Move Player
             self.player_position = new_position
             self.room_state[(new_position[0], new_position[1])] = 5
@@ -144,7 +148,7 @@ class SokobanEnv(gym.Env):
         # that short solutions have a higher reward.
         self.reward_last = self.penalty_for_step
 
-        # Calculate reward for push off or on the target
+        # count boxes off or on the target
         empty_targets = self.room_state == 2
         player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
         total_targets = empty_targets | player_on_target
@@ -152,7 +156,7 @@ class SokobanEnv(gym.Env):
         current_boxes_on_target = self.num_boxes - \
                                   np.where(total_targets)[0].shape[0]
 
-        # Add a reward if a box is pushed on the target and give a
+        # Add the reward if a box is pushed on the target and give a
         # penalty if a box is pushed off the target.
         if current_boxes_on_target > self.boxes_on_target:
             self.reward_last += self.reward_box_on_target
@@ -161,8 +165,17 @@ class SokobanEnv(gym.Env):
 
         self.boxes_on_target = current_boxes_on_target
 
+    def _check_if_done(self):
+        # Check if the game is over either through reaching the maximum number
+        # of available steps or by pushing all boxes on the targets.
+        done = (self.max_steps == self.num_env_steps)
+        empty_targets = self.room_state == 2
+        player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
+
+        return np.where(empty_targets | player_on_target)[0].shape[0] == 0
+
     def reset(self):
-        self.room_fixed, self.room_state = generate_room(
+        self.room_fixed, self.room_state, self.box_mapping = generate_room(
             dim=self.dim_room,
             num_steps=self.num_gen_steps,
             num_boxes=self.num_boxes

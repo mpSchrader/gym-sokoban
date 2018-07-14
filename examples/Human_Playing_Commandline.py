@@ -2,9 +2,11 @@ import gym
 import gym_sokoban
 from gym_sokoban.envs.room_utils import ACTION_LOOKUP
 import time
+from PIL import Image
+import numpy as np
 
 ts = time.time()
-env = gym.make('Sokoban-v1')
+env = gym.make('FixedTarget-Sokoban-v3')
 #env = gym.make('TinyWorld-Sokoban-small-v0')
 
 
@@ -45,6 +47,8 @@ for i_episode in range(4):
 
         observation, reward, done, info = env.step(action)
         print(ACTION_LOOKUP[action], reward, done, info)
+        img = Image.fromarray(np.array(observation), 'RGB')
+        img.save('my.png')
 
         if done:
             print("Episode finished after {} timesteps".format(t+1))

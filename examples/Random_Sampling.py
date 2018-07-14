@@ -8,6 +8,7 @@ import time
 # This import statement registers all Sokoban environments
 # provided by this package
 env = gym.make('Sokoban-v0')
+#env = gym.make('FixedTarget-Sokoban-v3')
 
 for i_episode in range(1):#20
     observation = env.reset()
