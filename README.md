@@ -123,7 +123,7 @@ Besides the regular game of Sokoban, this repository implements or will implemen
 
 | Variation | Expected Difficulty | Example | Status | Details |
 | ---       | :---:               | :---:   | :---: | :---: |
-| Fixed Targets | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png.png) | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
+| Fixed Targets | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png) | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
 | Multiple Player | More difficult | - | planned | - |
 | Push&Pull | Easier | - | planned | - |
 
