@@ -120,6 +120,7 @@ Please note that the larger rooms might take some time to be created, especially
 
 ### 2.6 Variations
 Besides the regular game of Sokoban, this repository implements or will implement variations, which might make the game easier or more complicated. 
+
 | Variation | Expected Difficulty | Example | Status | Details |
 | Fixed Targets | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png.png) | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
 | Multiple Player | More difficult | - | planned | -
