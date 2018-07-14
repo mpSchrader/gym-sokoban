@@ -47,8 +47,8 @@ for i_episode in range(4):
 
         observation, reward, done, info = env.step(action)
         print(ACTION_LOOKUP[action], reward, done, info)
-        img = Image.fromarray(np.array(observation), 'RGB')
-        img.save('my.png')
+        #img = Image.fromarray(np.array(observation), 'RGB')
+        #img.save('my.png')
 
         if done:
             print("Episode finished after {} timesteps".format(t+1))
