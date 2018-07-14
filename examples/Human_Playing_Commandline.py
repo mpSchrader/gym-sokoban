@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 
 ts = time.time()
-env = gym.make('FixedTarget-Sokoban-v0')
+env = gym.make('FixedTarget-Sokoban-v3')
 #env = gym.make('TinyWorld-Sokoban-small-v0')
 
 

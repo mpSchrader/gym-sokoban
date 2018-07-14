@@ -14,8 +14,8 @@ Similar to the regular Sokoban there exist multiple room configurations.
 
 | Room Id | Grid-Size | Pixels | #Boxes | Example | 
 | --- | :---: | :---: | :---: | :---: | :---: |
-| FixedTarget-Sokoban-v0 | 10x10 | 160x160 | 3 | -  | 
-| FixedTarget-Sokoban-v1 | 10x10 | 160x160 | 4 | -  | 
-| FixedTarget-Sokoban-v2 | 7x7 | 112x112 | 2 | -  |
-| FixedTarget-Sokoban-v3 | 7x7 | 112x112 | 3 | -  |
+| FixedTarget-Sokoban-v0 | 10x10 | 160x160 | 3 | ![FixedTarget-Sokoban-v0](/docs/rooms/FixedTarget-Sokoban-v0.png)  | 
+| FixedTarget-Sokoban-v1 | 10x10 | 160x160 | 4 | ![FixedTarget-Sokoban-v1](/docs/rooms/FixedTarget-Sokoban-v1.png)   | 
+| FixedTarget-Sokoban-v2 | 7x7 | 112x112 | 2 | ![FixedTarget-Sokoban-v2](/docs/rooms/FixedTarget-Sokoban-v2.png)  |
+| FixedTarget-Sokoban-v3 | 7x7 | 112x112 | 3 | ![FixedTarget-Sokoban-v3](/docs/rooms/FixedTarget-Sokoban-v3.png)  |
 
