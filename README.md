@@ -128,7 +128,7 @@ Besides the regular game of Sokoban, this repository implements or will implemen
 | Multiple Player | There are two players in the room. Every round one of the two players can be used. There is no order between the two players. | More difficult | - | planned | - |
 | Push&Pull | The player can not only push the boxes, but also pull them. Therefor no more irreversible moves exist. | Easier | - | planned | - |
 
-## Cite
+## 3 Cite
 If you are using this repository for your research please cite it with the following information:
 ```
 @misc{SchraderSokoban2018,
@@ -142,14 +142,14 @@ If you are using this repository for your research please cite it with the follo
 }
 ```
 
-## 3 Connect & Contribute
+## 4 Connect & Contribute
 
-### 3.1 Connect
+### 4.1 Connect
 Feel free to get in touch with me to talk about this or other projects. 
 Either by creating an [issue](https://github.com/mpSchrader/gym-sokoban/issues) or mail me on [LinkedIn](https://www.linkedin.com/in/max-philipp-schrader/).
 
 If you reached the end and liked the project, please **show your appreciation by starting this project**
 
-### 3.2 Contribute
+### 4.2 Contribute
 Feel free to contribute to this project by forking the repo and implement what every you are missing. 
 Or just open a new issue in case you need help or want to have a feature added.
