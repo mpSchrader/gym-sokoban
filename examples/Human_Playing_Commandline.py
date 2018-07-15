@@ -16,12 +16,15 @@ parser.add_argument('--env', '-e', metavar='env',
                     help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')
 parser.add_argument('--save', action='store_true',
                     help='Save images of single steps')
+parser.add_argument('--gifs', action='store_true',
+                    help='Generate Gif files from images')
 
 args = parser.parse_args()
 env_name = args.env
 n_rounds = args.rounds
 n_steps = args.steps
-save_images = args.save
+save_images = args.save or args.gifs
+generate_gifs = args.gifs
 
 # Creating target directory if images are to be stored
 if save_images and not os.path.exists('images'):
@@ -81,5 +84,25 @@ for i_episode in range(n_rounds):
             env.render()
             break
 
+env.close()
 
-time.sleep(10)
+if generate_gifs:
+    print('')
+    import imageio
+
+    for i_episode in range(n_rounds):
+
+        with imageio.get_writer(os.path.join('images', 'round_{}.gif'.format(i_episode)), mode='I') as writer:
+
+            for t in range(n_steps):
+                try:
+
+                    filename = os.path.join('images', 'observation_{}_{}.png'.format(i_episode, t))
+                    image = imageio.imread(filename)
+                    writer.append_data(image)
+
+                except:
+                    break
+
+else:
+    time.sleep(10)
