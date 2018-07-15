@@ -2,12 +2,24 @@ import cProfile
 import gym
 import gym_sokoban
 import time
-cProfile.run('gym.make("Sokoban-v1")', sort='time')
+import argparse
 
-env = gym.make("Sokoban-v1")
+parser = argparse.ArgumentParser(description='Run environment with random selected actions.')
+parser.add_argument('--rounds', '-r', metavar='rounds', type=int,
+                    help='number of rounds to play (default: 20)', default=20)
+parser.add_argument('--env', '-e', metavar='env',
+                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')
+
+
+args = parser.parse_args()
+env_name = args.env
+n = args.rounds
+
+cProfile.run('gym.make("{}")'.format(env_name), sort='time')
+
+env = gym.make(env_name)
 
 start = time.time()
-n = 200
 for i in range(n):
     print('Reset {}/{}'.format(i+1, n))
     env.reset()

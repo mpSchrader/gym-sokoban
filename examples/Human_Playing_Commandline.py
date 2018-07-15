@@ -4,10 +4,34 @@ from gym_sokoban.envs.room_utils import ACTION_LOOKUP
 import time
 from PIL import Image
 import numpy as np
+import argparse
+import os
+
+parser = argparse.ArgumentParser(description='Run environment with random selected actions.')
+parser.add_argument('--rounds', '-r', metavar='rounds', type=int,
+                    help='number of rounds to play (default: 1)', default=1)
+parser.add_argument('--steps', '-s', metavar='steps', type=int,
+                    help='maximum number of steps to be played each round (default: 300)', default=300)
+parser.add_argument('--env', '-e', metavar='env',
+                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')
+parser.add_argument('--save', action='store_true',
+                    help='Save images of single steps')
+
+args = parser.parse_args()
+env_name = args.env
+n_rounds = args.rounds
+n_steps = args.steps
+save_images = args.save
+
+# Creating target directory if images are to be stored
+if save_images and not os.path.exists('images'):
+    try:
+        os.makedirs('images')
+    except OSError:
+        print('Error: Creating images target directory. ')
 
 ts = time.time()
-env = gym.make('FixedTarget-Sokoban-v3')
-#env = gym.make('TinyWorld-Sokoban-small-v0')
+env = gym.make(env_name)
 
 
 def print_avilable_actions():
@@ -27,11 +51,11 @@ def print_avilable_actions():
     print()
 
 
-for i_episode in range(4):
+for i_episode in range(n_rounds):
     print('Starting new game!')
     observation = env.reset()
 
-    for t in range(300):
+    for t in range(n_steps):
         env.render()
 
         action = input('Select action: ')
@@ -47,8 +71,10 @@ for i_episode in range(4):
 
         observation, reward, done, info = env.step(action)
         print(ACTION_LOOKUP[action], reward, done, info)
-        #img = Image.fromarray(np.array(observation), 'RGB')
-        #img.save('my.png')
+
+        if save_images:
+            img = Image.fromarray(np.array(observation), 'RGB')
+            img.save(os.path.join('images', 'observation_{}_{}.png'.format(i_episode, t)))
 
         if done:
             print("Episode finished after {} timesteps".format(t+1))
