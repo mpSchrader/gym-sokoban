@@ -92,7 +92,7 @@ if generate_gifs:
 
     for i_episode in range(n_rounds):
 
-        with imageio.get_writer(os.path.join('images', 'round_{}.gif'.format(i_episode)), mode='I') as writer:
+        with imageio.get_writer(os.path.join('images', 'round_{}.gif'.format(i_episode)), mode='I', fps=1) as writer:
 
             for t in range(n_steps):
                 try:
