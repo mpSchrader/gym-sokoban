@@ -120,7 +120,7 @@ The available room configurations are shown in the table below. Beside the regul
 Please note that the larger rooms might take some time to be created, especially on a laptop.
 
 ### 2.6 Variations
-Besides the regular game of Sokoban, this repository implements or will implement variations, which might make the game easier or more complicated. 
+Besides the regular game of Sokoban, this repository implements or will implement variations, which might make the game easier or more complicated. Except noted differently the variations do not implement a Tiny-World version.
 
 | Variation | Summary | Expected Difficulty | Example | Status | Details |
 | ---       | :---:   | :---:               | :---:   | :---: | :---: |
