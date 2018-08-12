@@ -175,11 +175,17 @@ class SokobanEnv(gym.Env):
         return np.where(empty_targets | player_on_target)[0].shape[0] == 0
 
     def reset(self):
-        self.room_fixed, self.room_state, self.box_mapping = generate_room(
-            dim=self.dim_room,
-            num_steps=self.num_gen_steps,
-            num_boxes=self.num_boxes
-        )
+        try:
+            self.room_fixed, self.room_state, self.box_mapping = generate_room(
+                dim=self.dim_room,
+                num_steps=self.num_gen_steps,
+                num_boxes=self.num_boxes
+            )
+        except (RuntimeError, RuntimeWarning) as e:
+            print(e)
+            print("[SOKOBAN] Runtime error retry . . .")
+            return self.reset()
+
         self.player_position = np.argwhere(self.room_state == 5)[0]
         self.num_env_steps = 0
         self.reward_last = 0
