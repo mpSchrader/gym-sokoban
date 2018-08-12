@@ -182,8 +182,8 @@ class SokobanEnv(gym.Env):
                 num_boxes=self.num_boxes
             )
         except (RuntimeError, RuntimeWarning) as e:
-            print(e)
-            print("[SOKOBAN] Runtime error retry . . .")
+            print("[SOKOBAN] Runtime Error/Warning: {}".format(e))
+            print("[SOKOBAN] Retry . . .")
             return self.reset()
 
         self.player_position = np.argwhere(self.room_state == 5)[0]
