@@ -60,11 +60,11 @@ class SokobanEnv(gym.Env):
         # All push actions are in the range of [0, 3]
         if action < 4:
             self._push(action)
-            self._calc_reward()
 
         else:
             self._move(action)
 
+        self._calc_reward()
         done = self._check_if_done()
 
         if done:
