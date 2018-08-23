@@ -172,7 +172,7 @@ class SokobanEnv(gym.Env):
         empty_targets = self.room_state == 2
         player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
 
-        return np.where(empty_targets | player_on_target)[0].shape[0] == 0
+        return done or (np.where(empty_targets | player_on_target)[0].shape[0] == 0)
 
     def reset(self):
         try:
