@@ -65,14 +65,8 @@ class SokobanEnv(gym.Env):
             self._move(action)
 
         self._calc_reward()
+        
         done = self._check_if_done()
-
-        if done:
-            self.reward_last += self.reward_finished
-
-
-        timedout = self._check_if_timedout()
-        done = done or timedout
 
         # Convert the observation to RGB frame
         observation = self.render(mode='rgb_array')
@@ -166,16 +160,23 @@ class SokobanEnv(gym.Env):
             self.reward_last += self.reward_box_on_target
         elif current_boxes_on_target < self.boxes_on_target:
             self.reward_last += self.penalty_box_off_target
-
+        
+        game_won = self._check_if_all_boxes_on_target()        
+        if game_won:
+            self.reward_last += self.reward_finished
+        
         self.boxes_on_target = current_boxes_on_target
 
     def _check_if_done(self):
         # Check if the game is over either through reaching the maximum number
         # of available steps or by pushing all boxes on the targets.        
+        return self._check_if_all_boxes_on_target() or self._check_if_maxsteps()
+
+    def _check_if_all_boxes_on_target(self):
         empty_targets = self.room_state == 2
-        player_on_target = (self.room_fixed == 2) & (self.room_state == 5)
-        total_empty_targets = np.where(empty_targets | player_hiding_target)[0].shape[0] == 0
-        return total_empty_targets
+        player_hiding_target = (self.room_fixed == 2) & (self.room_state == 5)
+        are_all_boxes_on_targets = np.where(empty_targets | player_hiding_target)[0].shape[0] == 0
+        return are_all_boxes_on_targets
 
     def _check_if_timedout(self):
         return (self.max_steps == self.num_env_steps)
