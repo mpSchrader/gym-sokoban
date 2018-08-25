@@ -178,7 +178,7 @@ class SokobanEnv(gym.Env):
         are_all_boxes_on_targets = np.where(empty_targets | player_hiding_target)[0].shape[0] == 0
         return are_all_boxes_on_targets
 
-    def _check_if_timedout(self):
+    def _check_if_maxsteps(self):
         return (self.max_steps == self.num_env_steps)
 
     def reset(self):
