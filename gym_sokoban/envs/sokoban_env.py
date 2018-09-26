@@ -71,7 +71,12 @@ class SokobanEnv(gym.Env):
         # Convert the observation to RGB frame
         observation = self.render(mode='rgb_array')
 
-        return observation, self.reward_last, done, {}
+        info = {}
+        if done:
+            info["maxsteps_used"] = self._check_if_maxsteps()
+            info["all_boxes_on_target"] = self._check_if_all_boxes_on_target()
+
+        return observation, self.reward_last, done, info
 
     def _push(self, action):
         """
@@ -218,6 +223,9 @@ class SokobanEnv(gym.Env):
     def close(self):
         if self.viewer is not None:
             self.viewer.close()
+
+    def set_maxsteps(self, num_steps):
+        self.max_steps = num_steps
 
 
 ACTION_LOOKUP = {

@@ -84,7 +84,7 @@ for i_episode in range(n_rounds):
             env.render()
             break
 
-env.close()
+    env.close()
 
 if generate_gifs:
     print('')

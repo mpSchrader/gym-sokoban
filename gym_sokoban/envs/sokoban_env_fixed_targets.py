@@ -33,9 +33,9 @@ class FixedTargetsSokobanEnv(SokobanEnv):
 
     def step(self, action):
 
-        observation, self.reward_last, done, _ = super(FixedTargetsSokobanEnv, self).step(action)
+        observation, self.reward_last, done, info = super(FixedTargetsSokobanEnv, self).step(action)
 
-        return observation, self.reward_last, done, {}
+        return observation, self.reward_last, done, info
 
     def _calc_reward(self):
         self._update_box_mapping()
@@ -67,7 +67,7 @@ class FixedTargetsSokobanEnv(SokobanEnv):
             box_id = list(self.box_mapping.keys())[box_index]
             self.box_mapping[box_id] = self.new_box_position
 
-    def _check_if_done(self):
+    def _check_if_all_boxes_on_target(self):
 
         for key in self.box_mapping.keys():
             if not key == self.box_mapping[key]:
