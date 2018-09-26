@@ -26,4 +26,6 @@ for i_episode in range(1):#20
             env.render()
             break
 
+    env.close()
+
 time.sleep(10)
