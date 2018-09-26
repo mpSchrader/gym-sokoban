@@ -10,7 +10,7 @@ class SokobanEnv1(SokobanEnv):
 
     def __init__(self):
         super(SokobanEnv1, self).__init__(
-            num_boxes=3
+            num_boxes=3, max_steps=200
         )
 
 
@@ -21,7 +21,7 @@ class SokobanEnv2(SokobanEnv):
 
     def __init__(self):
         super(SokobanEnv2, self).__init__(
-            num_boxes=5, num_gen_steps=40
+            num_boxes=5, max_steps=200, num_gen_steps=40
         )
 
 
@@ -102,7 +102,7 @@ class TW_SokobanEnv0(TinyWorldSokobanEnv):
 
     def __init__(self):
         super(TW_SokobanEnv0, self).__init__(
-            num_boxes=3
+            num_boxes=3, max_steps=200
         )
 
 
@@ -113,7 +113,7 @@ class TW_SokobanEnv1(TinyWorldSokobanEnv):
 
     def __init__(self):
         super(TW_SokobanEnv1, self).__init__(
-            num_boxes=4
+            num_boxes=4, max_steps=200
         )
 
 
@@ -124,7 +124,7 @@ class TW_SokobanEnv2(TinyWorldSokobanEnv):
 
     def __init__(self):
         super(TW_SokobanEnv2, self).__init__(
-            num_boxes=5, num_gen_steps=40
+            num_boxes=5, max_steps=200, num_gen_steps=40
         )
 
 
@@ -232,6 +232,7 @@ class FixedTargets_Env_v2(FixedTargetsSokobanEnv):
             dim_room=(7, 7), max_steps=150, num_boxes=2,
             num_gen_steps=50
         )
+
 
 class FixedTargets_Env_v3(FixedTargetsSokobanEnv):
     metadata = {

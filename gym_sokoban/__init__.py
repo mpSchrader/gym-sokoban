@@ -15,6 +15,5 @@ with open(env_json) as f:
     for env in envs:
         register(
             id=env["id"],
-            entry_point=env["entry_point"],
-            max_episode_steps=env["max_episode_steps"]
+            entry_point=env["entry_point"]
         )
