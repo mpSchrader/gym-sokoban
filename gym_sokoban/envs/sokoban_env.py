@@ -219,6 +219,9 @@ class SokobanEnv(gym.Env):
         if self.viewer is not None:
             self.viewer.close()
 
+    def set_maxsteps(self, num_steps):
+        self.max_steps = num_steps
+
 
 ACTION_LOOKUP = {
     0: 'pull up',
