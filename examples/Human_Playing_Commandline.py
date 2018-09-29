@@ -1,6 +1,5 @@
 import gym
 import gym_sokoban
-from gym_sokoban.envs.room_utils import ACTION_LOOKUP
 import time
 from PIL import Image
 import numpy as np
@@ -35,9 +34,11 @@ if save_images and not os.path.exists('images'):
 
 ts = time.time()
 env = gym.make(env_name)
+ACTION_LOOKUP = env.unwrapped.get_action_lookup()
+print("Created environment: {}".format(env_name))
 
 
-def print_avilable_actions():
+def print_available_actions():
     """
     Prints all available actions nicely formatted..
     :return:
@@ -69,7 +70,7 @@ for i_episode in range(n_rounds):
                 raise ValueError
 
         except ValueError:
-            print_avilable_actions()
+            print_available_actions()
             continue
 
         observation, reward, done, info = env.step(action)

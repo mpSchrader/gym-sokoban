@@ -57,12 +57,13 @@ class SokobanEnv(gym.Env):
         self.new_box_position = None
         self.old_box_position = None
 
+        action_successfull = False
         # All push actions are in the range of [0, 3]
         if action < 4:
-            self._push(action)
+            action_successfull = self._push(action)
 
         else:
-            self._move(action)
+            action_successfull = self._move(action)
 
         self._calc_reward()
         
@@ -72,7 +73,8 @@ class SokobanEnv(gym.Env):
         observation = self.render(mode='rgb_array')
 
         info = {
-            "action.name": ACTION_LOOKUP[action]
+            "action.name": ACTION_LOOKUP[action],
+            "action.success": action_successfull
         }
         if done:
             info["maxsteps_used"] = self._check_if_maxsteps()
@@ -228,6 +230,9 @@ class SokobanEnv(gym.Env):
 
     def set_maxsteps(self, num_steps):
         self.max_steps = num_steps
+
+    def get_action_lookup(self):
+        return ACTION_LOOKUP
 
 
 ACTION_LOOKUP = {

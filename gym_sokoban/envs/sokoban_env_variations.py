@@ -1,6 +1,7 @@
 from .sokoban_env import SokobanEnv
 from .sokoban_tiny_world_env import TinyWorldSokobanEnv
 from .sokoban_env_fixed_targets import FixedTargetsSokobanEnv
+from .sokoban_env_pull import PushAndPullSokobanEnv
 
 
 class SokobanEnv1(SokobanEnv):
@@ -242,5 +243,17 @@ class FixedTargets_Env_v3(FixedTargetsSokobanEnv):
     def __init__(self):
         super(FixedTargets_Env_v3, self).__init__(
             dim_room=(7, 7), max_steps=150, num_boxes=3,
+            num_gen_steps=50
+        )
+
+
+class PushAndPull_Env_v0(PushAndPullSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(PushAndPull_Env_v0, self).__init__(
+            dim_room=(10, 10), max_steps=150, num_boxes=3,
             num_gen_steps=50
         )
