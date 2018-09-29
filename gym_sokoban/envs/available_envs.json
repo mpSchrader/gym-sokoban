@@ -36,42 +36,6 @@
     "entry_point": "gym_sokoban.envs:SokobanEnv_Huge0"
   },
   {
-    "id": "TinyWorld-Sokoban-v0",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv0"
-  },
-  {
-    "id": "TinyWorld-Sokoban-v1",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv1"
-  },
-  {
-    "id": "TinyWorld-Sokoban-v2",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv2"
-  },
-  {
-    "id": "TinyWorld-Sokoban-small-v0",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv_Small0"
-  },
-  {
-    "id": "TinyWorld-Sokoban-small-v1",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv_Small1"
-  },
-  {
-    "id": "TinyWorld-Sokoban-large-v0",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv_Large0"
-  },
-  {
-    "id": "TinyWorld-Sokoban-large-v1",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv_Large1"
-  },
-  {
-    "id": "TinyWorld-Sokoban-large-v2",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv_Large2"
-  },
-  {
-    "id": "TinyWorld-Sokoban-huge-v0",
-    "entry_point": "gym_sokoban.envs:TW_SokobanEnv_Huge0"
-  },
-  {
     "id": "FixedTarget-Sokoban-v0",
     "entry_point": "gym_sokoban.envs:FixedTargets_Env_v0"
   },

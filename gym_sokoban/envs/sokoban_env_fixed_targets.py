@@ -17,19 +17,26 @@ class FixedTargetsSokobanEnv(SokobanEnv):
         self.boxes_are_on_target = [False] * num_boxes
         pass
 
-    def render(self, mode='human', close=None):
-        img = room_to_rgb_FT(self.room_state, self.box_mapping, self.room_fixed)
+    # def render(self, mode='human', close=None):
+    #     img = room_to_rgb_FT(self.room_state, self.box_mapping, self.room_fixed)
+    #
+    #     if mode == 'rgb_array':
+    #         return img
+    #     elif mode is 'human':
+    #         from gym.envs.classic_control import rendering
+    #         if self.viewer is None:
+    #             self.viewer = rendering.SimpleImageViewer()
+    #         self.viewer.imshow(img)
+    #         return self.viewer.isopen
+    #     else:
+    #         super(FixedTargetsSokobanEnv, self).render(mode=mode)
 
-        if mode == 'rgb_array':
-            return img
-        elif mode is 'human':
-            from gym.envs.classic_control import rendering
-            if self.viewer is None:
-                self.viewer = rendering.SimpleImageViewer()
-            self.viewer.imshow(img)
-            return self.viewer.isopen
-        else:
-            super(FixedTargetsSokobanEnv, self).render(mode=mode)
+    def get_image(self, mode):
+        img = room_to_rgb_FT(self.room_state, self.box_mapping, self.room_fixed)
+        if mode.startswith('tiny_'):
+            raise Exception("Not yet implented")
+
+        return img
 
     def step(self, action):
 
