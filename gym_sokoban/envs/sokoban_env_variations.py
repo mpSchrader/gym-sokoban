@@ -257,3 +257,63 @@ class PushAndPull_Env_v0(PushAndPullSokobanEnv):
             dim_room=(10, 10), max_steps=150, num_boxes=3,
             num_gen_steps=50
         )
+
+
+class PushAndPull_Env_v1(PushAndPullSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(PushAndPull_Env_v1, self).__init__(
+            dim_room=(10, 10), max_steps=150, num_boxes=4,
+            num_gen_steps=50
+        )
+
+
+class PushAndPull_Env_v2(PushAndPullSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(PushAndPull_Env_v2, self).__init__(
+            dim_room=(7, 7), max_steps=150, num_boxes=2,
+            num_gen_steps=50
+        )
+
+
+class PushAndPull_Env_v3(PushAndPullSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(PushAndPull_Env_v3, self).__init__(
+            dim_room=(7, 7), max_steps=150, num_boxes=3,
+            num_gen_steps=50
+        )
+
+
+class PushAndPull_Env_v4(PushAndPullSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(PushAndPull_Env_v4, self).__init__(
+            dim_room=(13, 11), max_steps=300, num_boxes=4,
+            num_gen_steps=50
+        )
+
+
+class PushAndPull_Env_v5(PushAndPullSokobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+    }
+
+    def __init__(self):
+        super(PushAndPull_Env_v5, self).__init__(
+            dim_room=(13, 11), max_steps=300, num_boxes=5,
+            num_gen_steps=50
+        )
