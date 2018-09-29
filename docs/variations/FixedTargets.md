@@ -1,5 +1,10 @@
 # Variation: Fixed Targets
 
+| Example Game 1 | Example Game 2 | Example Game 3 |
+| :---: | :---: | :---: 
+| ![Game 1](/docs/Animations/fixedTargets_solved_0.gif?raw=true) | ![Game 2](/docs/Animations/fixedTargets_solved_4.gif?raw=true) | ![Game 3](/docs/Animations/fixedTargets_solved_5.gif?raw=true) |
+
+
 ## 1. Idea
 In this variation the player not only has to push all boxes on the targets, but also push every box on specific target.
 The boxes and targets are color coded, such that for example the blue box needs to end up on the blue target. 

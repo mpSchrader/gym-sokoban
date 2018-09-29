@@ -85,25 +85,23 @@ for i_episode in range(n_rounds):
             env.render()
             break
 
-    env.close()
+    if generate_gifs:
+        print('')
+        import imageio
 
-if generate_gifs:
-    print('')
-    import imageio
+        for i_episode in range(n_rounds):
 
-    for i_episode in range(n_rounds):
+            with imageio.get_writer(os.path.join('images', 'round_{}.gif'.format(i_episode)), mode='I', fps=1) as writer:
 
-        with imageio.get_writer(os.path.join('images', 'round_{}.gif'.format(i_episode)), mode='I', fps=1) as writer:
+                for t in range(n_steps):
+                    try:
 
-            for t in range(n_steps):
-                try:
+                        filename = os.path.join('images', 'observation_{}_{}.png'.format(i_episode, t))
+                        image = imageio.imread(filename)
+                        writer.append_data(image)
 
-                    filename = os.path.join('images', 'observation_{}_{}.png'.format(i_episode, t))
-                    image = imageio.imread(filename)
-                    writer.append_data(image)
+                    except:
+                        break
 
-                except:
-                    break
-
-else:
-    time.sleep(10)
+env.close()
+time.sleep(10)
