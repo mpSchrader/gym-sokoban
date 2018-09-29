@@ -57,13 +57,14 @@ class SokobanEnv(gym.Env):
         self.new_box_position = None
         self.old_box_position = None
 
-        action_successfull = False
+        moved_player = False
+        moved_box = False
         # All push actions are in the range of [0, 3]
         if action < 4:
-            action_successfull = self._push(action)
+            moved_player, moved_box = self._push(action)
 
         else:
-            action_successfull = self._move(action)
+            moved_player = self._move(action)
 
         self._calc_reward()
         
@@ -74,7 +75,8 @@ class SokobanEnv(gym.Env):
 
         info = {
             "action.name": ACTION_LOOKUP[action],
-            "action.success": action_successfull
+            "action.moved_player": moved_player,
+            "action.moved_box": moved_box,
         }
         if done:
             info["maxsteps_used"] = self._check_if_maxsteps()
@@ -97,7 +99,7 @@ class SokobanEnv(gym.Env):
         new_box_position = new_position + change
         if new_box_position[0] >= self.room_state.shape[0] \
                 or new_box_position[1] >= self.room_state.shape[1]:
-            return False
+            return False, False
 
 
         can_push_box = self.room_state[new_position[0], new_position[1]] in [3, 4]
@@ -118,11 +120,11 @@ class SokobanEnv(gym.Env):
             if self.room_fixed[new_box_position[0], new_box_position[1]] == 2:
                 box_type = 3
             self.room_state[new_box_position[0], new_box_position[1]] = box_type
-            return True
+            return True, True
 
         # Try to move if no box to push, available
         else:
-            return self._move(action)
+            return self._move(action), False
 
     def _move(self, action):
         """

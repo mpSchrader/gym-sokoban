@@ -26,16 +26,17 @@ class PushAndPullSokobanEnv(SokobanEnv):
         self.new_box_position = None
         self.old_box_position = None
 
-        action_successfull = False
+        moved_player = False
+        moved_box = False
         # All push actions are in the range of [0, 3]
         if action < 4:
-            action_successfull = self._push(action)
+            moved_player, moved_box = self._push(action)
 
         elif action < 8:
-            action_successfull = self._move(action)
+            moved_player = self._move(action)
 
         else:
-            action_successfull = self._pull(action)
+            moved_player, moved_box = self._pull(action)
 
         self._calc_reward()
 
@@ -46,7 +47,8 @@ class PushAndPullSokobanEnv(SokobanEnv):
 
         info = {
             "action.name": ACTION_LOOKUP[action],
-            "action.success": action_successfull
+            "action.moved_player": moved_player,
+            "action.moved_box": moved_box,
         }
         if done:
             info["maxsteps_used"] = self._check_if_maxsteps()
@@ -73,7 +75,8 @@ class PushAndPullSokobanEnv(SokobanEnv):
             self.room_state[current_position[0], current_position[1]] = \
                 self.room_fixed[current_position[0], current_position[1]]
 
-            if self.room_state[pull_content_position[0], pull_content_position[1]] in [3, 4]:
+            box_next_to_player = self.room_state[pull_content_position[0], pull_content_position[1]] in [3, 4]
+            if box_next_to_player:
                 # Move Box
                 box_type = 4
                 if self.room_fixed[current_position[0], current_position[1]] == 2:
@@ -82,9 +85,9 @@ class PushAndPullSokobanEnv(SokobanEnv):
                 self.room_state[pull_content_position[0], pull_content_position[1]] = \
                     self.room_fixed[pull_content_position[0], pull_content_position[1]]
 
-            return True
+            return True, box_next_to_player
 
-        return False
+        return False, False
 
     def get_action_lookup(self):
         return ACTION_LOOKUP
