@@ -1,13 +1,16 @@
 import gym
 import gym_sokoban
-from gym_sokoban.envs.room_utils import ACTION_LOOKUP
 import time
 
 # Before you can make a Sokoban Environment you need to call:
 # import gym_sokoban
 # This import statement registers all Sokoban environments
 # provided by this package
-env = gym.make('Sokoban-v0')
+env_name = 'Sokoban-v0'
+env = gym.make(env_name)
+
+ACTION_LOOKUP = env.unwrapped.get_action_lookup()
+print("Created environment: {}".format(env_name))
 
 for i_episode in range(1):#20
     observation = env.reset()
