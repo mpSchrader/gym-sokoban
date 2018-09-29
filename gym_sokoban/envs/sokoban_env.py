@@ -213,6 +213,7 @@ class SokobanEnv(gym.Env):
         return starting_observation
 
     def render(self, mode='human', close=None):
+        assert mode in RENDERING_MODES
 
         img = self.get_image(mode)
 
@@ -270,3 +271,5 @@ CHANGE_COORDINATES = {
     2: (0, -1),
     3: (0, 1)
 }
+
+RENDERING_MODES = ['rgb_array', 'human', 'tiny_rgb_array', 'tiny_human']
