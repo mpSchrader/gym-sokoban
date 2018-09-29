@@ -127,7 +127,7 @@ Besides the regular game of Sokoban, this repository implements or will implemen
 | ---       | :---:   | :---:               | :---:   | :---: | :---: |
 | Fixed Targets | Every box has to be pushed on the target with the same color. | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png) | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
 | Multiple Player | There are two players in the room. Every round one of the two players can be used. There is no order of moves between the two players. | More difficult | - | planned | - |
-| Push&Pull | The player can not only push the boxes, but also pull them. Therefor no more irreversible moves exist. | Easier | - | planned | - |
+| Push&Pull | The player can not only push the boxes, but also pull them. Therefor no more irreversible moves exist. | Easier | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
 
 ## 3 Cite
 If you are using this repository for your research please cite it with the following information:

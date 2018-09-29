@@ -57,12 +57,14 @@ class SokobanEnv(gym.Env):
         self.new_box_position = None
         self.old_box_position = None
 
+        moved_player = False
+        moved_box = False
         # All push actions are in the range of [0, 3]
         if action < 4:
-            self._push(action)
+            moved_player, moved_box = self._push(action)
 
         else:
-            self._move(action)
+            moved_player = self._move(action)
 
         self._calc_reward()
         
@@ -71,7 +73,11 @@ class SokobanEnv(gym.Env):
         # Convert the observation to RGB frame
         observation = self.render(mode='rgb_array')
 
-        info = {}
+        info = {
+            "action.name": ACTION_LOOKUP[action],
+            "action.moved_player": moved_player,
+            "action.moved_box": moved_box,
+        }
         if done:
             info["maxsteps_used"] = self._check_if_maxsteps()
             info["all_boxes_on_target"] = self._check_if_all_boxes_on_target()
@@ -93,7 +99,7 @@ class SokobanEnv(gym.Env):
         new_box_position = new_position + change
         if new_box_position[0] >= self.room_state.shape[0] \
                 or new_box_position[1] >= self.room_state.shape[1]:
-            return False
+            return False, False
 
 
         can_push_box = self.room_state[new_position[0], new_position[1]] in [3, 4]
@@ -114,11 +120,11 @@ class SokobanEnv(gym.Env):
             if self.room_fixed[new_box_position[0], new_box_position[1]] == 2:
                 box_type = 3
             self.room_state[new_box_position[0], new_box_position[1]] = box_type
-            return True
+            return True, True
 
         # Try to move if no box to push, available
         else:
-            return self._move(action)
+            return self._move(action), False
 
     def _move(self, action):
         """
@@ -227,12 +233,15 @@ class SokobanEnv(gym.Env):
     def set_maxsteps(self, num_steps):
         self.max_steps = num_steps
 
+    def get_action_lookup(self):
+        return ACTION_LOOKUP
+
 
 ACTION_LOOKUP = {
-    0: 'pull up',
-    1: 'pull down',
-    2: 'pull left',
-    3: 'pull right',
+    0: 'push up',
+    1: 'push down',
+    2: 'push left',
+    3: 'push right',
     4: 'move up',
     5: 'move down',
     6: 'move left',

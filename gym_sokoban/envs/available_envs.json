@@ -86,5 +86,29 @@
   {
     "id": "FixedTarget-Sokoban-v3",
     "entry_point": "gym_sokoban.envs:FixedTargets_Env_v3"
+  },
+  {
+    "id": "PushAndPull-Sokoban-v0",
+    "entry_point": "gym_sokoban.envs:PushAndPull_Env_v0"
+  },
+  {
+    "id": "PushAndPull-Sokoban-v1",
+    "entry_point": "gym_sokoban.envs:PushAndPull_Env_v1"
+  },
+  {
+    "id": "PushAndPull-Sokoban-v2",
+    "entry_point": "gym_sokoban.envs:PushAndPull_Env_v2"
+  },
+  {
+    "id": "PushAndPull-Sokoban-v3",
+    "entry_point": "gym_sokoban.envs:PushAndPull_Env_v3"
+  },
+  {
+    "id": "PushAndPull-Sokoban-v4",
+    "entry_point": "gym_sokoban.envs:PushAndPull_Env_v4"
+  },
+  {
+    "id": "PushAndPull-Sokoban-v5",
+    "entry_point": "gym_sokoban.envs:PushAndPull_Env_v5"
   }
 ]
