@@ -71,7 +71,9 @@ class SokobanEnv(gym.Env):
         # Convert the observation to RGB frame
         observation = self.render(mode='rgb_array')
 
-        info = {}
+        info = {
+            "action.name": ACTION_LOOKUP[action]
+        }
         if done:
             info["maxsteps_used"] = self._check_if_maxsteps()
             info["all_boxes_on_target"] = self._check_if_all_boxes_on_target()
@@ -229,10 +231,10 @@ class SokobanEnv(gym.Env):
 
 
 ACTION_LOOKUP = {
-    0: 'pull up',
-    1: 'pull down',
-    2: 'pull left',
-    3: 'pull right',
+    0: 'push up',
+    1: 'push down',
+    2: 'push left',
+    3: 'push right',
     4: 'move up',
     5: 'move down',
     6: 'move left',
