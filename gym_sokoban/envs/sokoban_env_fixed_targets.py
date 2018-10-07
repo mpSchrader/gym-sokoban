@@ -1,5 +1,5 @@
 from .sokoban_env import SokobanEnv
-from .render_utils import room_to_rgb_FT
+from .render_utils import room_to_rgb_FT, room_to_tiny_world_rgb_FT
 from gym.spaces import Box
 
 
@@ -34,7 +34,8 @@ class FixedTargetsSokobanEnv(SokobanEnv):
     def get_image(self, mode):
         img = room_to_rgb_FT(self.room_state, self.box_mapping, self.room_fixed)
         if mode.startswith('tiny_'):
-            raise Exception("Not yet implented")
+            img = room_to_tiny_world_rgb_FT(self.room_state, self.box_mapping, self.room_fixed, scale=16)
+            #raise Exception("Not yet implented")
 
         return img
 
