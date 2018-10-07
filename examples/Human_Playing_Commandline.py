@@ -12,11 +12,13 @@ parser.add_argument('--rounds', '-r', metavar='rounds', type=int,
 parser.add_argument('--steps', '-s', metavar='steps', type=int,
                     help='maximum number of steps to be played each round (default: 300)', default=300)
 parser.add_argument('--env', '-e', metavar='env',
-                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')
+                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v1')
 parser.add_argument('--save', action='store_true',
                     help='Save images of single steps')
 parser.add_argument('--gifs', action='store_true',
                     help='Generate Gif files from images')
+parser.add_argument('--render_mode', '-m', metavar='render_mode',
+                    help='Render Mode (default: human)', default='tiny_human')
 
 args = parser.parse_args()
 env_name = args.env
@@ -24,6 +26,7 @@ n_rounds = args.rounds
 n_steps = args.steps
 save_images = args.save or args.gifs
 generate_gifs = args.gifs
+render_mode = args.render_mode
 
 # Creating target directory if images are to be stored
 if save_images and not os.path.exists('images'):
@@ -60,7 +63,7 @@ for i_episode in range(n_rounds):
     observation = env.reset()
 
     for t in range(n_steps):
-        env.render()
+        env.render(render_mode)
 
         action = input('Select action: ')
         try:
@@ -82,7 +85,7 @@ for i_episode in range(n_rounds):
 
         if done:
             print("Episode finished after {} timesteps".format(t+1))
-            env.render()
+            env.render(render_mode)
             break
 
     if generate_gifs:
@@ -101,7 +104,7 @@ for i_episode in range(n_rounds):
                         writer.append_data(image)
 
                     except:
-                        break
+                        pass
 
 env.close()
 time.sleep(10)

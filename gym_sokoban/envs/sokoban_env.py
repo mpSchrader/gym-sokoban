@@ -3,7 +3,7 @@ from gym.utils import seeding
 from gym.spaces.discrete import Discrete
 from gym.spaces import Box
 from .room_utils import generate_room
-from .render_utils import room_to_rgb
+from .render_utils import room_to_rgb, room_to_tiny_world_rgb
 import numpy as np
 
 
@@ -213,18 +213,30 @@ class SokobanEnv(gym.Env):
         return starting_observation
 
     def render(self, mode='human', close=None):
-        img = room_to_rgb(self.room_state, self.room_fixed)
+        assert mode in RENDERING_MODES
 
-        if mode == 'rgb_array':
+        img = self.get_image(mode)
+
+        if 'rgb_array' in mode:
             return img
-        elif mode is 'human':
+
+        elif 'human' in mode:
             from gym.envs.classic_control import rendering
             if self.viewer is None:
                 self.viewer = rendering.SimpleImageViewer()
             self.viewer.imshow(img)
             return self.viewer.isopen
+
         else:
             super(SokobanEnv, self).render(mode=mode)  # just raise an exception
+
+    def get_image(self, mode):
+
+        img = room_to_rgb(self.room_state, self.room_fixed)
+        if mode.startswith('tiny_'):
+            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=4)
+
+        return img
 
     def close(self):
         if self.viewer is not None:
@@ -259,3 +271,5 @@ CHANGE_COORDINATES = {
     2: (0, -1),
     3: (0, 1)
 }
+
+RENDERING_MODES = ['rgb_array', 'human', 'tiny_rgb_array', 'tiny_human']

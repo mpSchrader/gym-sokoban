@@ -103,8 +103,24 @@ As long as at least one box is on a target the RoomScore is always 0.
   </p>
 </div>
 
-### 2.5 Room Configuration
-The available room configurations are shown in the table below. Beside the regular Sokoban configuration, each configuration is available as TinyWorld, which has a pixel size equal to the grid size. The IDs of the TinyWorld environments are just prepend the string TinyWorld, e.g. instead of Sokoban-v0 the ID would be TinyWorld-Sokoban-v0.
+### 2.5 Variations
+Sokoban has many different variations, such as: Room Size, Number of Boxes, Rendering Modes, or Rules.
+
+#### 2.5.1 Rendering Modes
+Beside the regular Sokoban rendering, each configuration can be rendered as TinyWorld, which has a pixel size equal to the grid size. 
+To get an environment rendered as a tiny world just add `tiny_` in front of the rendering mode. E.g: `env.render('tiny_rgb_array')`.
+Available rendering modes are:
+
+| Mode | Description |
+| ---  | --- 
+| rgb_array | Well looking 2d rgb image
+| human | Displays the current state on screen
+| tiny_rgb_array | Each pixel describing on element in the room
+| tiny_human | Displays the tiny rgb_array on screen
+
+
+#### 2.5.2 Configuration Variations
+The available room configurations are shown in the table below. 
 
 | Room Id | Grid-Size | Pixels | #Boxes | Example | TinyWorld |
 | --- | :---: | :---: | :---: | :---: | :---: |
@@ -120,14 +136,14 @@ The available room configurations are shown in the table below. Beside the regul
 
 Please note that the larger rooms might take some time to be created, especially on a laptop.
 
-### 2.6 Variations
+#### 2.5.3 Rule Variations
 Besides the regular game of Sokoban, this repository implements or will implement variations, which might make the game easier or more complicated. Except noted differently the variations do not implement a Tiny-World version.
 
-| Variation | Summary | Expected Difficulty | Example | Status | Details |
-| ---       | :---:   | :---:               | :---:   | :---: | :---: |
-| Fixed Targets | Every box has to be pushed on the target with the same color. | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png) | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
-| Multiple Player | There are two players in the room. Every round one of the two players can be used. There is no order of moves between the two players. | More difficult | - | planned | - |
-| Push&Pull | The player can not only push the boxes, but also pull them. Therefor no more irreversible moves exist. | Easier | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | implemented | [ReadMe](/docs/variations/PushAndPull.md) |
+| Variation | Summary | Expected Difficulty | Example | Tiny World | Status | Details |
+| ---       | :---:   | :---:               | :---:   | :---: | :---: | :---: |
+| Fixed Targets | Every box has to be pushed on the target with the same color. | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png) | Yes | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
+| Multiple Player | There are two players in the room. Every round one of the two players can be used. There is no order of moves between the two players. | More difficult | - | - | planned | - |
+| Push&Pull | The player can not only push the boxes, but also pull them. Therefor no more irreversible moves exist. | Easier | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | Yes | implemented | [ReadMe](/docs/variations/PushAndPull.md) |
 
 ## 3 Cite
 If you are using this repository for your research please cite it with the following information:
