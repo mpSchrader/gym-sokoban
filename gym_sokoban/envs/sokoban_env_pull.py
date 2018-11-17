@@ -92,6 +92,9 @@ class PushAndPullSokobanEnv(SokobanEnv):
     def get_action_lookup(self):
         return ACTION_LOOKUP
 
+    def get_action_meanings(self):
+        return ACTION_LOOKUP
+
 
 ACTION_LOOKUP = {
     0: 'push up',
