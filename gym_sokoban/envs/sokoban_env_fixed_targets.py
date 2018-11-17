@@ -32,10 +32,11 @@ class FixedTargetsSokobanEnv(SokobanEnv):
     #         super(FixedTargetsSokobanEnv, self).render(mode=mode)
 
     def get_image(self, mode):
-        img = room_to_rgb_FT(self.room_state, self.box_mapping, self.room_fixed)
+
         if mode.startswith('tiny_'):
             img = room_to_tiny_world_rgb_FT(self.room_state, self.box_mapping, self.room_fixed, scale=16)
-            #raise Exception("Not yet implented")
+        else:
+            img = room_to_rgb_FT(self.room_state, self.box_mapping, self.room_fixed)
 
         return img
 

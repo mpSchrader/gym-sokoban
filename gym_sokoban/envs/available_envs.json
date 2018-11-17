@@ -74,5 +74,29 @@
   {
     "id": "PushAndPull-Sokoban-v5",
     "entry_point": "gym_sokoban.envs:PushAndPull_Env_v5"
+  },
+  {
+    "id": "TwoPlayer-Sokoban-v0",
+    "entry_point": "gym_sokoban.envs:TwoPlayer_Env0"
+  },
+  {
+    "id": "TwoPlayer-Sokoban-v1",
+    "entry_point": "gym_sokoban.envs:TwoPlayer_Env1"
+  },
+  {
+    "id": "TwoPlayer-Sokoban-v2",
+    "entry_point": "gym_sokoban.envs:TwoPlayer_Env2"
+  },
+  {
+    "id": "TwoPlayer-Sokoban-v3",
+    "entry_point": "gym_sokoban.envs:TwoPlayer_Env3"
+  },
+  {
+    "id": "TwoPlayer-Sokoban-v4",
+    "entry_point": "gym_sokoban.envs:TwoPlayer_Env4"
+  },
+  {
+    "id": "TwoPlayer-Sokoban-v5",
+    "entry_point": "gym_sokoban.envs:TwoPlayer_Env5"
   }
 ]

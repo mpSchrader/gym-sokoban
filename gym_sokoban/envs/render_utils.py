@@ -275,6 +275,42 @@ def get_proper_tiny_box_surface(surfaces_id, box_mapping, i, j):
     return surface
 
 
+def color_player_two(room_rgb, position, room_structure):
+    resource_package = __name__
+
+    player_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'multiplayer', 'player1.png')))
+    player = misc.imread(player_filename)
+
+    player_on_target_filename = pkg_resources.resource_filename(resource_package,
+                                                                '/'.join(('surface', 'multiplayer', 'player1_on_target.png')))
+    player_on_target = misc.imread(player_on_target_filename)
+
+    x_i = position[0] * 16
+    y_j = position[1] * 16
+
+    if room_structure[position[0], position[1]] == 2:
+        room_rgb[x_i:(x_i + 16), y_j:(y_j + 16), :] = player_on_target
+
+    else:
+        room_rgb[x_i:(x_i + 16), y_j:(y_j + 16), :] = player
+
+    return room_rgb
+
+
+def color_tiny_player_two(room_rgb, position, room_structure, scale = 4):
+
+    x_i = position[0] * scale
+    y_j = position[1] * scale
+
+    if room_structure[position[0], position[1]] == 2:
+        room_rgb[x_i:(x_i + scale), y_j:(y_j + scale), :] = [195, 127, 232]
+
+    else:
+        room_rgb[x_i:(x_i + scale), y_j:(y_j + scale), :] = [96, 5, 145]
+
+    return room_rgb
+
+
 TYPE_LOOKUP = {
     0: 'wall',
     1: 'empty space',

@@ -5,7 +5,7 @@ import marshal
 from scipy import misc
 
 
-def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxes=3, tries=4):
+def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxes=3, tries=4, second_player=False):
     """
     Generates a Sokoban room, represented by an integer matrix. The elements are encoded as follows:
     wall = 0
@@ -27,7 +27,7 @@ def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxe
     # In these case, we try another model.
     for t in range(tries):
         room = room_topology_generation(dim, p_change_directions, num_steps)
-        room = place_boxes_and_player(room, num_boxes=num_boxes)
+        room = place_boxes_and_player(room, num_boxes=num_boxes, second_player=second_player)
 
         # Room fixed represents all not movable parts of the room
         room_structure = np.copy(room)
@@ -126,7 +126,7 @@ def room_topology_generation(dim=(10, 10), p_change_directions=0.35, num_steps=1
     return level
 
 
-def place_boxes_and_player(room, num_boxes=3):
+def place_boxes_and_player(room, num_boxes, second_player):
     """
     Places the player and the boxes into the floors in a room.
 
@@ -137,17 +137,24 @@ def place_boxes_and_player(room, num_boxes=3):
     # Get all available positions
     possible_positions = np.where(room == 1)
     num_possible_positions = possible_positions[0].shape[0]
+    num_players = 2 if second_player else 1
 
-    if num_possible_positions <= num_boxes + 1:
-        raise RuntimeError('Not enough free spots (#{}) to place 1 player and {} boxes.'.format(
+    if num_possible_positions <= num_boxes + num_players:
+        raise RuntimeError('Not enough free spots (#{}) to place {} player and {} boxes.'.format(
             num_possible_positions,
+            num_players,
             num_boxes)
         )
 
-    # Place player
+    # Place player(s)
     ind = np.random.randint(num_possible_positions)
     player_position = possible_positions[0][ind], possible_positions[1][ind]
     room[player_position] = 5
+
+    if second_player:
+        ind = np.random.randint(num_possible_positions)
+        player_position = possible_positions[0][ind], possible_positions[1][ind]
+        room[player_position] = 5
 
     # Place boxes
     for n in range(num_boxes):
