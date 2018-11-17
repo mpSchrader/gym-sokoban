@@ -84,10 +84,10 @@ class TwoPlayerSokobanEnv(SokobanEnv):
 
         if mode.startswith('tiny_'):
             img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=4)
-            img = color_tiny_player_two(img, self.player_positions[1], scale=4)
+            img = color_tiny_player_two(img, self.player_positions[1], self.room_fixed, scale=4)
         else:
             img = room_to_rgb(self.room_state, self.room_fixed)
-            img = color_player_two(img, self.player_positions[0])
+            img = color_player_two(img, self.player_positions[1], self.room_fixed)
 
         return img
 
