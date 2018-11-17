@@ -271,7 +271,7 @@ class TwoPlayer_Env4(TwoPlayerSokobanEnv):
 
     def __init__(self):
         super(TwoPlayer_Env4, self).__init__(
-            num_boxes=4, max_steps=200,
+            num_boxes=3, max_steps=200,
             dim_room=(13, 11)
         )
 
@@ -284,7 +284,7 @@ class TwoPlayer_Env5(TwoPlayerSokobanEnv):
 
     def __init__(self):
         super(TwoPlayer_Env5, self).__init__(
-            num_boxes=5, max_steps=200,
+            num_boxes=4, max_steps=200,
             dim_room=(13, 11)
         )
 

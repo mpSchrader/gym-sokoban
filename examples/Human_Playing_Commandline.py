@@ -12,7 +12,7 @@ parser.add_argument('--rounds', '-r', metavar='rounds', type=int,
 parser.add_argument('--steps', '-s', metavar='steps', type=int,
                     help='maximum number of steps to be played each round (default: 300)', default=300)
 parser.add_argument('--env', '-e', metavar='env',
-                    help='Environment to load (default: Sokoban-v0)', default='TwoPlayer-Sokoban-v2')
+                    help='Environment to load (default: Sokoban-v0)', default='TwoPlayer-Sokoban-v4')
 parser.add_argument('--save', action='store_true',
                     help='Save images of single steps')
 parser.add_argument('--gifs', action='store_true',
