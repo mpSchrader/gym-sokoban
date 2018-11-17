@@ -12,7 +12,7 @@ parser.add_argument('--rounds', '-r', metavar='rounds', type=int,
 parser.add_argument('--steps', '-s', metavar='steps', type=int,
                     help='maximum number of steps to be played each round (default: 300)', default=300)
 parser.add_argument('--env', '-e', metavar='env',
-                    help='Environment to load (default: Sokoban-v0)', default='TwoPlayer-Sokoban-v4')
+                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')
 parser.add_argument('--save', action='store_true',
                     help='Save images of single steps')
 parser.add_argument('--gifs', action='store_true',
@@ -92,9 +92,7 @@ for i_episode in range(n_rounds):
         print('')
         import imageio
 
-        for i_episode in range(n_rounds):
-
-            with imageio.get_writer(os.path.join('images', 'round_{}.gif'.format(i_episode)), mode='I', fps=1) as writer:
+        with imageio.get_writer(os.path.join('images', 'round_{}.gif'.format(i_episode)), mode='I', fps=1) as writer:
 
                 for t in range(n_steps):
                     try:

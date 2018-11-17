@@ -30,7 +30,8 @@ The remaining actions relate to player 2, the blue avatar.
 The game ending rules as well as the reward are similar to regular game. 
 
 ## 3. Room Configurations
-Similar to the regular Sokoban there exist multiple room configurations.
+Similar to the regular Sokoban there exist multiple room configurations. 
+Of course all configurations can be rendered as TinyWorld.
 
 | Room Id | Grid-Size | Pixels | #Boxes | Example | 
 | ---     | :---:      | :---: | :---:   | :---: | 
