@@ -83,8 +83,9 @@ class TwoPlayerSokobanEnv(SokobanEnv):
     def get_image(self, mode):
 
         if mode.startswith('tiny_'):
-            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=4)
-            img = color_tiny_player_two(img, self.player_positions[1], self.room_fixed, scale=4)
+            scale = 16
+            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=scale)
+            img = color_tiny_player_two(img, self.player_positions[1], self.room_fixed, scale=scale)
         else:
             img = room_to_rgb(self.room_state, self.room_fixed)
             img = color_player_two(img, self.player_positions[1], self.room_fixed)

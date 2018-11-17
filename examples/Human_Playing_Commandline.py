@@ -18,7 +18,7 @@ parser.add_argument('--save', action='store_true',
 parser.add_argument('--gifs', action='store_true',
                     help='Generate Gif files from images')
 parser.add_argument('--render_mode', '-m', metavar='render_mode',
-                    help='Render Mode (default: human)', default='human')
+                    help='Render Mode (default: human)', default='tiny_human')
 
 args = parser.parse_args()
 env_name = args.env
