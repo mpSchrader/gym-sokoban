@@ -9,7 +9,7 @@ import numpy as np
 
 class SokobanEnv(gym.Env):
     metadata = {
-        'render.modes': ['human', 'rgb_array']
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array']
     }
 
     def __init__(self,
