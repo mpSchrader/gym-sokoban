@@ -192,12 +192,13 @@ class SokobanEnv(gym.Env):
     def _check_if_maxsteps(self):
         return (self.max_steps == self.num_env_steps)
 
-    def reset(self):
+    def reset(self, second_player=False):
         try:
             self.room_fixed, self.room_state, self.box_mapping = generate_room(
                 dim=self.dim_room,
                 num_steps=self.num_gen_steps,
-                num_boxes=self.num_boxes
+                num_boxes=self.num_boxes,
+                second_player=second_player
             )
         except (RuntimeError, RuntimeWarning) as e:
             print("[SOKOBAN] Runtime Error/Warning: {}".format(e))
@@ -232,9 +233,10 @@ class SokobanEnv(gym.Env):
 
     def get_image(self, mode):
 
-        img = room_to_rgb(self.room_state, self.room_fixed)
         if mode.startswith('tiny_'):
             img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=4)
+        else:
+            img = room_to_rgb(self.room_state, self.room_fixed)
 
         return img
 

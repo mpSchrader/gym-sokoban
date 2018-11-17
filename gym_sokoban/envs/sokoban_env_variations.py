@@ -1,9 +1,10 @@
 from .sokoban_env import SokobanEnv
 from .sokoban_env_fixed_targets import FixedTargetsSokobanEnv
 from .sokoban_env_pull import PushAndPullSokobanEnv
+from .sokoban_env_two_player import TwoPlayerSokobanEnv
 
 
-class SokobanEnv1(SokobanEnv):
+class SokobanEnv1(TwoPlayerSokobanEnv):
     metadata = {
         'render.modes': ['human', 'rgb_array'],
     }

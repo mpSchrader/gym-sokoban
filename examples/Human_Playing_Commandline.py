@@ -12,13 +12,13 @@ parser.add_argument('--rounds', '-r', metavar='rounds', type=int,
 parser.add_argument('--steps', '-s', metavar='steps', type=int,
                     help='maximum number of steps to be played each round (default: 300)', default=300)
 parser.add_argument('--env', '-e', metavar='env',
-                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v1')
+                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')
 parser.add_argument('--save', action='store_true',
                     help='Save images of single steps')
 parser.add_argument('--gifs', action='store_true',
                     help='Generate Gif files from images')
 parser.add_argument('--render_mode', '-m', metavar='render_mode',
-                    help='Render Mode (default: human)', default='tiny_human')
+                    help='Render Mode (default: human)', default='human')
 
 args = parser.parse_args()
 env_name = args.env

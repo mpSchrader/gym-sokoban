@@ -275,6 +275,23 @@ def get_proper_tiny_box_surface(surfaces_id, box_mapping, i, j):
     return surface
 
 
+def color_player_two(img, position, room_structure):
+    resource_package = __name__
+
+    player_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'player.png')))
+    player = misc.imread(player_filename)
+
+    player_on_target_filename = pkg_resources.resource_filename(resource_package,
+                                                                '/'.join(('surface', 'player_on_target.png')))
+    player_on_target = misc.imread(player_on_target_filename)
+
+    return img
+
+
+def color_tiny_player_two(img):
+    return img
+
+
 TYPE_LOOKUP = {
     0: 'wall',
     1: 'empty space',
