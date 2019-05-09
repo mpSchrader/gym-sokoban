@@ -19,7 +19,7 @@ import gym_sokoban
 ```
 
 ### 3 Load the environment
-From now on everything is as you are used to it. You can simpely make the environment, render it, perform actions and so on.
+From now on everything is as you are used to it. You can simply make the environment, render it, perform actions and so on.
 
 ```Python
 env = gym.make('Sokoban-v0')
