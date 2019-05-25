@@ -103,7 +103,7 @@ As long as at least one box is on a target the RoomScore is always 0.
   </p>
 </div>
 
-### 2.5 Variations
+### 2.5 Configuration
 Sokoban has many different variations, such as: Room Size, Number of Boxes, Rendering Modes, or Rules.
 
 #### 2.5.1 Rendering Modes
@@ -119,7 +119,7 @@ Available rendering modes are:
 | tiny_human | Displays the tiny rgb_array on screen
 
 
-#### 2.5.2 Configuration Variations
+#### 2.5.2 Size Variations
 The available room configurations are shown in the table below. 
 
 | Room Id | Grid-Size | Pixels | #Boxes | Example | TinyWorld |
@@ -136,7 +136,7 @@ The available room configurations are shown in the table below.
 
 Please note that the larger rooms might take some time to be created, especially on a laptop.
 
-#### 2.5.3 Rule Variations
+#### 2.5.3 Other Variations
 Besides the regular game of Sokoban, this repository implements or will implement variations, which might make the game easier or more complicated. Except noted differently the variations do not implement a Tiny-World version.
 
 | Variation | Summary | Expected Difficulty | Example | Tiny World | Status | Details |
@@ -144,6 +144,7 @@ Besides the regular game of Sokoban, this repository implements or will implemen
 | Fixed Targets | Every box has to be pushed on the target with the same color. | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png) | Yes | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
 | Multiple Player | There are two players in the room. Every round one of the two players can be used. There is no order of moves between the two players. | More difficult | ![TwoPlayer](/docs/rooms/TwoPlayer-Sokoban-v2.png) | Yes | implemented | [ReadMe](/docs/variations/TwoPlayer.md) |
 | Push&Pull | The player can not only push the boxes, but also pull them. Therefore, no more irreversible moves exist. | Easier | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | Yes | implemented | [ReadMe](/docs/variations/PushAndPull.md) |
+| Boxoban | Uses by DeepMind [pregenerated Sokoban puzzles](https://github.com/deepmind/boxoban-levels). | Similar | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | Yes | [Plannned](https://github.com/mpSchrader/gym-sokoban/issues/30) | [ReadMe](/README.md) |
 
 ## 3 Cite
 If you are using this repository for your research please cite it with the following information:
