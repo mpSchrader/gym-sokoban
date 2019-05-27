@@ -8,6 +8,16 @@
 ## 1. Idea
 Instead of generating a new level on every reset operation, a pregenerated level is choosen randomly. When Boxoban is run for the first time the levels are downloaded from DeepMinds [Github repository](https://github.com/deepmind/boxoban-levels) and stored in the folder _.sokoban_cache_.
 
+In case you use the Boxoban levels for your research, the authors of the boxoban-levels repository ask you to cite their work as follows:
+```
+@misc{boxobanlevels,
+author = {Arthur Guez, Mehdi Mirza, Karol Gregor, Rishabh Kabra, Sebastien Racaniere, Theophane Weber, David Raposo, Adam Santoro, Laurent Orseau, Tom Eccles, Greg Wayne, David Silver, Timothy Lillicrap, Victor Valdes},
+title = {An investigation of Model-free planning: boxoban levels},
+howpublished= {https://github.com/deepmind/boxoban-levels/},
+year = "2018",
+}
+```
+
 
 ## 2. Rules
 Same rules as the regular Sokoban game.
