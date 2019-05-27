@@ -100,7 +100,7 @@
     "entry_point": "gym_sokoban.envs:TwoPlayer_Env5"
   },
   {
-    "id": "Boxoban-v0",
+    "id": "Boxoban-Train-v0",
     "entry_point": "gym_sokoban.envs:Boxban_Env0"
   },
   {
@@ -112,7 +112,7 @@
     "entry_point": "gym_sokoban.envs:Boxban_Env0_val"
   },
   {
-    "id": "Boxoban-v1",
+    "id": "Boxoban-Train-v1",
     "entry_point": "gym_sokoban.envs:Boxban_Env1"
   },
   {
