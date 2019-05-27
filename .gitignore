@@ -4,3 +4,4 @@
 /logs
 /notebooks
 *~
+.sokoban_cache/
