@@ -144,7 +144,7 @@ Besides the regular game of Sokoban, this repository implements or will implemen
 | Fixed Targets | Every box has to be pushed on the target with the same color. | More difficult | ![Fixed-Targets](/docs/rooms/Sokoban-Fixed-Targets-Example.png) | Yes | implemented | [ReadMe](/docs/variations/FixedTargets.md) |
 | Multiple Player | There are two players in the room. Every round one of the two players can be used. There is no order of moves between the two players. | More difficult | ![TwoPlayer](/docs/rooms/TwoPlayer-Sokoban-v2.png) | Yes | implemented | [ReadMe](/docs/variations/TwoPlayer.md) |
 | Push&Pull | The player can not only push the boxes, but also pull them. Therefore, no more irreversible moves exist. | Easier | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | Yes | implemented | [ReadMe](/docs/variations/PushAndPull.md) |
-| Boxoban | Uses by DeepMind [pregenerated Sokoban puzzles](https://github.com/deepmind/boxoban-levels). | Similar | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | Yes | [Plannned](https://github.com/mpSchrader/gym-sokoban/issues/30) | [ReadMe](/README.md) |
+| Boxoban | Uses by DeepMind [pregenerated Sokoban puzzles](https://github.com/deepmind/boxoban-levels). | Similar | ![PushAndPull-Targets](/docs/rooms/Sokoban-v1.png) | Yes | Implemented | [ReadMe](/docs/variations/Boxoban.md) |
 
 ## 3 Cite
 If you are using this repository for your research please cite it with the following information:
