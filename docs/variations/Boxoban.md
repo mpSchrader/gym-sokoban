@@ -1,12 +1,12 @@
 # Variation: Boxoban
 
-| Example Game 1 | Example Game 2 | Example Game 3 |
-| :---: | :---: | :---: 
-| ![Game 1](/docs/Animations/solved_3.gif?raw=true) | ![Game 2](/docs/Animations/solved_4.gif?raw=true) | ![Game 3](/docs/Animations/solved_5.gif?raw=true) |
+| Example Game 1 |
+| :---: | 
+| ![Game 1](/docs/Animations/solved_3.gif?raw=true) |
 
 
 ## 1. Idea
-Instead of generating a new level on every reset operation, a pregenerated level is choosen randomly. When Boxoban is run for the first time the levels are downloaded from DeepMinds [Github repository](https://github.com/deepmind/boxoban-levels) and stored in the folder _.sokoban_cache_.
+Instead of generating a new level on every reset operation, a pregenerated level is choosen randomly. When Boxoban is run for the first time the levels are downloaded from DeepMinds [Github repository](https://github.com/deepmind/boxoban-levels) and stored in the folder _.sokoban_cache_. 
 
 In case you use the Boxoban levels for your research, the authors of the boxoban-levels repository ask you to cite their work as follows:
 ```
@@ -17,7 +17,7 @@ howpublished= {https://github.com/deepmind/boxoban-levels/},
 year = "2018",
 }
 ```
-
+Dedending on your use case, please consider the [licence](https://github.com/deepmind/boxoban-levels/blob/master/LICENSE) of DeepMinds repository.
 
 ## 2. Rules
 Same rules as the regular Sokoban game.
