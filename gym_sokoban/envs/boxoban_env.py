@@ -29,8 +29,6 @@ class BoxobanEnv(SokobanEnv):
 
         if not os.path.exists(self.cache_path):
            
-            os.makedirs(self.cache_path)
-           
             url = "https://github.com/deepmind/boxoban-levels/archive/master.zip"
             
             print('Boxoban: Pregenerated levels not downloaded.')
@@ -38,6 +36,10 @@ class BoxobanEnv(SokobanEnv):
 
             response = requests.get(url, stream=True)
 
+            if response.status_code != 200:
+                raise "Could not download levels from {}. If this problem occurs consistantly please report the bug under https://github.com/mpSchrader/gym-sokoban/issues. ".format(url)
+
+            os.makedirs(self.cache_path)
             path_to_zip_file = os.path.join(self.cache_path, 'boxoban_levels-master.zip')
             with open(path_to_zip_file, 'wb') as handle:
                 for data in tqdm(response.iter_content()):
