@@ -49,8 +49,9 @@ class SokobanEnv(gym.Env):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def step(self, action):
+    def step(self, action, observation_mode='rgb_array'):
         assert action in ACTION_LOOKUP
+        assert observation_mode in ['rgb_array', 'tiny_rgb_array']
 
         self.num_env_steps += 1
 
@@ -71,7 +72,7 @@ class SokobanEnv(gym.Env):
         done = self._check_if_done()
 
         # Convert the observation to RGB frame
-        observation = self.render(mode='rgb_array')
+        observation = self.render(mode=observation_mode)
 
         info = {
             "action.name": ACTION_LOOKUP[action],
