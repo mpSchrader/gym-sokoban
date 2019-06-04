@@ -49,8 +49,9 @@ class SokobanEnv(gym.Env):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def step(self, action):
+    def step(self, action, observation_mode='rgb_array'):
         assert action in ACTION_LOOKUP
+        assert observation_mode in ['rgb_array', 'tiny_rgb_array']
 
         self.num_env_steps += 1
 
@@ -71,7 +72,7 @@ class SokobanEnv(gym.Env):
         done = self._check_if_done()
 
         # Convert the observation to RGB frame
-        observation = self.render(mode='rgb_array')
+        observation = self.render(mode=observation_mode)
 
         info = {
             "action.name": ACTION_LOOKUP[action],
@@ -213,10 +214,10 @@ class SokobanEnv(gym.Env):
         starting_observation = room_to_rgb(self.room_state, self.room_fixed)
         return starting_observation
 
-    def render(self, mode='human', close=None):
+    def render(self, mode='human', close=None, scale=1):
         assert mode in RENDERING_MODES
 
-        img = self.get_image(mode)
+        img = self.get_image(mode, scale)
 
         if 'rgb_array' in mode:
             return img
@@ -231,10 +232,10 @@ class SokobanEnv(gym.Env):
         else:
             super(SokobanEnv, self).render(mode=mode)  # just raise an exception
 
-    def get_image(self, mode):
+    def get_image(self, mode, scale=1):
 
         if mode.startswith('tiny_'):
-            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=4)
+            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=scale)
         else:
             img = room_to_rgb(self.room_state, self.room_fixed)
 

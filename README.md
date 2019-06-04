@@ -108,7 +108,7 @@ Sokoban has many different variations, such as: Room Size, Number of Boxes, Rend
 
 #### 2.5.1 Rendering Modes
 Besides the regular Sokoban rendering, each configuration can be rendered as TinyWorld, which has a pixel size equal to the grid size. 
-To get an environment rendered as a tiny world just add `tiny_` in front of the rendering mode. E.g: `env.render('tiny_rgb_array')`.
+To get an environment rendered as a tiny world just add `tiny_` in front of the rendering mode. E.g: `env.render('tiny_rgb_array', scale=scale_tiny)`. Scale allows to increase the size of the rendered tiny world observation. Using scale in combination with the rendering modes, `human` or `rgb_array`, does not influence the output size.
 Available rendering modes are:
 
 | Mode | Description |

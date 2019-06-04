@@ -27,6 +27,8 @@ n_steps = args.steps
 save_images = args.save or args.gifs
 generate_gifs = args.gifs
 render_mode = args.render_mode
+observation_mode = 'tiny_rgb_array' if 'tiny' in render_mode else 'rgb_array'
+scale_image = 16
 
 # Creating target directory if images are to be stored
 if save_images and not os.path.exists('images'):
@@ -63,7 +65,7 @@ for i_episode in range(n_rounds):
     observation = env.reset()
 
     for t in range(n_steps):
-        env.render(render_mode)
+        env.render(render_mode, scale=scale_image)
 
         action = input('Select action: ')
         try:
@@ -76,16 +78,16 @@ for i_episode in range(n_rounds):
             print_available_actions()
             continue
 
-        observation, reward, done, info = env.step(action)
+        observation, reward, done, info = env.step(action, observation_mode=observation_mode)
         print(ACTION_LOOKUP[action], reward, done, info)
-
+        print(len(observation), len(observation[0]), len(observation[0][0]))
         if save_images:
-            img = Image.fromarray(np.array(observation), 'RGB')
+            img = Image.fromarray(np.array(env.render(render_mode, scale=scale_image)), 'RGB')
             img.save(os.path.join('images', 'observation_{}_{}.png'.format(i_episode, t)))
 
         if done:
             print("Episode finished after {} timesteps".format(t+1))
-            env.render(render_mode)
+            env.render(render_mode, scale=scale_image)
             break
 
     if generate_gifs:
