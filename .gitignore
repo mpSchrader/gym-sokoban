@@ -5,3 +5,4 @@
 /notebooks
 *~
 .sokoban_cache/
+dist/
