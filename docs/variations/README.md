@@ -2,7 +2,7 @@
 
 | Fixed Targets | Two Player | Push&Pull |
 | :---: | :---: | :---: 
-| ![Game 1](/docs/Animations/fixedTargets_solved_0.gif?raw=true) | ![Game 2](/docs/Animations/TwoPlayer_solved_3.gif?raw=true) | ![Game 3](/docs/Animations/pushAndPull_solved_0.gif?raw=true) |
+| ![Game 1](/docs/Animations/fixedTargets_solved_0.gif?raw=true) | ![Game 2](/docs/Animations/TwoPlayer_solved_2.gif?raw=true) | ![Game 3](/docs/Animations/pushAndPull_solved_0.gif?raw=true) |
 
 
 Besides the regular game of Sokoban, this repository implements or will implement variations, which might make the game easier or more complicated. Except noted differently the variations do not implement a Tiny-World version.
