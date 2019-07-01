@@ -1,6 +1,5 @@
 from .sokoban_env import SokobanEnv
-from .render_utils import room_to_rgb, room_to_tiny_world_rgb
-from gym.spaces import Box
+from .render_utils import room_to_rgb
 import os
 from os import listdir
 from os.path import isfile, join
@@ -80,10 +79,6 @@ class BoxobanEnv(SokobanEnv):
         selected_map = random.choice(maps)
         print('Selected Level from File "{}"'.format(source_file))
 
-        for row in selected_map:
-            print(''.join(row))
-        #print(selected_map)
-
         self.room_fixed, self.room_state, self.box_mapping = self.generate_room(selected_map)
 
 
@@ -125,11 +120,9 @@ class BoxobanEnv(SokobanEnv):
             room_fixed.append(room_f)
             room_state.append(room_s)
 
-        
+
+        # used for replay in room generation, unused here because pre-generated levels
         box_mapping = {}
-        for i in range(len(targets)):
-            #box_mapping[targets]
-            pass
 
         return np.array(room_fixed), np.array(room_state), box_mapping
 
