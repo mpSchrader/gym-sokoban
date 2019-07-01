@@ -1,6 +1,5 @@
 from .sokoban_env import SokobanEnv
-from .render_utils import room_to_rgb, room_to_tiny_world_rgb
-from gym.spaces import Box
+from .render_utils import room_to_rgb
 import os
 from os import listdir
 from os.path import isfile, join
@@ -125,11 +124,9 @@ class BoxobanEnv(SokobanEnv):
             room_fixed.append(room_f)
             room_state.append(room_s)
 
-        
+
+        # used for replay in room generation, unused here because pre-generated levels
         box_mapping = {}
-        for i in range(len(targets)):
-            #box_mapping[targets]
-            pass
 
         return np.array(room_fixed), np.array(room_state), box_mapping
 

@@ -1,7 +1,5 @@
-import random
 import numpy as np
 import pkg_resources
-import marshal
 import imageio
 
 
@@ -149,7 +147,8 @@ def room_to_rgb_FT(room, box_mapping, room_structure=None):
 
 
 def get_proper_box_surface(surfaces_id, box_mapping, i, j):
-    names = ["wall", "floor", "box_target", "box_on_target", "box", "player", "player_on_target"]
+    # not used, kept for documentation
+    # names = ["wall", "floor", "box_target", "box_on_target", "box", "player", "player_on_target"]
     
     box_id = 0
     situation = ''
