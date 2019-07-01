@@ -26,7 +26,6 @@ class PushAndPullSokobanEnv(SokobanEnv):
         self.new_box_position = None
         self.old_box_position = None
 
-        moved_player = False
         moved_box = False
         # All push actions are in the range of [0, 3]
         if action < 4:

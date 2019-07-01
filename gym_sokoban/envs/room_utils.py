@@ -1,8 +1,6 @@
 import random
 import numpy as np
-import pkg_resources
 import marshal
-from scipy import misc
 
 
 def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxes=3, tries=4, second_player=False):
@@ -187,8 +185,6 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     :return: 2d array
     """
     global explored_states, num_boxes, best_room_score, best_room, best_box_mapping
-
-    actions = list(ACTION_LOOKUP.keys())
 
     # Box_Mapping is used to calculate the box displacement for every box
     box_mapping = {}
