@@ -18,6 +18,7 @@ class BoxobanEnv(SokobanEnv):
              difficulty='unfiltered', split='train'):
         self.difficulty = difficulty
         self.split = split
+        self.verbose = False
         super(BoxobanEnv, self).__init__(self.dim_room, max_steps, self.num_boxes, None)
         
 
@@ -57,7 +58,7 @@ class BoxobanEnv(SokobanEnv):
 
         return starting_observation
 
-    def select_room(self, verbose=False):
+    def select_room(self):
         
         generated_files = [f for f in listdir(self.train_data_dir) if isfile(join(self.train_data_dir, f))]
         source_file = join(self.train_data_dir, random.choice(generated_files))
@@ -77,7 +78,7 @@ class BoxobanEnv(SokobanEnv):
 
         selected_map = random.choice(maps)
 
-        if verbose:
+        if self.verbose:
             print('Selected Level from File "{}"'.format(source_file))
 
         self.room_fixed, self.room_state, self.box_mapping = self.generate_room(selected_map)
