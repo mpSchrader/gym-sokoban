@@ -79,10 +79,6 @@ class BoxobanEnv(SokobanEnv):
         selected_map = random.choice(maps)
         print('Selected Level from File "{}"'.format(source_file))
 
-        for row in selected_map:
-            print(''.join(row))
-        #print(selected_map)
-
         self.room_fixed, self.room_state, self.box_mapping = self.generate_room(selected_map)
 
 
