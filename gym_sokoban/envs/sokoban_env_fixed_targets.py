@@ -31,18 +31,18 @@ class FixedTargetsSokobanEnv(SokobanEnv):
     #     else:
     #         super(FixedTargetsSokobanEnv, self).render(mode=mode)
 
-    def get_image(self, mode):
+    def get_image(self, mode, scale=1):
 
         if mode.startswith('tiny_'):
-            img = room_to_tiny_world_rgb_FT(self.room_state, self.box_mapping, self.room_fixed, scale=16)
+            img = room_to_tiny_world_rgb_FT(self.room_state, self.box_mapping, self.room_fixed, scale=scale)
         else:
             img = room_to_rgb_FT(self.room_state, self.box_mapping, self.room_fixed)
 
         return img
 
-    def step(self, action):
+    def step(self, action, observation_mode='rgb_array'):
 
-        observation, self.reward_last, done, info = super(FixedTargetsSokobanEnv, self).step(action)
+        observation, self.reward_last, done, info = super(FixedTargetsSokobanEnv, self).step(action, observation_mode)
 
         return observation, self.reward_last, done, info
 
