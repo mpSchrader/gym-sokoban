@@ -12,18 +12,18 @@ class TwoPlayerSokobanEnv(SokobanEnv):
              max_steps=120,
              num_boxes=3,
              num_gen_steps=None):
-
-        super(TwoPlayerSokobanEnv, self).__init__(dim_room, max_steps, num_boxes, num_gen_steps)
+        
+        super(TwoPlayerSokobanEnv, self).__init__(dim_room, max_steps, num_boxes, num_gen_steps, reset=False)
         screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
         self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3))
         self.boxes_are_on_target = [False] * num_boxes
         self.action_space = Discrete(len(ACTION_LOOKUP))
         self.player_position = []
-        self.player_positions = {}
+        self.player_positions = {0: [0,0], 1: [1,1]}
 
-        pass
+        _ = self.reset()
 
-    def reset(self):
+    def reset(self, render_mode='rgb_array'):
         super(TwoPlayerSokobanEnv, self).reset(second_player=True)
 
         self.player_positions = {
@@ -31,9 +31,9 @@ class TwoPlayerSokobanEnv(SokobanEnv):
             1: np.argwhere(self.room_state == 5)[1]
         }
 
-        return self.render(mode="rgb_array")
+        return self.render(mode=render_mode)
 
-    def step(self, action, observation_mode="rgb_array"):
+    def step(self, action, observation_mode='rgb_array'):
         assert action in ACTION_LOOKUP
 
         self.num_env_steps += 1
