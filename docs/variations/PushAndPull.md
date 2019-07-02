@@ -8,22 +8,24 @@
 ## 1. Idea
 This variation follows the same rules as the regular game with on exception: 
 The player can not only push boxes, but also pull the boxes. 
-Because of that, the number of available actions increase to 12. The action mapping is the following.
+Because of that, the number of available actions increase to 13. The action mapping is the following.
 
- | Action     | ID    | 
- | --------   | :---: | 
- | Push Up    |  0    |  
- | Push Down  |  1    | 
- | Push Left  |  2    |   
- | Push Right |  3    |   
- | Move Up    |  4    |
- | Move Down  |  5    |
- | Move Left  |  6    |
- | Move Right |  7    |
- | Pull Up    |  8    |
- | Pull Down  |  9    |
- | Pull Left  | 10    |
- | Pull Right | 11    |
+ 
+ | Action       | ID    | 
+ | --------     | :---: | 
+ | No Operation |  0    | 
+ | Push Up      |  1    |  
+ | Push Down    |  2    | 
+ | Push Left    |  3    |   
+ | Push Right   |  4    |   
+ | Move Up      |  5    |
+ | Move Down    |  6    |
+ | Move Left    |  7    |
+ | Move Right   |  8    |
+ | Pull Up      |  9    |
+ | Pull Down    |  10   |
+ | Pull Left    |  11   |
+ | Pull Right   |  12   |
 
 The conditions for winning do not change. Also the room generation algorithm is the same as before.
 

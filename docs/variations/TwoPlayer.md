@@ -12,19 +12,21 @@ This variation contains two different players in the room, which both can be mov
 ## 2. Rules
 Every round the user can choose which avatar (player) should be used. 
 The player is chosen by the action number. 
-All actions in the range from 0 to 7 are for player 1, the green avatar.
+The action 0 is the NOOP action, which is a void step changing nothing in the environment.
+All actions in the range from 1 to 8 are for player 1, the green avatar.
 The remaining actions relate to player 2, the blue avatar.
 
  | Action (Player 1) | ID    |  | Action (Player 2) | ID    | 
- | ----------------- | :---: |--| ----------------- | :---: | 
- | P1: Push Up       |  0    |  | P2: Push Up       |  8    |  
- | P1: Push Down     |  1    |  | P2: Push Down     |  9    | 
- | P1: Push Left     |  2    |  | P2: Push Left     |  10   |  
- | P1: Push Right    |  3    |  | P2: Push Right    |  11   |    
- | P1: Move Up       |  4    |  | P2: Move Up       |  12   | 
- | P1: Move Down     |  5    |  | P2: Move Down     |  13   |
- | P1: Move Left     |  6    |  | P2: Move Left     |  14   |
- | P1: Move Right    |  7    |  | P2: Move Right    |  15   |
+ | ----------------- | :---: |--| ----------------- | :---: |
+ | No Operation      |  0    |  |                   |       |
+ | P1: Push Up       |  1    |  | P2: Push Up       |  9    |  
+ | P1: Push Down     |  2    |  | P2: Push Down     |  10   | 
+ | P1: Push Left     |  3    |  | P2: Push Left     |  11   |  
+ | P1: Push Right    |  4    |  | P2: Push Right    |  12   |    
+ | P1: Move Up       |  5    |  | P2: Move Up       |  13   | 
+ | P1: Move Down     |  6    |  | P2: Move Down     |  14   |
+ | P1: Move Left     |  7    |  | P2: Move Left     |  15   |
+ | P1: Move Right    |  8    |  | P2: Move Right    |  16   |
 
 
 The game ending rules as well as the reward are similar to regular game. 
