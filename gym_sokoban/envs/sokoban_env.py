@@ -16,7 +16,8 @@ class SokobanEnv(gym.Env):
                  dim_room=(10, 10),
                  max_steps=120,
                  num_boxes=4,
-                 num_gen_steps=None):
+                 num_gen_steps=None,
+                 reset=True):
 
         # General Configuration
         self.dim_room = dim_room
@@ -42,8 +43,9 @@ class SokobanEnv(gym.Env):
         screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
         self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3), dtype=np.uint8)
         
-        # Initialize Room
-        self.reset()
+        if reset:
+            # Initialize Room
+            _ = self.reset()
 
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
@@ -196,7 +198,7 @@ class SokobanEnv(gym.Env):
     def _check_if_maxsteps(self):
         return (self.max_steps == self.num_env_steps)
 
-    def reset(self, second_player=False):
+    def reset(self, second_player=False, render_mode='rgb_array'):
         try:
             self.room_fixed, self.room_state, self.box_mapping = generate_room(
                 dim=self.dim_room,
@@ -207,14 +209,14 @@ class SokobanEnv(gym.Env):
         except (RuntimeError, RuntimeWarning) as e:
             print("[SOKOBAN] Runtime Error/Warning: {}".format(e))
             print("[SOKOBAN] Retry . . .")
-            return self.reset()
+            return self.reset(second_player=second_player)
 
         self.player_position = np.argwhere(self.room_state == 5)[0]
         self.num_env_steps = 0
         self.reward_last = 0
         self.boxes_on_target = 0
 
-        starting_observation = room_to_rgb(self.room_state, self.room_fixed)
+        starting_observation = self.render(render_mode)
         return starting_observation
 
     def render(self, mode='human', close=None, scale=1):

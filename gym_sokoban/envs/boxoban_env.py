@@ -30,8 +30,9 @@ class BoxobanEnv(SokobanEnv):
            
             url = "https://github.com/deepmind/boxoban-levels/archive/master.zip"
             
-            print('Boxoban: Pregenerated levels not downloaded.')
-            print('Starting download from "{}"'.format(url))
+            if self.verbose:
+                print('Boxoban: Pregenerated levels not downloaded.')
+                print('Starting download from "{}"'.format(url))
 
             response = requests.get(url, stream=True)
 

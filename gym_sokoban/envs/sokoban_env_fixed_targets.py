@@ -15,7 +15,8 @@ class FixedTargetsSokobanEnv(SokobanEnv):
         screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
         self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3))
         self.boxes_are_on_target = [False] * num_boxes
-        pass
+        
+        _ = self.reset()
 
     def get_image(self, mode, scale=1):
 
