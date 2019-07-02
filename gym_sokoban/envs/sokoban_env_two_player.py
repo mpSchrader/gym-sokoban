@@ -33,7 +33,7 @@ class TwoPlayerSokobanEnv(SokobanEnv):
 
         return self.render(mode="rgb_array")
 
-    def step(self, action):
+    def step(self, action, observation_mode="rgb_array"):
         assert action in ACTION_LOOKUP
 
         self.num_env_steps += 1
@@ -42,21 +42,25 @@ class TwoPlayerSokobanEnv(SokobanEnv):
         self.old_box_position = None
 
         active_player = 0
-        if action > 7:
+        if action > 8:
             active_player = 1
 
         self.player_position = self.player_positions[active_player]
 
-        player_action = action % 8
+        player_action = (action-1) % 8
 
-        moved_player = False
-        moved_box = False
+        if action == 0:
+            moved_player = False
+            moved_box = False
+            active_player = -1
+
         # All push actions are in the range of [0, 3]
-        if player_action < 4:
-            moved_player, moved_box = self._push(player_action)
+        elif player_action < 4:
+            moved_player, moved_box = self._push(player_action + 1)
 
         elif player_action < 8:
-            moved_player = self._move(player_action)
+            moved_player = self._move(player_action + 1)
+            moved_box = False
 
         self.player_positions[active_player] = self.player_position
 
@@ -65,7 +69,7 @@ class TwoPlayerSokobanEnv(SokobanEnv):
         done = self._check_if_done()
 
         # Convert the observation to RGB frame
-        observation = self.render(mode='rgb_array')
+        observation = self.render(mode=observation_mode)
 
         info = {
             "action.name": ACTION_LOOKUP[action],
@@ -79,10 +83,9 @@ class TwoPlayerSokobanEnv(SokobanEnv):
 
         return observation, self.reward_last, done, info
 
-    def get_image(self, mode):
+    def get_image(self, mode, scale=1):
 
         if mode.startswith('tiny_'):
-            scale = 16
             img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=scale)
             img = color_tiny_player_two(img, self.player_positions[1], self.room_fixed, scale=scale)
         else:
@@ -99,21 +102,22 @@ class TwoPlayerSokobanEnv(SokobanEnv):
 
 
 ACTION_LOOKUP = {
-    0: 'P1: push up',
-    1: 'P1: push down',
-    2: 'P1: push left',
-    3: 'P1: push right',
-    4: 'P1: move up',
-    5: 'P1: move down',
-    6: 'P1: move left',
-    7: 'P1: move right',
-    8: 'P2: push up',
-    9: 'P2: push down',
-    10: 'P2: push left',
-    11: 'P2: push right',
-    12: 'P2: move up',
-    13: 'P2: move down',
-    14: 'P2: move left',
-    15: 'P2: move right'
+    0: 'no operation',
+    1: 'P1: push up',
+    2: 'P1: push down',
+    3: 'P1: push left',
+    4: 'P1: push right',
+    5: 'P1: move up',
+    6: 'P1: move down',
+    7: 'P1: move left',
+    8: 'P1: move right',
+    9: 'P2: push up',
+    10: 'P2: push down',
+    11: 'P2: push left',
+    12: 'P2: push right',
+    13: 'P2: move up',
+    14: 'P2: move down',
+    15: 'P2: move left',
+    16: 'P2: move right'
 }
 

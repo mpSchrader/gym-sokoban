@@ -35,20 +35,22 @@ Every room consists of five main elements: walls, floor, boxes, box targets, and
 | Player     | On Target  | ![PlayerOnTarget](/gym_sokoban/envs/surface/player_on_target.png "Player") | ![PlayerOnTarget](/gym_sokoban/envs/surface/tiny_world/player_on_target.png "Player") |
 
 ### 2.2 Actions
-The game provides 8 actions to interact with the environment. 
+The game provides 9 actions to interact with the environment. 
 Push and Move actions into the directions Up, Down, Left and Right.
+The No Operation action is a void action, which does not change anything in the environment.
 The mapping of the action numbers to the actual actions looks as follows
 
- | Action     | ID    | 
- | --------   | :---: | 
- | Push Up    | 0     |  
- | Push Down  | 1     | 
- | Push Left  | 2     |   
- | Push Right | 3     |   
- | Move Up    | 4     |
- | Move Down  | 5     |
- | Move Left  | 6     |
- | Move Right | 7     |
+ | Action       | ID    | 
+ | --------     | :---: | 
+ | No Operation | 0     | 
+ | Push Up      | 1     |  
+ | Push Down    | 2     | 
+ | Push Left    | 3     |   
+ | Push Right   | 4     |   
+ | Move Up      | 5     |
+ | Move Down    | 6     |
+ | Move Left    | 7     |
+ | Move Right   | 8     |
  
 **Move** simply moves if there is a free field in the direction, which means no blocking box or wall.
 
