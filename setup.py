@@ -1,8 +1,24 @@
 from setuptools import setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+    long_description = long_description.replace('/gym_sokoban', 'https://github.com/mpSchrader/gym-sokoban/gym_sokoban')
+    long_description = long_description.replace('/docs', 'https://github.com/mpSchrader/gym-sokoban/docs')
+    long_description = long_description.replace('/example', 'https://github.com/mpSchrader/gym-sokoban/example')
+
+
 setup(
       name='gym_sokoban',
-      version='0.2.0',
+      version='0.0.2',
+      author="Max-Philipp Schrader",
       description='Sokoban environment for OpenAI Gym',
-      install_requires=['gym>=0.2.3', 'numpy>=1.14.1', 'tqdm>=4.32.1', 'imageio>=2.5.0', 'requests>=2.22.0']
+      long_description=long_description,
+      long_description_content_type="text/markdown",
+       url="https://github.com/mpSchrader/gym-sokoban",
+      install_requires=['gym>=0.2.3', 'numpy>=1.14.1', 'tqdm>=4.32.1', 'imageio>=2.3.0', 'requests>=2.22.0'],
+      classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
 )
