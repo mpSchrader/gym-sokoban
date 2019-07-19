@@ -37,9 +37,9 @@ Of course all configurations can be rendered as TinyWorld.
 
 | Room Id | Grid-Size | Pixels | #Boxes | Example | 
 | ---     | :---:      | :---: | :---:   | :---: | 
-| FixedTarget-Sokoban-v0 |  7x7  | 160x160 | 2 | ![TwoPlayer-Sokoban-v0](/docs/rooms/TwoPlayer-Sokoban-v0.png)  | 
-| FixedTarget-Sokoban-v1 |  7x7  | 160x160 | 3 | ![TwoPlayer-Sokoban-v1](/docs/rooms/TwoPlayer-Sokoban-v1.png)   | 
-| FixedTarget-Sokoban-v2 | 10x10 | 112x112 | 3 | ![TwoPlayer-Sokoban-v2](/docs/rooms/TwoPlayer-Sokoban-v2.png)  |
-| FixedTarget-Sokoban-v3 | 10x10 | 112x112 | 4 | ![TwoPlayer-Sokoban-v3](/docs/rooms/TwoPlayer-Sokoban-v3.png)  |
-| FixedTarget-Sokoban-v4 | 13x11 | 160x160 | 3 | ![TwoPlayer-Sokoban-v4](/docs/rooms/TwoPlayer-Sokoban-v4.png)  | 
-| FixedTarget-Sokoban-v5 | 13x11 | 160x160 | 4 | ![TwoPlayer-Sokoban-v5](/docs/rooms/TwoPlayer-Sokoban-v5.png)   | 
+| TwoPlayer-Sokoban-v0 |  7x7  | 160x160 | 2 | ![TwoPlayer-Sokoban-v0](/docs/rooms/TwoPlayer-Sokoban-v0.png)  | 
+| TwoPlayer-Sokoban-v1 |  7x7  | 160x160 | 3 | ![TwoPlayer-Sokoban-v1](/docs/rooms/TwoPlayer-Sokoban-v1.png)   | 
+| TwoPlayer-Sokoban-v2 | 10x10 | 112x112 | 3 | ![TwoPlayer-Sokoban-v2](/docs/rooms/TwoPlayer-Sokoban-v2.png)  |
+| TwoPlayer-Sokoban-v3 | 10x10 | 112x112 | 4 | ![TwoPlayer-Sokoban-v3](/docs/rooms/TwoPlayer-Sokoban-v3.png)  |
+| TwoPlayer-Sokoban-v4 | 13x11 | 160x160 | 3 | ![TwoPlayer-Sokoban-v4](/docs/rooms/TwoPlayer-Sokoban-v4.png)  | 
+| TwoPlayer-Sokoban-v5 | 13x11 | 160x160 | 4 | ![TwoPlayer-Sokoban-v5](/docs/rooms/TwoPlayer-Sokoban-v5.png)   | 
