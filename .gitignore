@@ -6,3 +6,4 @@
 *~
 .sokoban_cache/
 dist/
+build/

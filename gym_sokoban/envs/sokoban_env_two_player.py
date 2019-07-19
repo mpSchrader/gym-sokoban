@@ -21,10 +21,10 @@ class TwoPlayerSokobanEnv(SokobanEnv):
         self.player_position = []
         self.player_positions = {0: [0,0], 1: [1,1]}
 
-        _ = self.reset()
+        _ = self.reset(second_player=True)
 
-    def reset(self, render_mode='rgb_array'):
-        super(TwoPlayerSokobanEnv, self).reset(second_player=True)
+    def reset(self, render_mode='rgb_array',second_player=True):
+        super(TwoPlayerSokobanEnv, self).reset(second_player=second_player)
 
         self.player_positions = {
             0: np.argwhere(self.room_state == 5)[0],
