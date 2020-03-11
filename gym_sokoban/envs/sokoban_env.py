@@ -9,7 +9,7 @@ import numpy as np
 
 class SokobanEnv(gym.Env):
     metadata = {
-        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array']
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array', 'raw']
     }
 
     def __init__(self,
@@ -51,9 +51,9 @@ class SokobanEnv(gym.Env):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def step(self, action, observation_mode='rgb_array'):
+    def step(self, action, observation_mode='raw'):
         assert action in ACTION_LOOKUP
-        assert observation_mode in ['rgb_array', 'tiny_rgb_array']
+        assert observation_mode in ['rgb_array', 'tiny_rgb_array', 'raw']
 
         self.num_env_steps += 1
 
@@ -198,7 +198,7 @@ class SokobanEnv(gym.Env):
     def _check_if_maxsteps(self):
         return (self.max_steps == self.num_env_steps)
 
-    def reset(self, second_player=False, render_mode='rgb_array'):
+    def reset(self, second_player=False, render_mode='raw'):
         try:
             self.room_fixed, self.room_state, self.box_mapping = generate_room(
                 dim=self.dim_room,
@@ -233,6 +233,14 @@ class SokobanEnv(gym.Env):
                 self.viewer = rendering.SimpleImageViewer()
             self.viewer.imshow(img)
             return self.viewer.isopen
+
+        elif 'raw' in mode:
+            arr_walls = (self.room_fixed == 0).view(np.int8)
+            arr_goals = (self.room_fixed == 2).view(np.int8)
+            arr_boxes = ((self.room_state == 4) + (self.room_state == 3)).view(np.int8)
+            arr_player = (self.room_state == 5).view(np.int8)
+
+            return arr_walls, arr_goals, arr_boxes, arr_player
 
         else:
             super(SokobanEnv, self).render(mode=mode)  # just raise an exception
@@ -284,4 +292,4 @@ CHANGE_COORDINATES = {
     3: (0, 1)
 }
 
-RENDERING_MODES = ['rgb_array', 'human', 'tiny_rgb_array', 'tiny_human']
+RENDERING_MODES = ['rgb_array', 'human', 'tiny_rgb_array', 'tiny_human', 'raw']
