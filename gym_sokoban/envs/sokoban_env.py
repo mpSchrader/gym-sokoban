@@ -9,7 +9,7 @@ import numpy as np
 
 class SokobanEnv(gym.Env):
     metadata = {
-        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array']
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array', 'raw']
     }
 
     def __init__(self,
@@ -53,7 +53,7 @@ class SokobanEnv(gym.Env):
 
     def step(self, action, observation_mode='rgb_array'):
         assert action in ACTION_LOOKUP
-        assert observation_mode in ['rgb_array', 'tiny_rgb_array']
+        assert observation_mode in ['rgb_array', 'tiny_rgb_array', 'raw']
 
         self.num_env_steps += 1
 
@@ -234,6 +234,14 @@ class SokobanEnv(gym.Env):
             self.viewer.imshow(img)
             return self.viewer.isopen
 
+        elif 'raw' in mode:
+            arr_walls = (self.room_fixed == 0).view(np.int8)
+            arr_goals = (self.room_fixed == 2).view(np.int8)
+            arr_boxes = ((self.room_state == 4) + (self.room_state == 3)).view(np.int8)
+            arr_player = (self.room_state == 5).view(np.int8)
+
+            return arr_walls, arr_goals, arr_boxes, arr_player
+
         else:
             super(SokobanEnv, self).render(mode=mode)  # just raise an exception
 
@@ -284,4 +292,4 @@ CHANGE_COORDINATES = {
     3: (0, 1)
 }
 
-RENDERING_MODES = ['rgb_array', 'human', 'tiny_rgb_array', 'tiny_human']
+RENDERING_MODES = ['rgb_array', 'human', 'tiny_rgb_array', 'tiny_human', 'raw']
