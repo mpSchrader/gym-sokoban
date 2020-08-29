@@ -34,11 +34,11 @@ Similar to the regular game there exist multiple room configurations, but TinyWo
 
 | Room Id | Grid-Size | Pixels | #Boxes | Example | 
 | ---     | :---:      | :---: | :---:   | :---: | 
-| FixedTarget-Sokoban-v0 | 10x10 | 160x160 | 3 | ![PushAndPull-Sokoban-v0](/docs/rooms/Sokoban-v0.png)  | 
-| FixedTarget-Sokoban-v1 | 10x10 | 160x160 | 4 | ![PushAndPull-Sokoban-v1](/docs/rooms/Sokoban-v1.png)   | 
-| FixedTarget-Sokoban-v2 | 7x7 | 112x112 | 2 | ![PushAndPull-Sokoban-v2](/docs/rooms/Sokoban-small-v0.png)  |
-| FixedTarget-Sokoban-v3 | 7x7 | 112x112 | 3 | ![PushAndPull-Sokoban-v3](/docs/rooms/Sokoban-small-v1.png)  |
-| FixedTarget-Sokoban-v4 | 13x11 | 208x176 | 4 | ![PushAndPull-Sokoban-v4](/docs/rooms/Sokoban-large-v0.png)  |
-| FixedTarget-Sokoban-v5 | 13x11 | 208x176 | 5 | ![PushAndPull-Sokoban-v5](/docs/rooms/Sokoban-large-v1.png)  |
+| PushAndPull-Sokoban-v0 | 10x10 | 160x160 | 3 | ![PushAndPull-Sokoban-v0](/docs/rooms/Sokoban-v0.png)  | 
+| PushAndPull-Sokoban-v1 | 10x10 | 160x160 | 4 | ![PushAndPull-Sokoban-v1](/docs/rooms/Sokoban-v1.png)   | 
+| PushAndPull-Sokoban-v2 | 7x7 | 112x112 | 2 | ![PushAndPull-Sokoban-v2](/docs/rooms/Sokoban-small-v0.png)  |
+| PushAndPull-Sokoban-v3 | 7x7 | 112x112 | 3 | ![PushAndPull-Sokoban-v3](/docs/rooms/Sokoban-small-v1.png)  |
+| PushAndPull-Sokoban-v4 | 13x11 | 208x176 | 4 | ![PushAndPull-Sokoban-v4](/docs/rooms/Sokoban-large-v0.png)  |
+| PushAndPull-Sokoban-v5 | 13x11 | 208x176 | 5 | ![PushAndPull-Sokoban-v5](/docs/rooms/Sokoban-large-v1.png)  |
 
 
