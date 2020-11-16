@@ -22,7 +22,7 @@ class BoxobanEnv(SokobanEnv):
         super(BoxobanEnv, self).__init__(self.dim_room, max_steps, self.num_boxes, None)
         
 
-    def reset(self):
+    def reset(self, render_mode='rgb_array'):
         self.cache_path = '.sokoban_cache'
         self.train_data_dir = os.path.join(self.cache_path, 'boxoban-levels-master', self.difficulty, self.split)
 
@@ -55,7 +55,7 @@ class BoxobanEnv(SokobanEnv):
         self.reward_last = 0
         self.boxes_on_target = 0
 
-        starting_observation = room_to_rgb(self.room_state, self.room_fixed)
+        starting_observation = self.render(render_mode)
 
         return starting_observation
 
