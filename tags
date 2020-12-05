@@ -1,0 +1,318 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ACTION_LOOKUP	examples/Human_Playing_Commandline.py	/^ACTION_LOOKUP = env.unwrapped.get_action_lookup()$/;"	v
+ACTION_LOOKUP	examples/Random_Sampling.py	/^ACTION_LOOKUP = env.unwrapped.get_action_lookup()$/;"	v
+ACTION_LOOKUP	gym_sokoban/envs/__init__.py	/^from gym_sokoban.envs.sokoban_env import SokobanEnv, ACTION_LOOKUP, CHANGE_COORDINATES$/;"	i
+ACTION_LOOKUP	gym_sokoban/envs/render_utils.py	/^ACTION_LOOKUP = {$/;"	v
+ACTION_LOOKUP	gym_sokoban/envs/room_utils.py	/^ACTION_LOOKUP = {$/;"	v
+ACTION_LOOKUP	gym_sokoban/envs/sokoban_env.py	/^ACTION_LOOKUP = {$/;"	v
+ACTION_LOOKUP	gym_sokoban/envs/sokoban_env_pull.py	/^ACTION_LOOKUP = {$/;"	v
+ACTION_LOOKUP	gym_sokoban/envs/sokoban_env_two_player.py	/^ACTION_LOOKUP = {$/;"	v
+Box	gym_sokoban/envs/sokoban_env.py	/^from gym.spaces import Box$/;"	i
+Box	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^from gym.spaces import Box$/;"	i
+Box	gym_sokoban/envs/sokoban_env_pull.py	/^from gym.spaces import Box$/;"	i
+Box	gym_sokoban/envs/sokoban_env_two_player.py	/^from gym.spaces import Box$/;"	i
+Boxban_Env0	gym_sokoban/envs/sokoban_env_variations.py	/^class Boxban_Env0(BoxobanEnv):$/;"	c
+Boxban_Env0_test	gym_sokoban/envs/sokoban_env_variations.py	/^class Boxban_Env0_test(BoxobanEnv):$/;"	c
+Boxban_Env0_val	gym_sokoban/envs/sokoban_env_variations.py	/^class Boxban_Env0_val(BoxobanEnv):$/;"	c
+Boxban_Env1	gym_sokoban/envs/sokoban_env_variations.py	/^class Boxban_Env1(BoxobanEnv):$/;"	c
+Boxban_Env1_val	gym_sokoban/envs/sokoban_env_variations.py	/^class Boxban_Env1_val(BoxobanEnv):$/;"	c
+BoxobanEnv	gym_sokoban/envs/boxoban_env.py	/^class BoxobanEnv(SokobanEnv):$/;"	c
+BoxobanEnv	gym_sokoban/envs/boxoban_env_pull.py	/^from .boxoban_env import BoxobanEnv$/;"	i
+BoxobanEnv	gym_sokoban/envs/sokoban_env_variations.py	/^from .boxoban_env import BoxobanEnv$/;"	i
+CHANGE_COORDINATES	gym_sokoban/envs/__init__.py	/^from gym_sokoban.envs.sokoban_env import SokobanEnv, ACTION_LOOKUP, CHANGE_COORDINATES$/;"	i
+CHANGE_COORDINATES	gym_sokoban/envs/render_utils.py	/^CHANGE_COORDINATES = {$/;"	v
+CHANGE_COORDINATES	gym_sokoban/envs/room_utils.py	/^CHANGE_COORDINATES = {$/;"	v
+CHANGE_COORDINATES	gym_sokoban/envs/sokoban_env.py	/^CHANGE_COORDINATES = {$/;"	v
+CHANGE_COORDINATES	gym_sokoban/envs/sokoban_env_pull.py	/^from .sokoban_env import SokobanEnv, CHANGE_COORDINATES$/;"	i
+CHANGE_COORDINATES	gym_sokoban/envs/sokoban_env_two_player.py	/^from .sokoban_env import SokobanEnv, CHANGE_COORDINATES$/;"	i
+Discrete	gym_sokoban/envs/sokoban_env.py	/^from gym.spaces.discrete import Discrete$/;"	i
+Discrete	gym_sokoban/envs/sokoban_env_pull.py	/^from gym.spaces.discrete import Discrete$/;"	i
+Discrete	gym_sokoban/envs/sokoban_env_two_player.py	/^from gym.spaces.discrete import Discrete$/;"	i
+FixedTargetsSokobanEnv	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^class FixedTargetsSokobanEnv(SokobanEnv):$/;"	c
+FixedTargetsSokobanEnv	gym_sokoban/envs/sokoban_env_variations.py	/^from .sokoban_env_fixed_targets import FixedTargetsSokobanEnv$/;"	i
+FixedTargets_Env_v0	gym_sokoban/envs/sokoban_env_variations.py	/^class FixedTargets_Env_v0(FixedTargetsSokobanEnv):$/;"	c
+FixedTargets_Env_v1	gym_sokoban/envs/sokoban_env_variations.py	/^class FixedTargets_Env_v1(FixedTargetsSokobanEnv):$/;"	c
+FixedTargets_Env_v2	gym_sokoban/envs/sokoban_env_variations.py	/^class FixedTargets_Env_v2(FixedTargetsSokobanEnv):$/;"	c
+FixedTargets_Env_v3	gym_sokoban/envs/sokoban_env_variations.py	/^class FixedTargets_Env_v3(FixedTargetsSokobanEnv):$/;"	c
+Image	examples/Human_Playing_Commandline.py	/^from PIL import Image$/;"	i
+PushAndPullBoxobanEnv	gym_sokoban/envs/boxoban_env_pull.py	/^class PushAndPullBoxobanEnv(PushAndPullEnv,BoxobanEnv):$/;"	c
+PushAndPullEnv	gym_sokoban/envs/boxoban_env_pull.py	/^from .sokoban_env_pull import PushAndPullEnv$/;"	i
+PushAndPullSokobanEnv	gym_sokoban/envs/sokoban_env_pull.py	/^class PushAndPullSokobanEnv(SokobanEnv):$/;"	c
+PushAndPullSokobanEnv	gym_sokoban/envs/sokoban_env_variations.py	/^from .sokoban_env_pull import PushAndPullSokobanEnv$/;"	i
+PushAndPull_Env_v0	gym_sokoban/envs/sokoban_env_variations.py	/^class PushAndPull_Env_v0(PushAndPullSokobanEnv):$/;"	c
+PushAndPull_Env_v1	gym_sokoban/envs/sokoban_env_variations.py	/^class PushAndPull_Env_v1(PushAndPullSokobanEnv):$/;"	c
+PushAndPull_Env_v2	gym_sokoban/envs/sokoban_env_variations.py	/^class PushAndPull_Env_v2(PushAndPullSokobanEnv):$/;"	c
+PushAndPull_Env_v3	gym_sokoban/envs/sokoban_env_variations.py	/^class PushAndPull_Env_v3(PushAndPullSokobanEnv):$/;"	c
+PushAndPull_Env_v4	gym_sokoban/envs/sokoban_env_variations.py	/^class PushAndPull_Env_v4(PushAndPullSokobanEnv):$/;"	c
+PushAndPull_Env_v5	gym_sokoban/envs/sokoban_env_variations.py	/^class PushAndPull_Env_v5(PushAndPullSokobanEnv):$/;"	c
+RENDERING_MODES	gym_sokoban/envs/sokoban_env.py	/^RENDERING_MODES = ['rgb_array', 'human', 'tiny_rgb_array', 'tiny_human', 'raw']$/;"	v
+SokobanEnv	gym_sokoban/envs/__init__.py	/^from gym_sokoban.envs.sokoban_env import SokobanEnv, ACTION_LOOKUP, CHANGE_COORDINATES$/;"	i
+SokobanEnv	gym_sokoban/envs/boxoban_env.py	/^from .sokoban_env import SokobanEnv$/;"	i
+SokobanEnv	gym_sokoban/envs/sokoban_env.py	/^class SokobanEnv(gym.Env):$/;"	c
+SokobanEnv	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^from .sokoban_env import SokobanEnv$/;"	i
+SokobanEnv	gym_sokoban/envs/sokoban_env_pull.py	/^from .sokoban_env import SokobanEnv, CHANGE_COORDINATES$/;"	i
+SokobanEnv	gym_sokoban/envs/sokoban_env_two_player.py	/^from .sokoban_env import SokobanEnv, CHANGE_COORDINATES$/;"	i
+SokobanEnv	gym_sokoban/envs/sokoban_env_variations.py	/^from .sokoban_env import SokobanEnv$/;"	i
+SokobanEnv1	gym_sokoban/envs/sokoban_env_variations.py	/^class SokobanEnv1(SokobanEnv):$/;"	c
+SokobanEnv2	gym_sokoban/envs/sokoban_env_variations.py	/^class SokobanEnv2(SokobanEnv):$/;"	c
+SokobanEnv_Huge0	gym_sokoban/envs/sokoban_env_variations.py	/^class SokobanEnv_Huge0(SokobanEnv):$/;"	c
+SokobanEnv_Large0	gym_sokoban/envs/sokoban_env_variations.py	/^class SokobanEnv_Large0(SokobanEnv):$/;"	c
+SokobanEnv_Large1	gym_sokoban/envs/sokoban_env_variations.py	/^class SokobanEnv_Large1(SokobanEnv):$/;"	c
+SokobanEnv_Small0	gym_sokoban/envs/sokoban_env_variations.py	/^class SokobanEnv_Small0(SokobanEnv):$/;"	c
+SokobanEnv_Small1	gym_sokoban/envs/sokoban_env_variations.py	/^class SokobanEnv_Small1(SokobanEnv):$/;"	c
+TYPE_LOOKUP	gym_sokoban/envs/render_utils.py	/^TYPE_LOOKUP = {$/;"	v
+TYPE_LOOKUP	gym_sokoban/envs/room_utils.py	/^TYPE_LOOKUP = {$/;"	v
+TwoPlayerSokobanEnv	gym_sokoban/envs/sokoban_env_two_player.py	/^class TwoPlayerSokobanEnv(SokobanEnv):$/;"	c
+TwoPlayerSokobanEnv	gym_sokoban/envs/sokoban_env_variations.py	/^from .sokoban_env_two_player import TwoPlayerSokobanEnv$/;"	i
+TwoPlayer_Env0	gym_sokoban/envs/sokoban_env_variations.py	/^class TwoPlayer_Env0(TwoPlayerSokobanEnv):$/;"	c
+TwoPlayer_Env1	gym_sokoban/envs/sokoban_env_variations.py	/^class TwoPlayer_Env1(TwoPlayerSokobanEnv):$/;"	c
+TwoPlayer_Env2	gym_sokoban/envs/sokoban_env_variations.py	/^class TwoPlayer_Env2(TwoPlayerSokobanEnv):$/;"	c
+TwoPlayer_Env3	gym_sokoban/envs/sokoban_env_variations.py	/^class TwoPlayer_Env3(TwoPlayerSokobanEnv):$/;"	c
+TwoPlayer_Env4	gym_sokoban/envs/sokoban_env_variations.py	/^class TwoPlayer_Env4(TwoPlayerSokobanEnv):$/;"	c
+TwoPlayer_Env5	gym_sokoban/envs/sokoban_env_variations.py	/^class TwoPlayer_Env5(TwoPlayerSokobanEnv):$/;"	c
+__init__	gym_sokoban/envs/boxoban_env.py	/^    def __init__(self,$/;"	m	class:BoxobanEnv
+__init__	gym_sokoban/envs/boxoban_env_pull.py	/^    def __init__(self,$/;"	m	class:PushAndPullBoxobanEnv
+__init__	gym_sokoban/envs/sokoban_env.py	/^    def __init__(self,$/;"	m	class:SokobanEnv
+__init__	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^    def __init__(self,$/;"	m	class:FixedTargetsSokobanEnv
+__init__	gym_sokoban/envs/sokoban_env_pull.py	/^    def __init__(self,$/;"	m	class:PushAndPullSokobanEnv
+__init__	gym_sokoban/envs/sokoban_env_two_player.py	/^    def __init__(self,$/;"	m	class:TwoPlayerSokobanEnv
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:Boxban_Env0
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:Boxban_Env0_test
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:Boxban_Env0_val
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:Boxban_Env1
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:Boxban_Env1_val
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:FixedTargets_Env_v0
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:FixedTargets_Env_v1
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:FixedTargets_Env_v2
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:FixedTargets_Env_v3
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:PushAndPull_Env_v0
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:PushAndPull_Env_v1
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:PushAndPull_Env_v2
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:PushAndPull_Env_v3
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:PushAndPull_Env_v4
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:PushAndPull_Env_v5
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:SokobanEnv1
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:SokobanEnv2
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:SokobanEnv_Huge0
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:SokobanEnv_Large0
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:SokobanEnv_Large1
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:SokobanEnv_Small0
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:SokobanEnv_Small1
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:TwoPlayer_Env0
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:TwoPlayer_Env1
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:TwoPlayer_Env2
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:TwoPlayer_Env3
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:TwoPlayer_Env4
+__init__	gym_sokoban/envs/sokoban_env_variations.py	/^    def __init__(self):$/;"	m	class:TwoPlayer_Env5
+_calc_reward	gym_sokoban/envs/sokoban_env.py	/^    def _calc_reward(self):$/;"	m	class:SokobanEnv
+_calc_reward	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^    def _calc_reward(self):$/;"	m	class:FixedTargetsSokobanEnv
+_check_if_all_boxes_on_target	gym_sokoban/envs/sokoban_env.py	/^    def _check_if_all_boxes_on_target(self):$/;"	m	class:SokobanEnv
+_check_if_all_boxes_on_target	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^    def _check_if_all_boxes_on_target(self):$/;"	m	class:FixedTargetsSokobanEnv
+_check_if_done	gym_sokoban/envs/sokoban_env.py	/^    def _check_if_done(self):$/;"	m	class:SokobanEnv
+_check_if_maxsteps	gym_sokoban/envs/sokoban_env.py	/^    def _check_if_maxsteps(self):$/;"	m	class:SokobanEnv
+_move	gym_sokoban/envs/sokoban_env.py	/^    def _move(self, action):$/;"	m	class:SokobanEnv
+_pull	gym_sokoban/envs/sokoban_env_pull.py	/^    def _pull(self, action):$/;"	m	class:PushAndPullSokobanEnv
+_push	gym_sokoban/envs/sokoban_env.py	/^    def _push(self, action):$/;"	m	class:SokobanEnv
+_update_box_mapping	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^    def _update_box_mapping(self):$/;"	m	class:FixedTargetsSokobanEnv
+action	examples/Human_Playing_Commandline.py	/^            action = int(action)$/;"	v
+action	examples/Human_Playing_Commandline.py	/^        action = input('Select action: ')$/;"	v
+action	examples/Random_Sampling.py	/^        action = env.action_space.sample()$/;"	v
+argparse	examples/Human_Playing_Commandline.py	/^import argparse$/;"	i
+argparse	examples/Profile_Performance.py	/^import argparse$/;"	i
+args	examples/Human_Playing_Commandline.py	/^args = parser.parse_args()$/;"	v
+args	examples/Profile_Performance.py	/^args = parser.parse_args()$/;"	v
+author	setup.py	/^      author="Max-Philipp Schrader",$/;"	v
+best_box_mapping	gym_sokoban/envs/room_utils.py	/^best_box_mapping = None$/;"	v
+best_room	gym_sokoban/envs/room_utils.py	/^best_room = None$/;"	v
+best_room_score	gym_sokoban/envs/room_utils.py	/^best_room_score = -1$/;"	v
+box_displacement_score	gym_sokoban/envs/room_utils.py	/^def box_displacement_score(box_mapping):$/;"	f
+cProfile	examples/Profile_Performance.py	/^import cProfile$/;"	i
+classifiers	setup.py	/^      classifiers=[$/;"	v
+close	gym_sokoban/envs/sokoban_env.py	/^    def close(self):$/;"	m	class:SokobanEnv
+color_player_two	gym_sokoban/envs/render_utils.py	/^def color_player_two(room_rgb, position, room_structure):$/;"	f
+color_player_two	gym_sokoban/envs/sokoban_env_two_player.py	/^from .render_utils import room_to_rgb, room_to_tiny_world_rgb, color_player_two, color_tiny_player_two$/;"	i
+color_tiny_player_two	gym_sokoban/envs/render_utils.py	/^def color_tiny_player_two(room_rgb, position, room_structure, scale = 4):$/;"	f
+color_tiny_player_two	gym_sokoban/envs/sokoban_env_two_player.py	/^from .render_utils import room_to_rgb, room_to_tiny_world_rgb, color_player_two, color_tiny_player_two$/;"	i
+delta	examples/Profile_Performance.py	/^delta = end-start$/;"	v
+depth_first_search	gym_sokoban/envs/room_utils.py	/^def depth_first_search(room_state, room_structure, box_mapping, box_swaps=0, last_pull=(-1, -1), ttl=300):$/;"	f
+description	setup.py	/^      description='Sokoban environment for OpenAI Gym',$/;"	v
+difficulty	gym_sokoban/envs/boxoban_env_pull.py	/^		difficulty=difficulty,$/;"	v
+difficulty	gym_sokoban/envs/boxoban_env_pull.py	/^	difficulty='unfiltered',$/;"	v	class:PushAndPullBoxobanEnv
+dim_room	gym_sokoban/envs/boxoban_env.py	/^    dim_room=(10, 10)$/;"	v	class:BoxobanEnv
+dim_room	gym_sokoban/envs/boxoban_env_pull.py	/^		dim_room=dim_room,$/;"	v
+dim_room	gym_sokoban/envs/boxoban_env_pull.py	/^	dim_room=(10, 10),$/;"	v	class:PushAndPullBoxobanEnv
+end	examples/Profile_Performance.py	/^end = time.time()$/;"	v
+entry_point	gym_sokoban/__init__.py	/^            entry_point=env["entry_point"]$/;"	v
+env	examples/Human_Playing_Commandline.py	/^env = gym.make(env_name)$/;"	v
+env	examples/Profile_Performance.py	/^env = gym.make(env_name)$/;"	v
+env	examples/Random_Sampling.py	/^env = gym.make(env_name)$/;"	v
+env_json	gym_sokoban/__init__.py	/^env_json = pkg_resources.resource_filename(resource_package, '\/'.join(('envs', 'available_envs.json')))$/;"	v
+env_name	examples/Human_Playing_Commandline.py	/^env_name = args.env$/;"	v
+env_name	examples/Profile_Performance.py	/^env_name = args.env$/;"	v
+env_name	examples/Random_Sampling.py	/^env_name = 'Sokoban-v0'$/;"	v
+envs	gym_sokoban/__init__.py	/^    envs = json.load(f)$/;"	v
+explored_states	gym_sokoban/envs/room_utils.py	/^explored_states = set()$/;"	v
+filename	examples/Human_Playing_Commandline.py	/^                        filename = os.path.join('images', 'observation_{}_{}.png'.format(i_episode, t))$/;"	v
+find_packages	setup.py	/^from setuptools import setup, find_packages$/;"	i
+generate_gifs	examples/Human_Playing_Commandline.py	/^generate_gifs = args.gifs$/;"	v
+generate_room	gym_sokoban/envs/boxoban_env.py	/^    def generate_room(self, select_map):$/;"	m	class:BoxobanEnv
+generate_room	gym_sokoban/envs/room_utils.py	/^def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxes=3, tries=4, second_player=False):$/;"	f
+generate_room	gym_sokoban/envs/sokoban_env.py	/^from .room_utils import generate_room$/;"	i
+get_action_lookup	gym_sokoban/envs/sokoban_env.py	/^    def get_action_lookup(self):$/;"	m	class:SokobanEnv
+get_action_lookup	gym_sokoban/envs/sokoban_env_pull.py	/^    def get_action_lookup(self):$/;"	m	class:PushAndPullSokobanEnv
+get_action_lookup	gym_sokoban/envs/sokoban_env_two_player.py	/^    def get_action_lookup(self):$/;"	m	class:TwoPlayerSokobanEnv
+get_action_meanings	gym_sokoban/envs/sokoban_env.py	/^    def get_action_meanings(self):$/;"	m	class:SokobanEnv
+get_action_meanings	gym_sokoban/envs/sokoban_env_pull.py	/^    def get_action_meanings(self):$/;"	m	class:PushAndPullSokobanEnv
+get_action_meanings	gym_sokoban/envs/sokoban_env_two_player.py	/^    def get_action_meanings(self):$/;"	m	class:TwoPlayerSokobanEnv
+get_image	gym_sokoban/envs/sokoban_env.py	/^    def get_image(self, mode, scale=1):$/;"	m	class:SokobanEnv
+get_image	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^    def get_image(self, mode, scale=1):$/;"	m	class:FixedTargetsSokobanEnv
+get_image	gym_sokoban/envs/sokoban_env_two_player.py	/^    def get_image(self, mode, scale=1):$/;"	m	class:TwoPlayerSokobanEnv
+get_proper_box_surface	gym_sokoban/envs/render_utils.py	/^def get_proper_box_surface(surfaces_id, box_mapping, i, j):$/;"	f
+get_proper_tiny_box_surface	gym_sokoban/envs/render_utils.py	/^def get_proper_tiny_box_surface(surfaces_id, box_mapping, i, j):$/;"	f
+gym	examples/Human_Playing_Commandline.py	/^import gym$/;"	i
+gym	examples/Profile_Performance.py	/^import gym$/;"	i
+gym	examples/Random_Sampling.py	/^import gym$/;"	i
+gym	gym_sokoban/envs/sokoban_env.py	/^import gym$/;"	i
+gym_sokoban	examples/Human_Playing_Commandline.py	/^import gym_sokoban$/;"	i
+gym_sokoban	examples/Profile_Performance.py	/^import gym_sokoban$/;"	i
+gym_sokoban	examples/Random_Sampling.py	/^import gym_sokoban$/;"	i
+help	examples/Human_Playing_Commandline.py	/^                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')$/;"	v
+help	examples/Human_Playing_Commandline.py	/^                    help='Generate Gif files from images')$/;"	v
+help	examples/Human_Playing_Commandline.py	/^                    help='Render Mode (default: human)', default='human')$/;"	v
+help	examples/Human_Playing_Commandline.py	/^                    help='Save images of single steps')$/;"	v
+help	examples/Human_Playing_Commandline.py	/^                    help='maximum number of steps to be played each round (default: 300)', default=300)$/;"	v
+help	examples/Human_Playing_Commandline.py	/^                    help='number of rounds to play (default: 1)', default=1)$/;"	v
+help	examples/Profile_Performance.py	/^                    help='Environment to load (default: Sokoban-v0)', default='Sokoban-v0')$/;"	v
+help	examples/Profile_Performance.py	/^                    help='number of rounds to play (default: 20)', default=20)$/;"	v
+id	gym_sokoban/__init__.py	/^            id=env["id"],$/;"	v
+image	examples/Human_Playing_Commandline.py	/^                        image = imageio.imread(filename)$/;"	v
+imageio	examples/Human_Playing_Commandline.py	/^        import imageio$/;"	i
+imageio	gym_sokoban/envs/render_utils.py	/^import imageio$/;"	i
+img	examples/Human_Playing_Commandline.py	/^            img = Image.fromarray(np.array(env.render(render_mode, scale=scale_image)), 'RGB')$/;"	v
+include_package_data	setup.py	/^      include_package_data=True,$/;"	v
+isfile	gym_sokoban/envs/boxoban_env.py	/^from os.path import isfile, join$/;"	i
+join	gym_sokoban/envs/boxoban_env.py	/^from os.path import isfile, join$/;"	i
+json	gym_sokoban/__init__.py	/^import json$/;"	i
+listdir	gym_sokoban/envs/boxoban_env.py	/^from os import listdir$/;"	i
+logger	gym_sokoban/__init__.py	/^logger = logging.getLogger(__name__)$/;"	v
+logging	gym_sokoban/__init__.py	/^import logging$/;"	i
+long_description	setup.py	/^      long_description=long_description,$/;"	v
+long_description	setup.py	/^    long_description = fh.read()$/;"	v
+long_description	setup.py	/^    long_description = long_description.replace('(\/docs\/rooms', '(https:\/\/github.com\/mpSchrader\/gym-sokoban\/blob\/master\/docs\/rooms')$/;"	v
+long_description	setup.py	/^    long_description = long_description.replace('(\/example', '(https:\/\/github.com\/mpSchrader\/gym-sokoban\/example')$/;"	v
+long_description	setup.py	/^    long_description = long_description.replace('(\/gym_sokoban\/envs\/', '(https:\/\/github.com\/mpSchrader\/gym-sokoban\/gym_sokoban\/envs\/')$/;"	v
+long_description_content_type	setup.py	/^      long_description_content_type="text\/markdown",$/;"	v
+marshal	gym_sokoban/envs/room_utils.py	/^import marshal$/;"	i
+max_steps	gym_sokoban/envs/boxoban_env_pull.py	/^		max_steps=max_steps,$/;"	v
+max_steps	gym_sokoban/envs/boxoban_env_pull.py	/^	max_steps=120,$/;"	v	class:PushAndPullBoxobanEnv
+metadata	gym_sokoban/envs/sokoban_env.py	/^    metadata = {$/;"	v	class:SokobanEnv
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:Boxban_Env0
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:Boxban_Env0_test
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:Boxban_Env0_val
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:Boxban_Env1
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:Boxban_Env1_val
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:FixedTargets_Env_v0
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:FixedTargets_Env_v1
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:FixedTargets_Env_v2
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:FixedTargets_Env_v3
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:PushAndPull_Env_v0
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:PushAndPull_Env_v1
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:PushAndPull_Env_v2
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:PushAndPull_Env_v3
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:PushAndPull_Env_v4
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:PushAndPull_Env_v5
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:SokobanEnv1
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:SokobanEnv2
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:SokobanEnv_Huge0
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:SokobanEnv_Large0
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:SokobanEnv_Large1
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:SokobanEnv_Small0
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:SokobanEnv_Small1
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:TwoPlayer_Env0
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:TwoPlayer_Env1
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:TwoPlayer_Env2
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:TwoPlayer_Env3
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:TwoPlayer_Env4
+metadata	gym_sokoban/envs/sokoban_env_variations.py	/^    metadata = {$/;"	v	class:TwoPlayer_Env5
+n	examples/Profile_Performance.py	/^n = args.rounds$/;"	v
+n_rounds	examples/Human_Playing_Commandline.py	/^n_rounds = args.rounds$/;"	v
+n_steps	examples/Human_Playing_Commandline.py	/^n_steps = args.steps$/;"	v
+name	setup.py	/^      name='gym_sokoban',$/;"	v
+np	examples/Human_Playing_Commandline.py	/^import numpy as np$/;"	i
+np	gym_sokoban/envs/boxoban_env.py	/^import numpy as np$/;"	i
+np	gym_sokoban/envs/render_utils.py	/^import numpy as np$/;"	i
+np	gym_sokoban/envs/room_utils.py	/^import numpy as np$/;"	i
+np	gym_sokoban/envs/sokoban_env.py	/^import numpy as np$/;"	i
+np	gym_sokoban/envs/sokoban_env_two_player.py	/^import numpy as np$/;"	i
+num_boxes	gym_sokoban/envs/boxoban_env.py	/^    num_boxes = 4$/;"	v	class:BoxobanEnv
+num_boxes	gym_sokoban/envs/boxoban_env_pull.py	/^		num_boxes=num_boxes,$/;"	v
+num_boxes	gym_sokoban/envs/boxoban_env_pull.py	/^	num_boxes=3,$/;"	v	class:PushAndPullBoxobanEnv
+num_boxes	gym_sokoban/envs/room_utils.py	/^num_boxes = 0$/;"	v
+num_gen_steps	gym_sokoban/envs/boxoban_env_pull.py	/^		num_gen_steps=num_gen_steps,$/;"	v
+num_gen_steps	gym_sokoban/envs/boxoban_env_pull.py	/^	num_gen_steps=None,$/;"	v	class:PushAndPullBoxobanEnv
+observation	examples/Human_Playing_Commandline.py	/^    observation = env.reset()$/;"	v
+observation	examples/Random_Sampling.py	/^    observation = env.reset()$/;"	v
+observation_mode	examples/Human_Playing_Commandline.py	/^observation_mode = 'tiny_rgb_array' if 'tiny' in render_mode else 'rgb_array'$/;"	v
+os	examples/Human_Playing_Commandline.py	/^import os$/;"	i
+os	gym_sokoban/envs/boxoban_env.py	/^import os$/;"	i
+package_data	setup.py	/^      package_data={$/;"	v
+packages	setup.py	/^      packages=find_packages(),$/;"	v
+parser	examples/Human_Playing_Commandline.py	/^parser = argparse.ArgumentParser(description='Run environment with random selected actions.')$/;"	v
+parser	examples/Profile_Performance.py	/^parser = argparse.ArgumentParser(description='Run environment with random selected actions.')$/;"	v
+pkg_resources	gym_sokoban/__init__.py	/^import pkg_resources$/;"	i
+pkg_resources	gym_sokoban/envs/render_utils.py	/^import pkg_resources$/;"	i
+place_boxes_and_player	gym_sokoban/envs/room_utils.py	/^def place_boxes_and_player(room, num_boxes, second_player):$/;"	f
+print_available_actions	examples/Human_Playing_Commandline.py	/^def print_available_actions():$/;"	f
+random	gym_sokoban/envs/boxoban_env.py	/^import random$/;"	i
+random	gym_sokoban/envs/room_utils.py	/^import random$/;"	i
+register	gym_sokoban/__init__.py	/^from gym.envs.registration import register$/;"	i
+render	gym_sokoban/envs/sokoban_env.py	/^    def render(self, mode='human', close=None, scale=1):$/;"	m	class:SokobanEnv
+render_mode	examples/Human_Playing_Commandline.py	/^render_mode = args.render_mode$/;"	v
+rendering	gym_sokoban/envs/sokoban_env.py	/^            from gym.envs.classic_control import rendering$/;"	i
+requests	gym_sokoban/envs/boxoban_env.py	/^import requests$/;"	i
+reset	gym_sokoban/envs/boxoban_env.py	/^    def reset(self, render_mode='rgb_array'):$/;"	m	class:BoxobanEnv
+reset	gym_sokoban/envs/sokoban_env.py	/^    def reset(self, second_player=False, render_mode='rgb_array'):$/;"	m	class:SokobanEnv
+reset	gym_sokoban/envs/sokoban_env_two_player.py	/^    def reset(self, render_mode='rgb_array',second_player=True):$/;"	m	class:TwoPlayerSokobanEnv
+resource_package	gym_sokoban/__init__.py	/^resource_package = __name__$/;"	v
+reverse_move	gym_sokoban/envs/room_utils.py	/^def reverse_move(room_state, room_structure, box_mapping, last_pull, action):$/;"	f
+reverse_playing	gym_sokoban/envs/room_utils.py	/^def reverse_playing(room_state, room_structure, search_depth=100):$/;"	f
+room_to_rgb	gym_sokoban/envs/boxoban_env.py	/^from .render_utils import room_to_rgb$/;"	i
+room_to_rgb	gym_sokoban/envs/render_utils.py	/^def room_to_rgb(room, room_structure=None):$/;"	f
+room_to_rgb	gym_sokoban/envs/sokoban_env.py	/^from .render_utils import room_to_rgb, room_to_tiny_world_rgb$/;"	i
+room_to_rgb	gym_sokoban/envs/sokoban_env_two_player.py	/^from .render_utils import room_to_rgb, room_to_tiny_world_rgb, color_player_two, color_tiny_player_two$/;"	i
+room_to_rgb_FT	gym_sokoban/envs/render_utils.py	/^def room_to_rgb_FT(room, box_mapping, room_structure=None):$/;"	f
+room_to_rgb_FT	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^from .render_utils import room_to_rgb_FT, room_to_tiny_world_rgb_FT$/;"	i
+room_to_tiny_world_rgb	gym_sokoban/envs/render_utils.py	/^def room_to_tiny_world_rgb(room, room_structure=None, scale=1):$/;"	f
+room_to_tiny_world_rgb	gym_sokoban/envs/sokoban_env.py	/^from .render_utils import room_to_rgb, room_to_tiny_world_rgb$/;"	i
+room_to_tiny_world_rgb	gym_sokoban/envs/sokoban_env_two_player.py	/^from .render_utils import room_to_rgb, room_to_tiny_world_rgb, color_player_two, color_tiny_player_two$/;"	i
+room_to_tiny_world_rgb_FT	gym_sokoban/envs/render_utils.py	/^def room_to_tiny_world_rgb_FT(room, box_mapping, room_structure=None, scale=1):$/;"	f
+room_to_tiny_world_rgb_FT	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^from .render_utils import room_to_rgb_FT, room_to_tiny_world_rgb_FT$/;"	i
+room_topology_generation	gym_sokoban/envs/room_utils.py	/^def room_topology_generation(dim=(10, 10), p_change_directions=0.35, num_steps=15):$/;"	f
+room_utils	gym_sokoban/envs/__init__.py	/^from gym_sokoban.envs import room_utils$/;"	i
+save_images	examples/Human_Playing_Commandline.py	/^save_images = args.save or args.gifs$/;"	v
+scale_image	examples/Human_Playing_Commandline.py	/^scale_image = 16$/;"	v
+seed	gym_sokoban/envs/sokoban_env.py	/^    def seed(self, seed=None):$/;"	m	class:SokobanEnv
+seeding	gym_sokoban/envs/sokoban_env.py	/^from gym.utils import seeding$/;"	i
+select_room	gym_sokoban/envs/boxoban_env.py	/^    def select_room(self):$/;"	m	class:BoxobanEnv
+set_maxsteps	gym_sokoban/envs/sokoban_env.py	/^    def set_maxsteps(self, num_steps):$/;"	m	class:SokobanEnv
+setup	setup.py	/^from setuptools import setup, find_packages$/;"	i
+split	gym_sokoban/envs/boxoban_env_pull.py	/^		split=split)$/;"	v
+split	gym_sokoban/envs/boxoban_env_pull.py	/^	split='train'):$/;"	v	class:PushAndPullBoxobanEnv
+start	examples/Profile_Performance.py	/^start = time.time()$/;"	v
+step	gym_sokoban/envs/sokoban_env.py	/^    def step(self, action, observation_mode='rgb_array'):$/;"	m	class:SokobanEnv
+step	gym_sokoban/envs/sokoban_env_fixed_targets.py	/^    def step(self, action, observation_mode='rgb_array'):$/;"	m	class:FixedTargetsSokobanEnv
+step	gym_sokoban/envs/sokoban_env_pull.py	/^    def step(self, action, observation_mode='rgb_array'):$/;"	m	class:PushAndPullSokobanEnv
+step	gym_sokoban/envs/sokoban_env_two_player.py	/^    def step(self, action, observation_mode='rgb_array'):$/;"	m	class:TwoPlayerSokobanEnv
+time	examples/Human_Playing_Commandline.py	/^import time$/;"	i
+time	examples/Profile_Performance.py	/^import time$/;"	i
+time	examples/Random_Sampling.py	/^import time$/;"	i
+tqdm	gym_sokoban/envs/boxoban_env.py	/^from tqdm import tqdm$/;"	i
+ts	examples/Human_Playing_Commandline.py	/^ts = time.time()$/;"	v
+url	setup.py	/^       url="https:\/\/github.com\/mpSchrader\/gym-sokoban",$/;"	v
+version	setup.py	/^      version='0.0.5',$/;"	v
+zipfile	gym_sokoban/envs/boxoban_env.py	/^import zipfile$/;"	i

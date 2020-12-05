@@ -9,14 +9,19 @@ class PushAndPullSokobanEnv(SokobanEnv):
              dim_room=(10, 10),
              max_steps=120,
              num_boxes=3,
-             num_gen_steps=None):
+             num_gen_steps=None,
+             **kwargs):
 
-        super(PushAndPullSokobanEnv, self).__init__(dim_room, max_steps, num_boxes, num_gen_steps)
-        screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
-        self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3))
-        self.boxes_are_on_target = [False] * num_boxes
+        super(PushAndPullSokobanEnv, self).__init__(
+                dim_room=dim_room,
+                max_steps=max_steps,
+                num_boxes=num_boxes,
+                num_gen_steps=num_gen_steps)
+        # screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
+        # self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3))
+        # self.boxes_are_on_target = [False] * num_boxes
         self.action_space = Discrete(len(ACTION_LOOKUP))
-        
+
         _ = self.reset()
 
     def step(self, action, observation_mode='rgb_array'):
