@@ -39,10 +39,10 @@ class SokobanEnv(gym.Env):
         # Other Settings
         self.viewer = None
         self.max_steps = max_steps
-        self.action_space = Discrete(len(ACTION_LOOKUP))
+        self.action_space = Discrete(len(self.get_action_lookup()))
         screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
         self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3), dtype=np.uint8)
-        
+
         if reset:
             # Initialize Room
             _ = self.reset()
@@ -73,7 +73,7 @@ class SokobanEnv(gym.Env):
             moved_player = self._move(action)
 
         self._calc_reward()
-        
+
         done = self._check_if_done()
 
         # Convert the observation to RGB frame
@@ -177,16 +177,16 @@ class SokobanEnv(gym.Env):
             self.reward_last += self.reward_box_on_target
         elif current_boxes_on_target < self.boxes_on_target:
             self.reward_last += self.penalty_box_off_target
-        
-        game_won = self._check_if_all_boxes_on_target()        
+
+        game_won = self._check_if_all_boxes_on_target()
         if game_won:
             self.reward_last += self.reward_finished
-        
+
         self.boxes_on_target = current_boxes_on_target
 
     def _check_if_done(self):
         # Check if the game is over either through reaching the maximum number
-        # of available steps or by pushing all boxes on the targets.        
+        # of available steps or by pushing all boxes on the targets.
         return self._check_if_all_boxes_on_target() or self._check_if_maxsteps()
 
     def _check_if_all_boxes_on_target(self):
@@ -246,7 +246,7 @@ class SokobanEnv(gym.Env):
             super(SokobanEnv, self).render(mode=mode)  # just raise an exception
 
     def get_image(self, mode, scale=1):
-        
+
         if mode.startswith('tiny_'):
             img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=scale)
         else:

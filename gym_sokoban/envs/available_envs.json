@@ -118,5 +118,25 @@
   {
     "id": "Boxoban-Val-v1",
     "entry_point": "gym_sokoban.envs:Boxban_Env1_val"
+  },
+  {
+    "id": "PushAndPull-Boxoban-Train-v0",
+    "entry_point": "gym_sokoban.envs:PushAndPullBoxban_Env0"
+  },
+  {
+    "id": "PushAndPull-Boxoban-Test-v0",
+    "entry_point": "gym_sokoban.envs:PushAndPullBoxban_Env0_test"
+  },
+  {
+    "id": "PushAndPull-Boxoban-Val-v0",
+    "entry_point": "gym_sokoban.envs:PushAndPullBoxban_Env0_val"
+  },
+  {
+    "id": "PushAndPull-Boxoban-Train-v1",
+    "entry_point": "gym_sokoban.envs:PushAndPullBoxban_Env1"
+  },
+  {
+    "id": "PushAndPull-Boxoban-Val-v1",
+    "entry_point": "gym_sokoban.envs:PushAndPullBoxban_Env1_val"
   }
 ]

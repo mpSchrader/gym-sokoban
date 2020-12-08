@@ -3,6 +3,7 @@ from .sokoban_env_fixed_targets import FixedTargetsSokobanEnv
 from .sokoban_env_pull import PushAndPullSokobanEnv
 from .sokoban_env_two_player import TwoPlayerSokobanEnv
 from .boxoban_env import BoxobanEnv
+from .boxoban_env_pull import PushAndPullBoxobanEnv
 
 
 class SokobanEnv1(SokobanEnv):
@@ -329,5 +330,46 @@ class Boxban_Env1_val(BoxobanEnv):
 
     def __init__(self):
         super(Boxban_Env1_val, self).__init__(max_steps=200, difficulty='medium', split='valid')
+
+# Push and Pull classes
+class PushAndPullBoxban_Env0(PushAndPullBoxobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array'],
+    }
+
+    def __init__(self):
+        super().__init__(max_steps=200, difficulty='unfiltered', split='train')
+
+class PushAndPullBoxban_Env0_val(PushAndPullBoxobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array'],
+    }
+
+    def __init__(self):
+        super().__init__(max_steps=200, difficulty='unfiltered', split='valid')
+
+class PushAndPullBoxban_Env0_test(PushAndPullBoxobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array'],
+    }
+
+    def __init__(self):
+        super().__init__(max_steps=200, difficulty='unfiltered', split='test')
+
+class PushAndPullBoxban_Env1(PushAndPullBoxobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array'],
+    }
+
+    def __init__(self):
+        super().__init__(max_steps=200, difficulty='medium')
+
+class PushAndPullBoxban_Env1_val(PushAndPullBoxobanEnv):
+    metadata = {
+        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array'],
+    }
+
+    def __init__(self):
+        super().__init__(max_steps=200, difficulty='medium', split='valid')
 
 

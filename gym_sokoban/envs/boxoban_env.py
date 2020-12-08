@@ -15,21 +15,27 @@ class BoxobanEnv(SokobanEnv):
 
     def __init__(self,
              max_steps=120,
-             difficulty='unfiltered', split='train'):
+             difficulty='unfiltered',
+             split='train',
+             **kwargs):
         self.difficulty = difficulty
         self.split = split
         self.verbose = False
-        super(BoxobanEnv, self).__init__(self.dim_room, max_steps, self.num_boxes, None)
-        
+        super(BoxobanEnv, self).__init__(
+                dim_room=self.dim_room,
+                max_steps=max_steps,
+                num_boxes=self.num_boxes,
+                num_gen_steps=None)
 
-    def reset(self):
+
+    def reset(self, render_mode='rgb_array'):
         self.cache_path = '.sokoban_cache'
         self.train_data_dir = os.path.join(self.cache_path, 'boxoban-levels-master', self.difficulty, self.split)
 
         if not os.path.exists(self.cache_path):
-           
+
             url = "https://github.com/deepmind/boxoban-levels/archive/master.zip"
-            
+
             if self.verbose:
                 print('Boxoban: Pregenerated levels not downloaded.')
                 print('Starting download from "{}"'.format(url))
@@ -48,25 +54,25 @@ class BoxobanEnv(SokobanEnv):
             zip_ref = zipfile.ZipFile(path_to_zip_file, 'r')
             zip_ref.extractall(self.cache_path)
             zip_ref.close()
-        
+
         self.select_room()
 
         self.num_env_steps = 0
         self.reward_last = 0
         self.boxes_on_target = 0
 
-        starting_observation = room_to_rgb(self.room_state, self.room_fixed)
+        starting_observation = self.render(render_mode)
 
         return starting_observation
 
     def select_room(self):
-        
+
         generated_files = [f for f in listdir(self.train_data_dir) if isfile(join(self.train_data_dir, f))]
         source_file = join(self.train_data_dir, random.choice(generated_files))
 
         maps = []
         current_map = []
-        
+
         with open(source_file, 'r') as sf:
             for line in sf.readlines():
                 if ';' in line and current_map:
@@ -74,7 +80,7 @@ class BoxobanEnv(SokobanEnv):
                     current_map = []
                 if '#' == line[0]:
                     current_map.append(line.strip())
-        
+
         maps.append(current_map)
 
         selected_map = random.choice(maps)
