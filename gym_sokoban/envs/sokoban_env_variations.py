@@ -10,10 +10,12 @@ class SokobanEnv1(SokobanEnv):
         'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array'],
     }
 
-    def __init__(self):
-        super(SokobanEnv1, self).__init__(
-            num_boxes=3, max_steps=200
-        )
+    def __init__(self, **kwargs):
+        num_boxes = kwargs.get('num_boxes', 3)
+        max_steps = kwargs.get('max_steps', 200)
+        kwargs['num_boxes'] = num_boxes
+        kwargs['max_steps'] = max_steps
+        super(SokobanEnv1, self).__init__(**kwargs)
 
 
 class SokobanEnv2(SokobanEnv):
