@@ -60,7 +60,7 @@ class SokobanEnv_Large0(SokobanEnv):
     def __init__(self, **kwargs):
         kwargs['dim_room'] = kwargs.get('dim_room', (13, 11))
         kwargs['max_steps'] = kwargs.get('max_steps', 300)
-        kwargs['num_boxes'] = kwargs.get('num_boxes', 4)
+        kwargs['num_boxes'] = kwargs.get('num_boxes', 3)
         kwargs['num_gen_steps'] = kwargs.get('num_gen_steps', 43)
         super(SokobanEnv_Large0, self).__init__(**kwargs)
 
@@ -289,7 +289,7 @@ class TwoPlayer_Env4(TwoPlayerSokobanEnv):
 
     def __init__(self, **kwargs):
         kwargs['dim_room'] = kwargs.get('dim_room', (13, 11))
-        kwargs['max_steps'] = kwargs.get('max_steps', 400)
+        kwargs['max_steps'] = kwargs.get('max_steps', 200)
         kwargs['num_boxes'] = kwargs.get('num_boxes', 3)
         super(TwoPlayer_Env4, self).__init__(**kwargs)
 
@@ -359,5 +359,3 @@ class Boxban_Env1_val(BoxobanEnv):
         kwargs['difficulty'] = kwargs.get('difficulty', 'medium')
         kwargs['split'] = kwargs.get('split', 'valid')
         super(Boxban_Env1_val, self).__init__(**kwargs)
-
-
