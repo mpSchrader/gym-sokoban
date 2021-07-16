@@ -95,7 +95,7 @@ class SokobanEnv_Huge0(SokobanEnv):
     metadata = {
         'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array'],
     }
-)
+
     def __init__(self, **kwargs):
         kwargs['dim_room'] = kwargs.get('dim_room', (13, 13))
         kwargs['max_steps'] = kwargs.get('max_steps', 300)
