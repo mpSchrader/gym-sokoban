@@ -35,6 +35,8 @@ class SokobanEnv(gym.Env):
         self.reward_box_on_target = 1
         self.reward_finished = 10
         self.reward_last = 0
+        self.penalty_invalid_move = -1
+        self.penalty_irreversible_move = -10
 
         # Other Settings
         self.viewer = None
@@ -65,7 +67,7 @@ class SokobanEnv(gym.Env):
         # All push actions are in the range of [0, 3]
         moved_player, moved_box = self._push(action)
 
-        self._calc_reward()
+        self._calc_reward(moved_player, moved_box)
         
         done = self._check_if_done()
 
@@ -152,7 +154,7 @@ class SokobanEnv(gym.Env):
 
         return False
 
-    def _calc_reward(self):
+    def _calc_reward(self, moved_player, moved_box):
         """
         Calculate Reward Based on
         :return:
@@ -175,12 +177,23 @@ class SokobanEnv(gym.Env):
             self.reward_last += self.reward_box_on_target
         elif current_boxes_on_target < self.boxes_on_target:
             self.reward_last += self.penalty_box_off_target
-        
+
+        if not moved_box and not moved_player:
+            self.reward_last += self.penalty_invalid_move
+
+        if self._is_irreversible_state():
+            self.reward_last += self.penalty_irreversible_move
+
         game_won = self._check_if_all_boxes_on_target()        
         if game_won:
             self.reward_last += self.reward_finished
         
         self.boxes_on_target = current_boxes_on_target
+
+    def _is_irreversible_state(self):
+        # Check if its an irreversible state
+        # TODO
+        return False
 
     def _check_if_done(self):
         # Check if the game is over either through reaching the maximum number
