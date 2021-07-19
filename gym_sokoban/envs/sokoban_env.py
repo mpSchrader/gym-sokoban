@@ -71,7 +71,7 @@ class SokobanEnv(gym.Env):
         
         done = self._check_if_done()
 
-        # Convert the observation to RGB frame
+        # Convert to room 10x10 np.array
         observation = self.render(mode=observation_mode)
 
         info = {
@@ -181,19 +181,11 @@ class SokobanEnv(gym.Env):
         if not moved_box and not moved_player:
             self.reward_last += self.penalty_invalid_move
 
-        if self._is_irreversible_state():
-            self.reward_last += self.penalty_irreversible_move
-
         game_won = self._check_if_all_boxes_on_target()        
         if game_won:
             self.reward_last += self.reward_finished
         
         self.boxes_on_target = current_boxes_on_target
-
-    def _is_irreversible_state(self):
-        # Check if its an irreversible state
-        # TODO
-        return False
 
     def _check_if_done(self):
         # Check if the game is over either through reaching the maximum number
@@ -209,18 +201,23 @@ class SokobanEnv(gym.Env):
     def _check_if_maxsteps(self):
         return (self.max_steps == self.num_env_steps)
 
-    def reset(self, second_player=False, render_mode='rgb_array'):
-        try:
-            self.room_fixed, self.room_state, self.box_mapping = generate_room(
-                dim=self.dim_room,
-                num_steps=self.num_gen_steps,
-                num_boxes=self.num_boxes,
-                second_player=second_player
-            )
-        except (RuntimeError, RuntimeWarning) as e:
-            print("[SOKOBAN] Runtime Error/Warning: {}".format(e))
-            print("[SOKOBAN] Retry . . .")
-            return self.reset(second_player=second_player, render_mode=render_mode)
+    def reset(self, second_player=False, render_mode='rgb_array', room_fixed=None, room_state=None, box_mapping=None, use_default=False):
+        if not use_default:
+            try:
+                self.room_fixed, self.room_state, self.box_mapping = generate_room(
+                    dim=self.dim_room,
+                    num_steps=self.num_gen_steps,
+                    num_boxes=self.num_boxes,
+                    second_player=second_player
+                )
+            except (RuntimeError, RuntimeWarning) as e:
+                print("[SOKOBAN] Runtime Error/Warning: {}".format(e))
+                print("[SOKOBAN] Retry . . .")
+                return self.reset(second_player=second_player, render_mode=render_mode)
+        else:
+            self.room_fixed = room_fixed
+            self.room_state = room_state
+            self.box_mapping = box_mapping
 
         self.player_position = np.argwhere(self.room_state == 5)[0]
         self.num_env_steps = 0
@@ -259,9 +256,9 @@ class SokobanEnv(gym.Env):
     def get_image(self, mode, scale=1):
         
         if mode.startswith('tiny_'):
-            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=scale)
+            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=scale, raw=True)
         else:
-            img = room_to_rgb(self.room_state, self.room_fixed)
+            img = room_to_rgb(self.room_state, self.room_fixed, raw=True)
 
         return img
 

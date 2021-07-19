@@ -3,7 +3,7 @@ import pkg_resources
 import imageio
 
 
-def room_to_rgb(room, room_structure=None):
+def room_to_rgb(room, room_structure=None, raw=False):
     """
     Creates an RGB image of the room.
     :param room:
@@ -16,6 +16,9 @@ def room_to_rgb(room, room_structure=None):
     if not room_structure is None:
         # Change the ID of a player on a target
         room[(room == 5) & (room_structure == 2)] = 6
+
+    if raw:
+        return room
 
     # Load images, representing the corresponding situation
     box_filename = pkg_resources.resource_filename(resource_package, '/'.join(('surface', 'box.png')))
@@ -57,12 +60,15 @@ def room_to_rgb(room, room_structure=None):
     return room_rgb
 
 
-def room_to_tiny_world_rgb(room, room_structure=None, scale=1):
+def room_to_tiny_world_rgb(room, room_structure=None, scale=1, raw=False):
 
     room = np.array(room)
     if not room_structure is None:
         # Change the ID of a player on a target
         room[(room == 5) & (room_structure == 2)] = 6
+
+    if raw:
+        return room
 
     wall = [0, 0, 0]
     floor = [243, 248, 238]
