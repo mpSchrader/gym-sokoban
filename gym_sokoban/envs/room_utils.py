@@ -2,7 +2,6 @@ import random
 import numpy as np
 import marshal
 
-
 def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxes=3, tries=4, second_player=False):
     """
     Generates a Sokoban room, represented by an integer matrix. The elements are encoded as follows:
@@ -18,6 +17,7 @@ def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxe
     :param num_steps:
     :return: Numpy 2d Array
     """
+
     room_state = np.zeros(shape=dim)
     room_structure = np.zeros(shape=dim)
 
@@ -46,6 +46,72 @@ def generate_room(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxe
 
     return room_structure, room_state, box_mapping
 
+def generate_room_reverse(dim=(13, 13), p_change_directions=0.35, num_steps=25, num_boxes=3, tries=4, second_player=False, reverse_steps=0):
+    """
+    Generates a Sokoban room in reverse, meaning the room will already be in a solved state on start.
+    Represented by an integer matrix.
+
+    The elements are encoded as follows:
+    wall = 0
+    empty space = 1
+    box target = 2
+    box not on target = 3
+    box on target = 4
+    player = 5
+
+    :param dim:
+    :param p_change_directions:
+    :param num_steps:
+    :return: Numpy 2d Array
+    """
+
+    #random.seed(0)
+    #np.random.seed(0)
+
+    room_state = np.zeros(shape=dim)
+    room_structure = np.zeros(shape=dim)
+
+    # Some times rooms with a score == 0 are the only possibility.
+    # In these case, we try another model.
+    for t in range(tries):
+        room = room_topology_generation(dim, p_change_directions, num_steps)
+        room, box_position, player_position = place_boxes_and_player_reverse(room, num_boxes=num_boxes, second_player=second_player)
+
+        # Room fixed represents all not movable parts of the room
+        room_structure = np.copy(room)
+        room_structure[room_structure == 5] = 1
+
+        # Room structure represents the current state of the room including movable parts
+        room_state = room.copy()
+        room_state[room_state == 2] = 3
+
+        #print(room_state)
+        _, score, box_mapping = reverse_playing(room_state, room_structure)
+        #room_state[room_state == 3] = 4
+
+        #print("FINAL ROOM:")
+        #print(room_state)
+        #print(room_structure)
+
+        if score > 0:
+            break
+
+    if score == 0:
+        raise RuntimeWarning('Generated Model with score == 0')
+
+    room_state, box_mapping, last_pull = reverse_step(room_state, room_structure, box_mapping, last_pull=(-1,-1), box_position=box_position)
+    room_state[room_state == 3] = 4
+
+    if reverse_steps > 0:
+        for i in range(reverse_steps):
+            room_state, box_mapping, last_pull = reverse_move(room_state, room_structure,
+                                                              box_mapping,
+                                                              last_pull=(-1, -1),
+                                                              action = random.randint(0,7))
+
+    #print("FINAL ROOM:")
+    #print(room_state)
+    return room_structure, room_state, box_mapping
 
 def room_topology_generation(dim=(10, 10), p_change_directions=0.35, num_steps=15):
     """
@@ -165,6 +231,108 @@ def place_boxes_and_player(room, num_boxes, second_player):
 
     return room
 
+def place_boxes_and_player_reverse(room, num_boxes, second_player):
+    """
+    Places the player and the boxes into the floors in a room.
+    Makes sure the player is next to a box in a solved position,
+    and that the path to the position is legal.
+
+    :param room:
+    :param num_boxes:
+    :return:
+    """
+    # Get all available positions
+    possible_positions = np.where(room == 1)
+    num_possible_positions = possible_positions[0].shape[0]
+    num_players = 2 if second_player else 1
+
+    if num_possible_positions <= num_boxes + num_players:
+        raise RuntimeError('Not enough free spots (#{}) to place {} player and {} boxes.'.format(
+            num_possible_positions,
+            num_players,
+            num_boxes)
+        )
+
+    # Place boxes
+    for n in range(num_boxes):
+        possible_positions = np.where(room == 1)
+        num_possible_positions = possible_positions[0].shape[0]
+
+        ind = np.random.randint(num_possible_positions)
+        box_position = possible_positions[0][ind], possible_positions[1][ind]
+        room[box_position] = 2
+
+    # Place player(s)
+    possible_positions = [[box_position[0]-1, box_position[1]], # Up
+                          [box_position[0], box_position[1]+1], # Right
+                          [box_position[0]+1, box_position[1]], # Down
+                          [box_position[0], box_position[1]-1]] # Left
+
+    possible_positions_copy = possible_positions.copy()
+
+    for pos in possible_positions:
+        if room[pos[0], pos[1]] == 0:
+            possible_positions_copy.remove(pos)
+
+
+
+    possible_positions = possible_positions_copy
+    num_possible_positions = len(possible_positions)
+
+
+    ind = np.random.randint(num_possible_positions)
+    player_position = possible_positions[ind][0], possible_positions[ind][1]
+
+
+    checked = []
+    for i in range(num_possible_positions):
+        if box_position[0] < player_position[0]:
+            if room[player_position[0]+1, player_position[1]] == 0:
+                checked.append(ind)
+                if len(checked) < num_possible_positions:
+                    ind = random.choice([x for x in range(num_possible_positions) if x not in checked])
+                    player_position = possible_positions[ind][0], possible_positions[ind][1]
+                else:
+                    print("generating new map")
+                    room_structure, room_state, box_mapping = generate_room_reverse(num_boxes=1, dim=(7, 7))
+        elif box_position[0] > player_position[0]:
+            if room[player_position[0]-1, player_position[1]] == 0:
+                checked.append(ind)
+                if len(checked) < num_possible_positions:
+                    ind = random.choice([x for x in range(num_possible_positions) if x not in checked])
+                    player_position = possible_positions[ind][0], possible_positions[ind][1]
+                else:
+                    print("generating new map")
+                    room_structure, room_state, box_mapping = generate_room_reverse(num_boxes=1, dim=(7, 7))
+        elif box_position[1] > player_position[1]:
+            if room[player_position[0], player_position[1]-1] == 0:
+                checked.append(ind)
+                if len(checked) < num_possible_positions:
+                    ind = random.choice([x for x in range(num_possible_positions) if x not in checked])
+                    player_position = possible_positions[ind][0], possible_positions[ind][1]
+                else:
+                    print("generating new map")
+                    room_structure, room_state, box_mapping = generate_room_reverse(num_boxes=1, dim=(7, 7))
+        elif box_position[1] < player_position[1]:
+            if room[player_position[0], player_position[1]+1] == 0:
+                checked.append(ind)
+                if len(checked) < num_possible_positions:
+                    ind = random.choice([x for x in range(num_possible_positions) if x not in checked])
+                    player_position = possible_positions[ind][0], possible_positions[ind][1]
+                else:
+                    print("generating new map")
+                    room_structure, room_state, box_mapping = generate_room_reverse(num_boxes=1, dim=(7, 7))
+
+    room[player_position] = 5
+    #print(room)
+
+    if second_player:
+        ind = np.random.randint(num_possible_positions)
+        player_position = possible_positions[0][ind], possible_positions[1][ind]
+        room[player_position] = 5
+
+    return room, box_position, player_position
+
 
 # Global variables used for reverse playing.
 explored_states = set()
@@ -185,6 +353,11 @@ def reverse_playing(room_state, room_structure, search_depth=100):
     :return: 2d array
     """
     global explored_states, num_boxes, best_room_score, best_room, best_box_mapping
+
+    #print("ROOM STATE:")
+    #print(room_state)
+    #print("ROOM STRUCTURE:")
+    #print(room_structure)
 
     # Box_Mapping is used to calculate the box displacement for every box
     box_mapping = {}
@@ -300,6 +473,64 @@ def reverse_move(room_state, room_structure, box_mapping, last_pull, action):
 
     return room_state, box_mapping, last_pull
 
+def reverse_step(room_state, room_structure, box_mapping, last_pull, box_position):
+    """
+    Pull the box backwards from the box target.
+    TODO: Take random actions to get further away from box target
+
+    :param room_state:
+    :param room_structure:
+    :param box_mapping:
+    :param last_pull:
+    :param box_position:
+    :return:
+    """
+    player_position = np.where(room_state == 5)
+    player_position = np.array([player_position[0][0], player_position[1][0]])
+
+    # get box position relative to player
+    if box_position[0] < player_position[0]:
+        # Box above
+        action = 1
+    elif box_position[0] > player_position[0]:
+        # Box below
+        action = 0
+    elif box_position[1] < player_position[1]:
+        # Box left
+        action = 3
+    elif box_position[1] > player_position[1]:
+        # Box right
+        action = 2
+
+    change = CHANGE_COORDINATES[action % 4]
+    next_position = player_position + change
+
+    # Check if next position is an empty floor or an empty box target
+    if room_state[next_position[0], next_position[1]] in [1, 2]:
+
+        # Move player, independent of pull or move action.
+        room_state[player_position[0], player_position[1]] = room_structure[player_position[0], player_position[1]]
+        room_state[next_position[0], next_position[1]] = 5
+
+        # In addition try to pull a box if the action is a pull action
+        if action < 4:
+            possible_box_location = change[0] * -1, change[1] * -1
+            possible_box_location += player_position
+
+            if room_state[possible_box_location[0], possible_box_location[1]] in [3, 4]:
+                # Perform pull of the adjacent box
+                room_state[player_position[0], player_position[1]] = 3
+                room_state[possible_box_location[0], possible_box_location[1]] = room_structure[
+                    possible_box_location[0], possible_box_location[1]]
+
+                # Update the box mapping
+                for k in box_mapping.keys():
+                    if box_mapping[k] == (possible_box_location[0], possible_box_location[1]):
+                        box_mapping[k] = (player_position[0], player_position[1])
+                        last_pull = k
+
+    return room_state, box_mapping, last_pull
+
 
 def box_displacement_score(box_mapping):
     """
@@ -309,7 +540,7 @@ def box_displacement_score(box_mapping):
     :return:
     """
     score = 0
-    
+
     for box_target in box_mapping.keys():
         box_location = np.array(box_mapping[box_target])
         box_target = np.array(box_target)

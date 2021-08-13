@@ -1,18 +1,19 @@
-from .sokoban_env import SokobanEnv, CHANGE_COORDINATES
+from .sokoban_env_reverse import ReverseSokobanEnv, CHANGE_COORDINATES
 from gym.spaces import Box
 from gym.spaces.discrete import Discrete
-from .render_utils import room_to_rgb
 
 
-class PushAndPullSokobanEnv(SokobanEnv):
+class ReversePushAndPullSokobanEnv(ReverseSokobanEnv):
 
     def __init__(self,
              dim_room=(10, 10),
              max_steps=120,
              num_boxes=3,
-             num_gen_steps=None):
+             num_gen_steps=None,
+             reverse_steps=0,
+             change_reward=False):
 
-        super(PushAndPullSokobanEnv, self).__init__(dim_room, max_steps, num_boxes, num_gen_steps)
+        super(ReversePushAndPullSokobanEnv, self).__init__(dim_room=dim_room, max_steps=max_steps, num_boxes=num_boxes, num_gen_steps=num_gen_steps, reverse_steps=reverse_steps, change_reward=change_reward)
         screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
         self.observation_space = Box(low=0, high=255, shape=(dim_room[0], dim_room[1], 4))
         self.boxes_are_on_target = [False] * num_boxes

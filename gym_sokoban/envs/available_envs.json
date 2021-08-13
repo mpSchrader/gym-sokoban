@@ -118,5 +118,13 @@
   {
     "id": "Boxoban-Val-v1",
     "entry_point": "gym_sokoban.envs:Boxban_Env1_val"
+  },
+    {
+    "id": "ReversePushAndPull-Sokoban-v0",
+    "entry_point": "gym_sokoban.envs:ReversePushAndPull_Env_v0"
+  },
+      {
+    "id": "Reverse-Sokoban-v0",
+    "entry_point": "gym_sokoban.envs:ReverseSokoban_Env_v0"
   }
 ]
