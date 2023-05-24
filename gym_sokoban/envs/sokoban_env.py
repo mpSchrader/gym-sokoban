@@ -6,19 +6,22 @@ from .room_utils import generate_room
 from .render_utils import room_to_rgb, room_to_tiny_world_rgb
 import numpy as np
 
-
 class SokobanEnv(gym.Env):
-    metadata = {
-        'render.modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array', 'raw'],
-        'render_modes': ['human', 'rgb_array', 'tiny_human', 'tiny_rgb_array', 'raw']
-    }
 
     def __init__(self,
                  dim_room=(10, 10),
+                 scale=10,
                  max_steps=120,
                  num_boxes=4,
+                 use_tiny_world=False,
                  num_gen_steps=None,
+                 render_mode='rgb_array',
                  reset=True):
+
+        self.metadata = {
+            'render_modes': ['rgb_array'],
+            'render_fps': 4
+        }
 
         # General Configuration
         self.dim_room = dim_room
@@ -30,6 +33,14 @@ class SokobanEnv(gym.Env):
         self.num_boxes = num_boxes
         self.boxes_on_target = 0
 
+        # Rendering variables
+        self.scale = scale
+        self.render_mode = render_mode
+        self.screen_size = (500, 500)
+
+        self.window = None
+        self.clock = None
+
         # Penalties and Rewards
         self.penalty_for_step = -0.1
         self.penalty_box_off_target = -1
@@ -38,6 +49,7 @@ class SokobanEnv(gym.Env):
         self.reward_last = 0
 
         # Other Settings
+        self.use_tiny_world = use_tiny_world
         self.viewer = None
         self.max_steps = max_steps
         self.action_space = Discrete(len(ACTION_LOOKUP))
@@ -46,7 +58,7 @@ class SokobanEnv(gym.Env):
         
         if reset:
             # Initialize Room
-            _ = self.reset()
+            _ = self.reset(None)
 
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
@@ -78,7 +90,7 @@ class SokobanEnv(gym.Env):
         done = self._check_if_done()
 
         # Convert the observation to RGB frame
-        observation = self.render(mode=observation_mode)
+        observation = self.get_image(self.scale)
 
         info = {
             "action.name": ACTION_LOOKUP[action],
@@ -89,7 +101,7 @@ class SokobanEnv(gym.Env):
             info["maxsteps_used"] = self._check_if_maxsteps()
             info["all_boxes_on_target"] = self._check_if_all_boxes_on_target()
 
-        return observation, self.reward_last, done, info
+        return observation, self.reward_last, done, False, info
 
     def _push(self, action):
         """
@@ -199,7 +211,7 @@ class SokobanEnv(gym.Env):
     def _check_if_maxsteps(self):
         return (self.max_steps == self.num_env_steps)
 
-    def reset(self, second_player=False, render_mode='rgb_array'):
+    def reset(self, seed=None, options={}, second_player=False, render_mode='rgb_array'):
         try:
             self.room_fixed, self.room_state, self.box_mapping = generate_room(
                 dim=self.dim_room,
@@ -210,46 +222,29 @@ class SokobanEnv(gym.Env):
         except (RuntimeError, RuntimeWarning) as e:
             print("[SOKOBAN] Runtime Error/Warning: {}".format(e))
             print("[SOKOBAN] Retry . . .")
-            return self.reset(second_player=second_player, render_mode=render_mode)
+            return self.reset(seed, second_player=second_player, render_mode=render_mode)
 
         self.player_position = np.argwhere(self.room_state == 5)[0]
         self.num_env_steps = 0
         self.reward_last = 0
         self.boxes_on_target = 0
 
-        starting_observation = self.render(render_mode)
-        return starting_observation
+        starting_observation = self.get_image()
+        return starting_observation, {}
 
-    def render(self, mode='human', close=None, scale=1):
-        assert mode in RENDERING_MODES
+    def render(self):
+        img = self.get_image(self.scale)
 
-        img = self.get_image(mode, scale)
+        # repeat to scale up
+        img = np.repeat(img, self.scale, axis=0)
+        img = np.repeat(img, self.scale, axis=1)
 
-        if 'rgb_array' in mode:
-            return img
+        return img
 
-        elif 'human' in mode:
-            from gym.envs.classic_control import rendering
-            if self.viewer is None:
-                self.viewer = rendering.SimpleImageViewer()
-            self.viewer.imshow(img)
-            return self.viewer.isopen
-
-        elif 'raw' in mode:
-            arr_walls = (self.room_fixed == 0).view(np.int8)
-            arr_goals = (self.room_fixed == 2).view(np.int8)
-            arr_boxes = ((self.room_state == 4) + (self.room_state == 3)).view(np.int8)
-            arr_player = (self.room_state == 5).view(np.int8)
-
-            return arr_walls, arr_goals, arr_boxes, arr_player
-
-        else:
-            super(SokobanEnv, self).render(mode=mode)  # just raise an exception
-
-    def get_image(self, mode, scale=1):
+    def get_image(self, scale=1):
         
-        if mode.startswith('tiny_'):
-            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed, scale=scale)
+        if self.use_tiny_world:
+            img = room_to_tiny_world_rgb(self.room_state, self.room_fixed)
         else:
             img = room_to_rgb(self.room_state, self.room_fixed)
 

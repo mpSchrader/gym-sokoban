@@ -116,17 +116,36 @@ As long as at least one box is on a target the RoomScore is always 0.
 Sokoban has many different variations, such as: Room Size, Number of Boxes, Rendering Modes, or Rules.
 
 #### 2.5.1 Rendering Modes
-Besides the regular Sokoban rendering, each configuration can be rendered as TinyWorld, which has a pixel size equal to the grid size. 
-To get an environment rendered as a tiny world just add `tiny_` in front of the rendering mode. E.g: `env.render('tiny_rgb_array', scale=scale_tiny)`. Scale allows to increase the size of the rendered tiny world observation. Using scale in combination with the rendering modes, `human` or `rgb_array`, does not influence the output size.
-Available rendering modes are:
+Besides the regular Sokoban rendering, each configuration can be rendered as TinyWorld.
 
-| Mode | Description |
-| ---  | --- 
-| rgb_array | Well looking 2d rgb image
-| human | Displays the current state on screen
-| tiny_rgb_array | Each pixel describing one element in the room
-| tiny_human | Displays the tiny rgb_array on screen
+To get an environment rendered as a tiny world, set the use\_tiny\_world parameter to True when instantiating the environment. E.g: `gym.make('Sokoban-v2', scale=50, use_tiny_world=True)`. Scale allows to increase the size of the rendered observation.
 
+Rendering can only be currently done by leveraging the HumanRendering gymnasium wrapper, e.g.:
+
+```
+import gym
+import gym_sokoban
+from gym.wrappers import HumanRendering
+
+SEED = 1
+
+env = gym.make('Sokoban-v2', scale=100, use_tiny_world=True)
+wrapped_env = HumanRendering(env)
+obs, info = wrapped_env.reset(seed=SEED, options={})
+
+action = 1
+while True:
+    observation, reward, terminated, truncated, info = wrapped_env.step(action)
+    wrapped_env.render()
+
+    done = terminated or truncated
+    if done:
+        break
+
+    action = int(input("Enter action ==> "))
+
+wrapped_env.close()
+```
 
 #### 2.5.2 Size Variations
 The available room configurations are shown in the table below. 
