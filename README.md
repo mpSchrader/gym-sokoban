@@ -14,13 +14,14 @@ The room generation is random and therefore, will allow to train Deep Neural Net
 ## 1 Installation
 
 ### Via PIP
+** WARNING: this will install the original version that does NOT support Gymnasium. To use the version with my changes, you must follow the method from the next section: "From Repository"**
 ```bash
 pip install gym-sokoban
 ```
 
 ### From Repository
 ```bash
-git clone git@github.com:mpSchrader/gym-sokoban.git
+git clone https://github.com/SimonOuellette35/gym-sokoban.git
 cd gym-sokoban
 pip install -e .
 ```
