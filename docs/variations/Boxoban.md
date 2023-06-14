@@ -6,7 +6,7 @@
 
 
 ## 1. Idea
-Instead of generating a new level on every reset operation, a pregenerated level is choosen randomly. When Boxoban is run for the first time the levels are downloaded from DeepMinds [Github repository](https://github.com/deepmind/boxoban-levels) and stored in the folder _.sokoban_cache_. This path can be changed by environment variable `SOKOBAN_CACHE_PATH`
+Instead of generating a new level on every reset operation, a pre-generated level is chosen randomly. When Boxoban is run for the first time the levels are downloaded from DeepMinds [Github repository](https://github.com/deepmind/boxoban-levels) and stored in the folder _.sokoban_cache_. This path can be changed by environment variable `SOKOBAN_CACHE_PATH`
 
 In case you use the Boxoban levels for your research, the authors of the boxoban-levels repository ask you to cite their work as follows:
 ```
@@ -17,7 +17,7 @@ howpublished= {https://github.com/deepmind/boxoban-levels/},
 year = "2018",
 }
 ```
-Dedending on your use case, please consider the [licence](https://github.com/deepmind/boxoban-levels/blob/master/LICENSE) of DeepMinds repository.
+Depending on your use case, please consider the [licence](https://github.com/deepmind/boxoban-levels/blob/master/LICENSE) of DeepMinds repository.
 
 ## 2. Rules
 Same rules as the regular Sokoban game.
