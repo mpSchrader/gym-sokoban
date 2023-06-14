@@ -6,7 +6,7 @@
 
 
 ## 1. Idea
-Instead of generating a new level on every reset operation, a pregenerated level is choosen randomly. When Boxoban is run for the first time the levels are downloaded from DeepMinds [Github repository](https://github.com/deepmind/boxoban-levels) and stored in the folder _.sokoban_cache_. 
+Instead of generating a new level on every reset operation, a pregenerated level is choosen randomly. When Boxoban is run for the first time the levels are downloaded from DeepMinds [Github repository](https://github.com/deepmind/boxoban-levels) and stored in the folder _.sokoban_cache_. This path can be changed by environment variable `SOKOBAN_CACHE_PATH`
 
 In case you use the Boxoban levels for your research, the authors of the boxoban-levels repository ask you to cite their work as follows:
 ```
