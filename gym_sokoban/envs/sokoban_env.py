@@ -223,12 +223,12 @@ class SokobanEnv(gym.Env):
     def render(self, mode='human', close=None, scale=1):
         assert mode in RENDERING_MODES
 
-        img = self.get_image(mode, scale)
-
         if 'rgb_array' in mode:
+            img = self.get_image(mode, scale)
             return img
 
         elif 'human' in mode:
+            img = self.get_image(mode, scale)
             from gym.envs.classic_control import rendering
             if self.viewer is None:
                 self.viewer = rendering.SimpleImageViewer()
